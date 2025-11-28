@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package dht;
+
+// DHT Service Definition
+service DHTService {
+    // Client-facing operations
+    // Put operation to store a key-value pair
+    rpc Put(PutRequest) returns (PutResponse);
+    
+    // Get operation to retrieve a value by key
+    rpc Get(GetRequest) returns (GetResponse);
+    
+    // Health check for node availability
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+    
+    // Internal operations (node-to-node)
+    // Internal put for replication
+    rpc InternalPut(InternalPutRequest) returns (InternalPutResponse);
+    
+    // Internal get for quorum reads
+    rpc InternalGet(InternalGetRequest) returns (InternalGetResponse);
+    
+    // Read repair operation
+    rpc ReadRepair(ReadRepairRequest) returns (ReadRepairResponse);
+}
+
+// Put Request
+message PutRequest {
+    string key = 1;
+    string value = 2;
+    map<string, int32> vector_clock = 3;  // Vector clock for versioning (Phase 2)
+}
+
+// Put Response
+message PutResponse {
+    bool success = 1;
+    string message = 2;
+    map<string, int32> vector_clock = 3;
+}
+
+// Get Request
+message GetRequest {
+    string key = 1;
+}
+
+// Get Response
+message GetResponse {
+    bool success = 1;
+    string key = 2;
+    string value = 3;
+    string message = 4;
+    map<string, int32> vector_clock = 5;
+    bool has_conflicts = 6;  // True if multiple concurrent versions exist
+    repeated string sibling_values = 7;  // All sibling values in case of conflict
+    repeated VectorClockMsg sibling_clocks = 8;  // Vector clocks for siblings
+}
+
+// Vector Clock Message (for repeated use)
+message VectorClockMsg {
+    map<string, int32> clock = 1;
+}
+
+// Versioned Data (for internal operations)
+message VersionedData {
+    string value = 1;
+    map<string, int32> vector_clock = 2;
+}
+
+// Internal Put Request (for replication)
+message InternalPutRequest {
+    string key = 1;
+    string value = 2;
+    map<string, int32> vector_clock = 3;
+    bool is_replication = 4;
+}
+
+// Internal Put Response
+message InternalPutResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Internal Get Request (for quorum reads)
+message InternalGetRequest {
+    string key = 1;
+}
+
+// Internal Get Response
+message InternalGetResponse {
+    bool success = 1;
+    repeated VersionedData versions = 2;
+}
+
+// Read Repair Request
+message ReadRepairRequest {
+    string key = 1;
+    repeated VersionedData versions = 2;
+}
+
+// Read Repair Response
+message ReadRepairResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Health Check Request
+message HealthCheckRequest {
+    string node_id = 1;
+}
+
+// Health Check Response
+message HealthCheckResponse {
+    bool healthy = 1;
+    string node_id = 2;
+    string datacenter = 3;  // Datacenter ID (Phase 3)
+}

@@ -1,0 +1,144 @@
+Added node localhost:50051 with 3 virtual nodes
+[Config] Added localhost:50051 to DC1
+Added node localhost:50052 with 3 virtual nodes
+Added node localhost:50053 with 3 virtual nodes
+Added node localhost:50054 with 3 virtual nodes
+Added node localhost:50055 with 3 virtual nodes
+Added node localhost:50056 with 3 virtual nodes
+[dc1_node1] Initialized at localhost:50051 (DC: DC1)
+[dc1_node1] Known nodes: ['localhost:50053', 'localhost:50055', 'localhost:50056', 'localhost:50052', 'localhost:50054', 'localhost:50051']
+[dc1_node1] Replication: N=3, R=2, W=2
+[dc1_node1] Datacenter-aware: True
+
+======================================================================
+DHT Node 'dc1_node1' started (Phase 2+3 Features)
+Address: localhost:50051
+Datacenter: DC1
+Replication: N=3, R=2, W=2
+======================================================================
+
+[Config] Strong consistency: R + W > N ✓
+[dc1_node1] Client PUT: key='test1', value='value1'
+[dc1_node1] Preference list for 'test1': ['localhost:50051', 'localhost:50053', 'localhost:50054']
+[dc1_node1] Stored NEW key='test1', value='value1', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] Replicated to localhost:50054
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Client PUT: key='test_key_0', value='value_0'
+[dc1_node1] Preference list for 'test_key_0': ['localhost:50054', 'localhost:50056', 'localhost:50052']
+[dc1_node1] Stored NEW key='test_key_0', value='value_0', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50054
+[dc1_node1] Replicated to localhost:50056
+[dc1_node1] Replicated to localhost:50052
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 4/3
+[dc1_node1] Client PUT: key='test_key_1', value='value_1'
+[dc1_node1] Preference list for 'test_key_1': ['localhost:50051', 'localhost:50054', 'localhost:50053']
+[dc1_node1] Stored NEW key='test_key_1', value='value_1', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50054
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Client PUT: key='test_key_2', value='value_2'
+[dc1_node1] Preference list for 'test_key_2': ['localhost:50052', 'localhost:50055', 'localhost:50053']
+[dc1_node1] Stored NEW key='test_key_2', value='value_2', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50052
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 4/3
+[dc1_node1] Client PUT: key='test_key_3', value='value_3'
+[dc1_node1] Preference list for 'test_key_3': ['localhost:50051', 'localhost:50052', 'localhost:50055']
+[dc1_node1] Stored NEW key='test_key_3', value='value_3', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50052
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Client PUT: key='test_key_4', value='value_4'
+[dc1_node1] Preference list for 'test_key_4': ['localhost:50053', 'localhost:50055', 'localhost:50051']
+[dc1_node1] Stored NEW key='test_key_4', value='value_4', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Client GET: key='test1'
+[dc1_node1] Reading from preference list: ['localhost:50051', 'localhost:50053']
+[dc1_node1] Retrieved key='test1', versions=1
+[dc1_node1] Performing read repair for key='test1'
+[dc1_node1] Read repair to localhost:50053 succeeded
+[dc1_node1] Read repair to localhost:50054 succeeded
+[dc1_node1] Client PUT: key='demo_key', value='demo_value'
+[dc1_node1] Preference list for 'demo_key': ['localhost:50055', 'localhost:50051', 'localhost:50054']
+[dc1_node1] Stored NEW key='demo_key', value='demo_value', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] Replicated to localhost:50054
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Client GET: key='demo_key'
+[dc1_node1] Reading from preference list: ['localhost:50055', 'localhost:50051']
+[dc1_node1] Retrieved key='demo_key', versions=1
+[dc1_node1] Performing read repair for key='demo_key'
+[dc1_node1] Read repair to localhost:50055 succeeded
+[dc1_node1] Read repair to localhost:50054 succeeded
+[dc1_node1] Health check from client
+[dc1_node1] Client PUT: key='user:1', value='Alice'
+[dc1_node1] Preference list for 'user:1': ['localhost:50052', 'localhost:50055', 'localhost:50053']
+[dc1_node1] Stored NEW key='user:1', value='Alice', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50052
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 4/3
+[dc1_node1] Internal PUT (replication): key='user:2'
+[dc1_node1] Stored NEW key='user:2', value='Bob', clock={dc2_node2:1}
+[dc1_node1] Internal PUT (replication): key='user:3'
+[dc1_node1] Stored NEW key='user:3', value='Charlie', clock={dc3_node2:1}
+[dc1_node1] Client GET: key='user:1'
+[dc1_node1] Reading from preference list: ['localhost:50052', 'localhost:50055']
+[dc1_node1] Retrieved key='user:1', versions=1
+[dc1_node1] Performing read repair for key='user:1'
+[dc1_node1] Read repair to localhost:50052 succeeded
+[dc1_node1] Read repair to localhost:50055 succeeded
+[dc1_node1] Read repair to localhost:50053 succeeded
+[dc1_node1] Retrieved key='user:2', versions=1
+[dc1_node1] Merged versions for key='user:2', result=1 versions
+[dc1_node1] Retrieved key='user:3', versions=1
+[dc1_node1] Merged versions for key='user:3', result=1 versions
+[dc1_node1] Client GET: key='counter'
+[dc1_node1] Reading from preference list: ['localhost:50052', 'localhost:50056']
+[dc1_node1] Key='counter' not found
+[dc1_node1] CONFLICT: 6 sibling versions for 'counter'
+[dc1_node1] Internal PUT (replication): key='shared:item'
+[dc1_node1] Stored NEW key='shared:item', value='Version_A', clock={dc3_node1:1}
+[dc1_node1] Internal PUT (replication): key='shared:item'
+[dc1_node1] CONFLICT detected for key='shared:item', siblings=2
+[dc1_node1] Retrieved key='shared:item', versions=2
+[dc1_node1] Internal PUT (replication): key='load:key0'
+[dc1_node1] Stored NEW key='load:key0', value='value0', clock={dc3_node1:1}
+[dc1_node1] Internal PUT (replication): key='load:key6'
+[dc1_node1] Stored NEW key='load:key6', value='value6', clock={dc3_node1:1}
+[dc1_node1] Client PUT: key='load:key8', value='value8'
+[dc1_node1] Preference list for 'load:key8': ['localhost:50055', 'localhost:50053', 'localhost:50051']
+[dc1_node1] Stored NEW key='load:key8', value='value8', clock={dc1_node1:1}
+[dc1_node1] Replicated to localhost:50055
+[dc1_node1] Replicated to localhost:50053
+[dc1_node1] W-quorum achieved (2 writes), returning to client
+[dc1_node1] Background replication continues for remaining nodes
+[dc1_node1] Successful writes: 3/3
+[dc1_node1] Internal PUT (replication): key='load:key9'
+[dc1_node1] Stored NEW key='load:key9', value='value9', clock={dc1_node2:1}
+[dc1_node1] Client GET: key='load:key0'
+[dc1_node1] Reading from preference list: ['localhost:50054', 'localhost:50051']
+[dc1_node1] Retrieved key='load:key0', versions=1
+[dc1_node1] Performing read repair for key='load:key0'
+[dc1_node1] Read repair to localhost:50054 succeeded
+[dc1_node1] Read repair to localhost:50053 succeeded
