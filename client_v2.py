@@ -23,6 +23,10 @@ class DHTClient:
         self.channels = {}
         self.stubs = {}
         
+        # CRITICAL FIX: Track vector clocks for each key
+        # This prevents false conflicts when same client writes sequentially
+        self.vector_clocks = {}  # key -> latest vector clock
+        
         for node in nodes:
             try:
                 channel = grpc.insecure_channel(node)
@@ -36,68 +40,121 @@ class DHTClient:
         node = random.choice(list(self.stubs.keys()))
         return node, self.stubs[node]
     
-    def put(self, key: str, value: str, vector_clock: dict = None):
+    def put(self, key: str, value: str, vector_clock: dict = None, max_retries: int = 1):
         """
-        Put a key-value pair.
+        Put a key-value pair with retry logic.
+        Tries multiple coordinators if first attempt fails.
+        
+        CRITICAL: Uses client-side vector clock tracking to prevent false conflicts.
+        When the same client writes to the same key multiple times, it sends the
+        latest vector clock, ensuring causality is preserved even with different coordinators.
         """
-        try:
-            coordinator, stub = self._get_random_coordinator()
-            print(f"\nPUT '{key}' = '{value}' via {coordinator}")
-            
-            request = dht_pb2.PutRequest(
-                key=key,
-                value=value,
-                vector_clock=vector_clock or {}
-            )
-            
-            response = stub.Put(request, timeout=10)
-            
-            if response.success:
-                print(f"✓ Success: {response.message}")
-                print(f"  Vector Clock: {dict(response.vector_clock)}")
-                return response
-            else:
-                print(f"✗ Failed: {response.message}")
-                return None
+        last_error = None
+        
+        # CRITICAL FIX: Use tracked vector clock if no explicit clock provided
+        # This ensures sequential writes from same client don't create false conflicts
+        if vector_clock is None and key in self.vector_clocks:
+            vector_clock = self.vector_clocks[key]
+            print(f"  📝 Using tracked vector clock: {vector_clock}")
+        
+        for attempt in range(max_retries):
+            try:
+                coordinator, stub = self._get_random_coordinator()
                 
-        except Exception as e:
-            print(f"✗ Error: {e}")
-            return None
-    
-    def get(self, key: str):
-        """
-        Get value for a key.
-        """
-        try:
-            coordinator, stub = self._get_random_coordinator()
-            print(f"\nGET '{key}' via {coordinator}")
-            
-            request = dht_pb2.GetRequest(key=key)
-            response = stub.Get(request, timeout=10)
-            
-            if response.success:
-                print(f"✓ Value: '{response.value}'")
-                print(f"  Vector Clock: {dict(response.vector_clock)}")
-                
-                if response.has_conflicts:
-                    print(f"  ⚠ CONFLICT DETECTED!")
-                    print(f"  Sibling versions ({len(response.sibling_values)}):")
-                    for i, (val, clock_msg) in enumerate(zip(response.sibling_values, 
-                                                              response.sibling_clocks)):
-                        print(f"    {i+1}. value='{val}', clock={dict(clock_msg.clock)}")
-                    
-                    return self._resolve_conflict(key, response)
+                if attempt == 0:
+                    print(f"\nPUT '{key}' = '{value}' via {coordinator}")
                 else:
+                    print(f"  Retry {attempt}/{max_retries-1} via {coordinator}")
+                
+                request = dht_pb2.PutRequest(
+                    key=key,
+                    value=value,
+                    vector_clock=vector_clock or {}
+                )
+                
+                response = stub.Put(request, timeout=15)  # Increased timeout
+                
+                if response.success:
+                    print(f"✓ Success: {response.message}")
+                    print(f"  Vector Clock: {dict(response.vector_clock)}")
+                    
+                    # CRITICAL FIX: Update tracked vector clock for this key
+                    self.vector_clocks[key] = dict(response.vector_clock)
+                    
+                    return response
+                else:
+                    last_error = response.message
+                    print(f"  Failed: {response.message}")
+                    if attempt < max_retries - 1:
+                        time.sleep(0.5 * (2 ** attempt))  # Exponential backoff
+                    
+            except Exception as e:
+                last_error = str(e)
+                print(f"  Error: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(0.5 * (2 ** attempt))  # Exponential backoff
+        
+        # All retries failed
+        print(f"✗ All {max_retries} attempts failed. Last error: {last_error}")
+        return None
+    
+    def get(self, key: str, max_retries: int = 3):
+        """
+        Get value for a key with retry logic.
+        Tries multiple coordinators if first attempt fails.
+        
+        CRITICAL: Updates client-side vector clock tracking after successful read.
+        This ensures subsequent writes have the correct causal context.
+        """
+        last_error = None
+        
+        for attempt in range(max_retries):
+            try:
+                coordinator, stub = self._get_random_coordinator()
+                
+                if attempt == 0:
+                    print(f"\nGET '{key}' via {coordinator}")
+                else:
+                    print(f"  Retry {attempt}/{max_retries-1} via {coordinator}")
+                
+                request = dht_pb2.GetRequest(key=key)
+                response = stub.Get(request, timeout=15)  # Increased timeout
+                
+                if response.success:
+                    print(f"✓ Value: '{response.value}'")
+                    print(f"  Vector Clock: {dict(response.vector_clock)}")
+                    
+                    # CRITICAL FIX: Update tracked vector clock after GET
+                    # This ensures next PUT uses the latest causal context
+                    self.vector_clocks[key] = dict(response.vector_clock)
+                    
+                    if response.has_conflicts:
+                        print(f"  ⚠ CONFLICT DETECTED!")
+                        print(f"  Sibling versions ({len(response.sibling_values)}):")
+                        for i, (val, clock_msg) in enumerate(zip(response.sibling_values, 
+                                                                  response.sibling_clocks)):
+                            print(f"    {i+1}. value='{val}', clock={dict(clock_msg.clock)}")
+                        
+                        return self._resolve_conflict(key, response)
+                    else:
+                        print(f"  {response.message}")
+                    
+                    return response
+                else:
+                    last_error = response.message
                     print(f"  {response.message}")
-                
-                return response
-            else:
-                print(f"✗ {response.message}")
-                return None
-                
-        except Exception as e:
-            print(f"✗ Error: {e}")
-            return None
+                    if attempt < max_retries - 1:
+                        time.sleep(0.5 * (2 ** attempt))  # Exponential backoff
+                    
+            except Exception as e:
+                last_error = str(e)
+                print(f"  Error: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(0.5 * (2 ** attempt))  # Exponential backoff
+        
+        # All retries failed
+        print(f"✗ All {max_retries} attempts failed. Last error: {last_error}")
+        return None
     
     def _resolve_conflict(self, key: str, response):
         """
@@ -170,6 +227,7 @@ def run_comprehensive_tests(client: DHTClient):
     print("\n[TEST 2] Basic Put/Get Operations")
     print("-" * 70)
     client.put("user:1", "Alice")
+    time.sleep(0.5)
     client.put("user:2", "Bob")
     client.put("user:3", "Charlie")
     time.sleep(0.5)

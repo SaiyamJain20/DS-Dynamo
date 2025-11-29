@@ -63,6 +63,8 @@ exec(content)
         echo "  7 - Persistence Verification"
         echo "  8 - Stress Test"
         echo "  9 - Datacenter Awareness Test"
+        echo " 10 - Client-Side Vector Clock Tracking Test"
+        echo " 11 - Read Repair Test"
         echo ""
         read -p "Enter phases to run (comma-separated, e.g., 1,2,3): " phases
         python3 test_comprehensive.py --phases "$phases"
