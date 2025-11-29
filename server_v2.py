@@ -754,6 +754,17 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
         Handle internal PUT request from another node (replication).
         """
         try:
+            import os
+            import random
+            if os.environ.get("DHT_STRAGGLER_DELAY"):
+                delay_val = os.environ.get("DHT_STRAGGLER_DELAY")
+                # Check if it's a range like "0.05-0.2"
+                if '-' in delay_val:
+                    min_d, max_d = map(float, delay_val.split('-'))
+                    time.sleep(random.uniform(min_d, max_d))
+                else:
+                    time.sleep(float(delay_val))
+            
             key = request.key
             value = request.value
             vector_clock = VectorClock.from_dict(dict(request.vector_clock))
@@ -1122,6 +1133,10 @@ def main():
                        help='Read quorum (R)')
     parser.add_argument('--w', type=int, default=2,
                        help='Write quorum (W)')
+    parser.add_argument('--disable-read-repair', action='store_true', 
+                        help='Disable read repair')
+    parser.add_argument('--virtual-nodes', type=int, default=150, 
+                        help='Number of virtual nodes per physical node')
     
     args = parser.parse_args()
     
@@ -1129,6 +1144,8 @@ def main():
     NodeConfig.R = args.r
     NodeConfig.W = args.w
     NodeConfig.DATACENTER_AWARE = args.enable_dc_aware
+    NodeConfig.ENABLE_READ_REPAIR = not args.disable_read_repair
+    NodeConfig.NUM_VIRTUAL_NODES = args.virtual_nodes
     
     serve(
         node_id=args.node_id,
