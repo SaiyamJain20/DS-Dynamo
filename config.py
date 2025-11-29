@@ -16,10 +16,17 @@ class NodeConfig:
     R = 2
     W = 2
     
-    NUM_VIRTUAL_NODES = 3
+    NUM_VIRTUAL_NODES = 150
     
     ENABLE_READ_REPAIR = True
     READ_REPAIR_ASYNC = False
+    
+    # Hinted Handoff Configuration
+    ENABLE_HINTED_HANDOFF = True
+    HINT_DELIVERY_INTERVAL_SEC = 30  # How often to check for hint delivery (seconds)
+    HINT_MAX_AGE_SEC = 600  # 10 minutes - delete hints older than this
+    HINT_MAX_ATTEMPTS = 100  # Maximum delivery attempts before giving up
+    SLOPPY_QUORUM_EXTRA_NODES = 2  # How many extra nodes to try for sloppy quorum
     
     DATACENTER_MAP: Dict[str, str] = {
     }

@@ -1,0 +1,1504 @@
+[dc2_node1] Loaded 86 keys from disk
+[dc2_node1] No existing hints file found, starting fresh
+[ConsistentHash] Loaded ring state for dc2_node1: 186 nodes
+[Config] Added localhost:50071 to DC2
+[dc2_node1] Recovered previous ring state with 186 nodes
+[ConsistentHash] Saved ring state for dc2_node1
+[dc2_node1] Hint delivery loop started
+[dc2_node1] Started hint delivery thread
+[dc2_node1] Initialized at localhost:50071 (DC: DC2)
+[dc2_node1] Known nodes: ['localhost:50193', 'localhost:50223', 'localhost:50144', 'localhost:50084', 'localhost:50166', 'localhost:50122', 'localhost:50124', 'localhost:50079', 'localhost:50142', 'localhost:50167', 'localhost:50069', 'localhost:50174', 'localhost:50143', 'localhost:50076', 'localhost:50113', 'localhost:50186', 'localhost:50172', 'localhost:50182', 'localhost:50199', 'localhost:50246', 'localhost:50158', 'localhost:50131', 'localhost:50218', 'localhost:50054', 'localhost:50155', 'localhost:50198', 'localhost:50150', 'localhost:50168', 'localhost:50234', 'localhost:50191', 'localhost:50237', 'localhost:50104', 'localhost:50213', 'localhost:50062', 'localhost:50176', 'localhost:50129', 'localhost:50087', 'localhost:50051', 'localhost:50194', 'localhost:50185', 'localhost:50115', 'localhost:50134', 'localhost:50151', 'localhost:50101', 'localhost:50127', 'localhost:50219', 'localhost:50236', 'localhost:50178', 'localhost:50211', 'localhost:50083', 'localhost:50112', 'localhost:50110', 'localhost:50157', 'localhost:50111', 'localhost:50064', 'localhost:50238', 'localhost:50138', 'localhost:50140', 'localhost:50181', 'localhost:50145', 'localhost:50097', 'localhost:50092', 'localhost:50169', 'localhost:50093', 'localhost:50067', 'localhost:50230', 'localhost:50149', 'localhost:50059', 'localhost:50233', 'localhost:50133', 'localhost:50188', 'localhost:50212', 'localhost:50126', 'localhost:50089', 'localhost:50123', 'localhost:50197', 'localhost:50147', 'localhost:50195', 'localhost:50249', 'localhost:50058', 'localhost:50190', 'localhost:50078', 'localhost:50192', 'localhost:50229', 'localhost:50159', 'localhost:50208', 'localhost:50119', 'localhost:50161', 'localhost:50163', 'localhost:50128', 'localhost:50141', 'localhost:50245', 'localhost:50070', 'localhost:50068', 'localhost:50065', 'localhost:50202', 'localhost:50074', 'localhost:50183', 'localhost:50216', 'localhost:50053', 'localhost:50100', 'localhost:50243', 'localhost:50105', 'localhost:50108', 'localhost:50222', 'localhost:50148', 'localhost:50063', 'localhost:50241', 'localhost:50091', 'localhost:50125', 'localhost:50231', 'localhost:50247', 'localhost:50227', 'localhost:50156', 'localhost:50210', 'localhost:50132', 'localhost:50073', 'localhost:50162', 'localhost:50220', 'localhost:50250', 'localhost:50153', 'localhost:50201', 'localhost:50164', 'localhost:50102', 'localhost:50187', 'localhost:50152', 'localhost:50057', 'localhost:50077', 'localhost:50160', 'localhost:50071', 'localhost:50095', 'localhost:50120', 'localhost:50240', 'localhost:50118', 'localhost:50056', 'localhost:50107', 'localhost:50226', 'localhost:50207', 'localhost:50072', 'localhost:50061', 'localhost:50096', 'localhost:50248', 'localhost:50060', 'localhost:50239', 'localhost:50130', 'localhost:50137', 'localhost:50081', 'localhost:50244', 'localhost:50224', 'localhost:50080', 'localhost:50082', 'localhost:50171', 'localhost:50242', 'localhost:50136', 'localhost:50090', 'localhost:50052', 'localhost:50066', 'localhost:50175', 'localhost:50221', 'localhost:50139', 'localhost:50094', 'localhost:50114', 'localhost:50165', 'localhost:50170', 'localhost:50215', 'localhost:50088', 'localhost:50103', 'localhost:50106', 'localhost:50135', 'localhost:50086', 'localhost:50146', 'localhost:50055', 'localhost:50116', 'localhost:50184', 'localhost:50173', 'localhost:50209', 'localhost:50098', 'localhost:50121', 'localhost:50075', 'localhost:50109', 'localhost:50099', 'localhost:50214', 'localhost:50117', 'localhost:50085', 'localhost:50154', 'localhost:50204']
+[dc2_node1] Replication: N=3, R=2, W=2
+[dc2_node1] Datacenter-aware: True
+[dc2_node1] Hinted handoff: True
+
+======================================================================
+DHT Node 'dc2_node1' started (Phase 2+3 Features)
+Address: localhost:50071
+Datacenter: DC2
+Replication: N=3, R=2, W=2
+======================================================================
+
+[Config] Strong consistency: R + W > N ✓
+[dc2_node1] Announcing presence to cluster...
+[dc2_node1] Successfully announced to localhost:50051: Node already in ring
+[dc2_node1] Discovering nodes from known nodes...
+[Config] Added localhost:50100 to DC3
+[Config] Added localhost:50154 to DC6
+[Config] Added localhost:50064 to DC1
+[Config] Added localhost:50231 to DC10
+[Config] Added localhost:50214 to DC9
+[Config] Added localhost:50094 to DC3
+[Config] Added localhost:50054 to DC1
+Added node localhost:50225 with 150 virtual nodes
+[Config] Added localhost:50225 to DC9
+[Config] Added localhost:50125 to DC4
+[Config] Added localhost:50187 to DC7
+[Config] Added localhost:50213 to DC9
+[Config] Added localhost:50087 to DC2
+[Config] Added localhost:50114 to DC4
+Added node localhost:50228 with 150 virtual nodes
+[Config] Added localhost:50228 to DC9
+[Config] Added localhost:50082 to DC2
+[Config] Added localhost:50153 to DC6
+Added node localhost:50232 with 150 virtual nodes
+[Config] Added localhost:50232 to DC10
+[Config] Added localhost:50095 to DC3
+[Config] Added localhost:50108 to DC3
+Added node localhost:50217 with 150 virtual nodes
+[Config] Added localhost:50217 to DC9
+[Config] Added localhost:50111 to DC4
+[Config] Added localhost:50140 to DC5
+[Config] Added localhost:50249 to DC10
+[Config] Added localhost:50233 to DC10
+[Config] Added localhost:50197 to DC8
+[Config] Added localhost:50237 to DC10
+[Config] Added localhost:50185 to DC7
+[Config] Added localhost:50222 to DC9
+[Config] Added localhost:50159 to DC6
+[Config] Added localhost:50076 to DC2
+[Config] Added localhost:50137 to DC5
+[Config] Added localhost:50224 to DC9
+Added node localhost:50206 with 150 virtual nodes
+[Config] Added localhost:50206 to DC8
+[Config] Added localhost:50248 to DC10
+[Config] Added localhost:50074 to DC2
+[Config] Added localhost:50202 to DC8
+[Config] Added localhost:50163 to DC6
+[Config] Added localhost:50243 to DC10
+[Config] Added localhost:50085 to DC2
+[Config] Added localhost:50148 to DC5
+[Config] Added localhost:50240 to DC10
+Added node localhost:50179 with 150 virtual nodes
+[Config] Added localhost:50179 to DC7
+[Config] Added localhost:50239 to DC10
+[Config] Added localhost:50188 to DC7
+[Config] Added localhost:50227 to DC9
+[Config] Added localhost:50238 to DC10
+[Config] Added localhost:50134 to DC5
+[Config] Added localhost:50136 to DC5
+[Config] Added localhost:50168 to DC6
+[Config] Added localhost:50139 to DC5
+[Config] Added localhost:50138 to DC5
+[Config] Added localhost:50182 to DC7
+[Config] Added localhost:50241 to DC10
+[Config] Added localhost:50132 to DC5
+[Config] Added localhost:50141 to DC5
+[Config] Added localhost:50127 to DC4
+[Config] Added localhost:50057 to DC1
+[Config] Added localhost:50052 to DC1
+[Config] Added localhost:50173 to DC7
+[Config] Added localhost:50090 to DC2
+[Config] Added localhost:50215 to DC9
+[Config] Added localhost:50218 to DC9
+[Config] Added localhost:50107 to DC3
+[Config] Added localhost:50209 to DC8
+[Config] Added localhost:50135 to DC5
+[Config] Added localhost:50110 to DC3
+[Config] Added localhost:50195 to DC8
+[Config] Added localhost:50061 to DC1
+[Config] Added localhost:50176 to DC7
+[Config] Added localhost:50184 to DC7
+[Config] Added localhost:50229 to DC9
+[Config] Added localhost:50178 to DC7
+[Config] Added localhost:50211 to DC9
+[Config] Added localhost:50212 to DC9
+[Config] Added localhost:50234 to DC10
+[Config] Added localhost:50060 to DC1
+[Config] Added localhost:50155 to DC6
+Added node localhost:50235 with 150 virtual nodes
+[Config] Added localhost:50235 to DC10
+[Config] Added localhost:50070 to DC1
+[Config] Added localhost:50151 to DC6
+[Config] Added localhost:50091 to DC3
+[Config] Added localhost:50183 to DC7
+[Config] Added localhost:50113 to DC4
+Added node localhost:50189 with 150 virtual nodes
+[Config] Added localhost:50189 to DC7
+[Config] Added localhost:50226 to DC9
+[Config] Added localhost:50170 to DC6
+[Config] Added localhost:50174 to DC7
+[Config] Added localhost:50123 to DC4
+[Config] Added localhost:50051 to DC1
+[Config] Added localhost:50084 to DC2
+[Config] Added localhost:50116 to DC4
+[Config] Added localhost:50150 to DC5
+[Config] Added localhost:50079 to DC2
+[Config] Added localhost:50103 to DC3
+Added node localhost:50205 with 150 virtual nodes
+[Config] Added localhost:50205 to DC8
+[Config] Added localhost:50207 to DC8
+[Config] Added localhost:50105 to DC3
+[Config] Added localhost:50133 to DC5
+[Config] Added localhost:50175 to DC7
+Added node localhost:50180 with 150 virtual nodes
+[Config] Added localhost:50180 to DC7
+[Config] Added localhost:50204 to DC8
+[Config] Added localhost:50210 to DC8
+[Config] Added localhost:50092 to DC3
+[Config] Added localhost:50112 to DC4
+[Config] Added localhost:50194 to DC8
+[Config] Added localhost:50186 to DC7
+[Config] Added localhost:50191 to DC8
+[Config] Added localhost:50119 to DC4
+[Config] Added localhost:50144 to DC5
+[Config] Added localhost:50156 to DC6
+[Config] Added localhost:50242 to DC10
+[Config] Added localhost:50129 to DC4
+[Config] Added localhost:50077 to DC2
+[Config] Added localhost:50068 to DC1
+[Config] Added localhost:50250 to DC10
+[Config] Added localhost:50069 to DC1
+[Config] Added localhost:50099 to DC3
+[Config] Added localhost:50080 to DC2
+[Config] Added localhost:50219 to DC9
+[Config] Added localhost:50106 to DC3
+[Config] Added localhost:50143 to DC5
+[Config] Added localhost:50157 to DC6
+[Config] Added localhost:50126 to DC4
+[Config] Added localhost:50142 to DC5
+[Config] Added localhost:50072 to DC2
+[Config] Added localhost:50230 to DC9
+[Config] Added localhost:50104 to DC3
+[Config] Added localhost:50216 to DC9
+Added node localhost:50196 with 150 virtual nodes
+[Config] Added localhost:50196 to DC8
+[Config] Added localhost:50221 to DC9
+[Config] Added localhost:50158 to DC6
+[Config] Added localhost:50124 to DC4
+[Config] Added localhost:50245 to DC10
+[Config] Added localhost:50117 to DC4
+[Config] Added localhost:50056 to DC1
+[Config] Added localhost:50162 to DC6
+[Config] Added localhost:50062 to DC1
+[Config] Added localhost:50093 to DC3
+[Config] Added localhost:50146 to DC5
+[Config] Added localhost:50223 to DC9
+[Config] Added localhost:50097 to DC3
+[Config] Added localhost:50128 to DC4
+[Config] Added localhost:50131 to DC5
+[Config] Added localhost:50115 to DC4
+[Config] Added localhost:50120 to DC4
+[Config] Added localhost:50236 to DC10
+[Config] Added localhost:50169 to DC6
+[Config] Added localhost:50096 to DC3
+[Config] Added localhost:50152 to DC6
+Added node localhost:50177 with 150 virtual nodes
+[Config] Added localhost:50177 to DC7
+[Config] Added localhost:50199 to DC8
+[Config] Added localhost:50053 to DC1
+[Config] Added localhost:50122 to DC4
+[Config] Added localhost:50081 to DC2
+[Config] Added localhost:50067 to DC1
+[Config] Added localhost:50058 to DC1
+[Config] Added localhost:50055 to DC1
+[Config] Added localhost:50145 to DC5
+[Config] Added localhost:50246 to DC10
+[Config] Added localhost:50098 to DC3
+[Config] Added localhost:50086 to DC2
+[Config] Added localhost:50161 to DC6
+Added node localhost:50200 with 150 virtual nodes
+[Config] Added localhost:50200 to DC8
+[Config] Added localhost:50066 to DC1
+[Config] Added localhost:50208 to DC8
+[Config] Added localhost:50181 to DC7
+[Config] Added localhost:50244 to DC10
+[Config] Added localhost:50160 to DC6
+[Config] Added localhost:50130 to DC4
+[Config] Added localhost:50073 to DC2
+[Config] Added localhost:50149 to DC5
+Added node localhost:50203 with 150 virtual nodes
+[Config] Added localhost:50203 to DC8
+[Config] Added localhost:50147 to DC5
+[Config] Added localhost:50118 to DC4
+[Config] Added localhost:50102 to DC3
+[Config] Added localhost:50166 to DC6
+[Config] Added localhost:50193 to DC8
+[Config] Added localhost:50101 to DC3
+[Config] Added localhost:50075 to DC2
+[Config] Added localhost:50063 to DC1
+[Config] Added localhost:50088 to DC2
+[Config] Added localhost:50247 to DC10
+[Config] Added localhost:50109 to DC3
+[Config] Added localhost:50190 to DC7
+[Config] Added localhost:50192 to DC8
+[Config] Added localhost:50198 to DC8
+[Config] Added localhost:50065 to DC1
+[Config] Added localhost:50078 to DC2
+[Config] Added localhost:50059 to DC1
+[Config] Added localhost:50121 to DC4
+[Config] Added localhost:50083 to DC2
+[Config] Added localhost:50201 to DC8
+[Config] Added localhost:50089 to DC2
+[Config] Added localhost:50164 to DC6
+[Config] Added localhost:50165 to DC6
+[Config] Added localhost:50220 to DC9
+[Config] Added localhost:50167 to DC6
+[Config] Added localhost:50171 to DC7
+[Config] Added localhost:50172 to DC7
+[dc2_node1] Round 1: discovered 199 new nodes, ring now has 200 nodes
+[dc2_node1] Round 2: discovered 0 new nodes, ring now has 200 nodes
+[ConsistentHash] Saved ring state for dc2_node1
+[dc2_node1] Discovery complete: ring contains 200 nodes
+[dc2_node1] Client GET: key='item:0798'
+[dc2_node1] Reading from preference list: ['localhost:50070', 'localhost:50088']
+[dc2_node1] Key='item:0798' not found
+[dc2_node1] CONFLICT: 16 sibling versions for 'item:0798'
+[dc2_node1] Client GET: key='item:1927'
+[dc2_node1] Reading from preference list: ['localhost:50095', 'localhost:50166']
+[dc2_node1] Key='item:1927' not found
+[dc2_node1] CONFLICT: 26 sibling versions for 'item:1927'
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Client GET: key='item:3498'
+[dc2_node1] Reading from preference list: ['localhost:50133', 'localhost:50096']
+[dc2_node1] Key='item:3498' not found
+[dc2_node1] CONFLICT: 30 sibling versions for 'item:3498'
+[dc2_node1] Client GET: key='item:1774'
+[dc2_node1] Reading from preference list: ['localhost:50061', 'localhost:50094']
+[dc2_node1] Key='item:1774' not found
+[dc2_node1] CONFLICT: 24 sibling versions for 'item:1774'
+[dc2_node1] Retrieved key='item:2524', versions=13
+[dc2_node1] Client PUT: key='item:0856', value='stress_1_7'
+[dc2_node1] Preference list for 'item:0856': ['localhost:50118', 'localhost:50166', 'localhost:50210']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50118
+[dc2_node1] Replicated to localhost:50166
+[dc2_node1] Replicated to localhost:50210
+[dc2_node1] Internal PUT (replication): key='item:4838'
+[dc2_node1] CONFLICT detected for key='item:4838', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:1840'
+[dc2_node1] CONFLICT detected for key='item:1840', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2832', value='stress_3_11'
+[dc2_node1] Preference list for 'item:2832': ['localhost:50158', 'localhost:50211', 'localhost:50053']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50158
+[dc2_node1] Replicated to localhost:50053
+[dc2_node1] Replicated to localhost:50211
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:3764', versions=5
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Retrieved key='item:1065', versions=16
+[dc2_node1] Retrieved key='item:4631', versions=10
+[dc2_node1] Client GET: key='item:4324'
+[dc2_node1] Reading from preference list: ['localhost:50245', 'localhost:50118']
+[dc2_node1] Key='item:4324' not found
+[dc2_node1] CONFLICT: 29 sibling versions for 'item:4324'
+[dc2_node1] Internal PUT (replication): key='item:2267'
+[dc2_node1] CONFLICT detected for key='item:2267', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3497'
+[dc2_node1] CONFLICT detected for key='item:3497', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3497'
+[dc2_node1] CONFLICT detected for key='item:3497', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2631', versions=9
+[dc2_node1] Retrieved key='item:0839', versions=9
+[dc2_node1] Internal PUT (replication): key='item:4887'
+[dc2_node1] CONFLICT detected for key='item:4887', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3647', versions=16
+[dc2_node1] Internal PUT (replication): key='item:3030'
+[dc2_node1] CONFLICT detected for key='item:3030', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2737', value='stress_3_99'
+[dc2_node1] Preference list for 'item:2737': ['localhost:50107', 'localhost:50054', 'localhost:50197']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50054
+[dc2_node1] Replicated to localhost:50107
+[dc2_node1] Replicated to localhost:50197
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:1065', versions=16
+[dc2_node1] Retrieved key='item:2144', versions=13
+[dc2_node1] Retrieved key='item:0480', versions=12
+[dc2_node1] Client GET: key='item:4974'
+[dc2_node1] Reading from preference list: ['localhost:50108', 'localhost:50145']
+[dc2_node1] Key='item:4974' not found
+[dc2_node1] CONFLICT: 36 sibling versions for 'item:4974'
+[dc2_node1] Internal PUT (replication): key='item:0376'
+[dc2_node1] CONFLICT detected for key='item:0376', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:4973', value='stress_9_129'
+[dc2_node1] Preference list for 'item:4973': ['localhost:50087', 'localhost:50229', 'localhost:50062']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50229
+[dc2_node1] Replicated to localhost:50062
+[dc2_node1] Replicated to localhost:50087
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:4642', value='stress_2_153'
+[dc2_node1] Preference list for 'item:4642': ['localhost:50242', 'localhost:50057', 'localhost:50128']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50128
+[dc2_node1] Replicated to localhost:50242
+[dc2_node1] Replicated to localhost:50057
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:1949', value='stress_3_149'
+[dc2_node1] Preference list for 'item:1949': ['localhost:50204', 'localhost:50051', 'localhost:50243']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50051
+[dc2_node1] Replicated to localhost:50243
+[dc2_node1] Replicated to localhost:50204
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:2524'
+[dc2_node1] CONFLICT detected for key='item:2524', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3764', versions=5
+[dc2_node1] Retrieved key='item:2116', versions=12
+[dc2_node1] Internal PUT (replication): key='item:0748'
+[dc2_node1] CONFLICT detected for key='item:0748', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3130'
+[dc2_node1] Reading from preference list: ['localhost:50147', 'localhost:50116']
+[dc2_node1] Key='item:3130' not found
+[dc2_node1] CONFLICT: 34 sibling versions for 'item:3130'
+[dc2_node1] Internal PUT (replication): key='item:0083'
+[dc2_node1] CONFLICT detected for key='item:0083', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:0083', versions=18
+[dc2_node1] Retrieved key='item:3773', versions=16
+[dc2_node1] Client GET: key='item:1446'
+[dc2_node1] Reading from preference list: ['localhost:50120', 'localhost:50053']
+[dc2_node1] Key='item:1446' not found
+[dc2_node1] CONFLICT: 26 sibling versions for 'item:1446'
+[dc2_node1] Retrieved key='item:4261', versions=10
+[dc2_node1] Internal PUT (replication): key='item:0692'
+[dc2_node1] CONFLICT detected for key='item:0692', siblings=12
+[dc2_node1] Internal PUT (replication): key='item:4996'
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] CONFLICT detected for key='item:4996', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1540', value='stress_5_204'
+[dc2_node1] Preference list for 'item:1540': ['localhost:50231', 'localhost:50055', 'localhost:50143']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50231
+[dc2_node1] Replicated to localhost:50055
+[dc2_node1] Replicated to localhost:50143
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:0889', value='stress_5_221'
+[dc2_node1] Preference list for 'item:0889': ['localhost:50228', 'localhost:50170', 'localhost:50076']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Internal PUT (replication): key='item:4038'
+[dc2_node1] CONFLICT detected for key='item:4038', siblings=12
+[dc2_node1] Replicated to localhost:50170
+[dc2_node1] Replicated to localhost:50076
+[dc2_node1] Replicated to localhost:50228
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:0480'
+[dc2_node1] CONFLICT detected for key='item:0480', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3919'
+[dc2_node1] CONFLICT detected for key='item:3919', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:4486', value='stress_0_230'
+[dc2_node1] Preference list for 'item:4486': ['localhost:50207', 'localhost:50212', 'localhost:50095']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50207
+[dc2_node1] Replicated to localhost:50095
+[dc2_node1] Replicated to localhost:50212
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:4261'
+[dc2_node1] CONFLICT detected for key='item:4261', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:1782'
+[dc2_node1] Reading from preference list: ['localhost:50125', 'localhost:50245']
+[dc2_node1] Key='item:1782' not found
+[dc2_node1] CONFLICT: 27 sibling versions for 'item:1782'
+[dc2_node1] Client PUT: key='item:4635', value='stress_0_243'
+[dc2_node1] Preference list for 'item:4635': ['localhost:50238', 'localhost:50192', 'localhost:50070']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50192
+[dc2_node1] Replicated to localhost:50238
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Client PUT: key='item:2116', value='stress_7_253'
+[dc2_node1] Preference list for 'item:2116': ['localhost:50105', 'localhost:50071', 'localhost:50064']
+[dc2_node1] CONFLICT detected for key='item:2116', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Coordinator IS in preference list, stored locally
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Replicated to localhost:50070
+[dc2_node1] Replicated to localhost:50064
+[dc2_node1] Replicated to localhost:50105
+[dc2_node1] Retrieved key='item:1724', versions=14
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client GET: key='item:2914'
+[dc2_node1] Reading from preference list: ['localhost:50135', 'localhost:50210']
+[dc2_node1] Key='item:2914' not found
+[dc2_node1] CONFLICT: 21 sibling versions for 'item:2914'
+[dc2_node1] Internal PUT (replication): key='item:4996'
+[dc2_node1] CONFLICT detected for key='item:4996', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1824'
+[dc2_node1] CONFLICT detected for key='item:1824', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:0750', value='stress_4_287'
+[dc2_node1] Preference list for 'item:0750': ['localhost:50175', 'localhost:50148', 'localhost:50094']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Retrieved key='item:3030', versions=14
+[dc2_node1] Replicated to localhost:50175
+[dc2_node1] Replicated to localhost:50148
+[dc2_node1] Replicated to localhost:50094
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:3543', value='stress_9_283'
+[dc2_node1] Preference list for 'item:3543': ['localhost:50236', 'localhost:50076', 'localhost:50092']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50236
+[dc2_node1] Replicated to localhost:50076
+[dc2_node1] Replicated to localhost:50092
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:4261', versions=11
+[dc2_node1] Client GET: key='item:0691'
+[dc2_node1] Reading from preference list: ['localhost:50225', 'localhost:50063']
+[dc2_node1] Key='item:0691' not found
+[dc2_node1] CONFLICT: 19 sibling versions for 'item:0691'
+[dc2_node1] Client GET: key='item:1200'
+[dc2_node1] Reading from preference list: ['localhost:50208', 'localhost:50096']
+[dc2_node1] Key='item:1200' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:1200'
+[dc2_node1] Client GET: key='item:0132'
+[dc2_node1] Reading from preference list: ['localhost:50200', 'localhost:50109']
+[dc2_node1] Key='item:0132' not found
+[dc2_node1] CONFLICT: 36 sibling versions for 'item:0132'
+[dc2_node1] Internal PUT (replication): key='item:1498'
+[dc2_node1] CONFLICT detected for key='item:1498', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2267', versions=10
+[dc2_node1] Retrieved key='item:3653', versions=12
+[dc2_node1] Retrieved key='item:0657', versions=2
+[dc2_node1] Client GET: key='item:2124'
+[dc2_node1] Reading from preference list: ['localhost:50237', 'localhost:50188']
+[dc2_node1] Key='item:2124' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:2124'
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Internal PUT (replication): key='item:4887'
+[dc2_node1] CONFLICT detected for key='item:4887', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:3945', value='stress_9_350'
+[dc2_node1] Preference list for 'item:3945': ['localhost:50083', 'localhost:50208', 'localhost:50159']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50159
+[dc2_node1] Replicated to localhost:50083
+[dc2_node1] Replicated to localhost:50208
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:3773', versions=16
+[dc2_node1] Client PUT: key='item:4100', value='stress_8_371'
+[dc2_node1] Preference list for 'item:4100': ['localhost:50240', 'localhost:50055', 'localhost:50129']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50240
+[dc2_node1] Replicated to localhost:50129
+[dc2_node1] Replicated to localhost:50055
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:3764'
+[dc2_node1] CONFLICT detected for key='item:3764', siblings=6
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2871', value='stress_8_377'
+[dc2_node1] Preference list for 'item:2871': ['localhost:50207', 'localhost:50215', 'localhost:50091']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50207
+[dc2_node1] Replicated to localhost:50091
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50215
+[dc2_node1] Retrieved key='item:1829', versions=18
+[dc2_node1] Client GET: key='item:3439'
+[dc2_node1] Reading from preference list: ['localhost:50140', 'localhost:50075']
+[dc2_node1] Key='item:3439' not found
+[dc2_node1] CONFLICT: 18 sibling versions for 'item:3439'
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Retrieved key='item:1974', versions=15
+[dc2_node1] Internal PUT (replication): key='item:3764'
+[dc2_node1] CONFLICT detected for key='item:3764', siblings=7
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2144'
+[dc2_node1] CONFLICT detected for key='item:2144', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3218', versions=10
+[dc2_node1] Client GET: key='item:2222'
+[dc2_node1] Reading from preference list: ['localhost:50150', 'localhost:50188']
+[dc2_node1] Key='item:2222' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:2222'
+[dc2_node1] Internal PUT (replication): key='item:0692'
+[dc2_node1] CONFLICT detected for key='item:0692', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0817'
+[dc2_node1] CONFLICT detected for key='item:0817', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:4484', value='stress_9_425'
+[dc2_node1] Preference list for 'item:4484': ['localhost:50086', 'localhost:50109', 'localhost:50221']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50086
+[dc2_node1] Replicated to localhost:50221
+[dc2_node1] Replicated to localhost:50109
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:4080', value='stress_6_430'
+[dc2_node1] Preference list for 'item:4080': ['localhost:50218', 'localhost:50129', 'localhost:50194']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50194
+[dc2_node1] Replicated to localhost:50218
+[dc2_node1] Replicated to localhost:50129
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client GET: key='item:2091'
+[dc2_node1] Reading from preference list: ['localhost:50138', 'localhost:50229']
+[dc2_node1] Key='item:2091' not found
+[dc2_node1] CONFLICT: 23 sibling versions for 'item:2091'
+[dc2_node1] Client PUT: key='item:3328', value='stress_5_465'
+[dc2_node1] Preference list for 'item:3328': ['localhost:50199', 'localhost:50212', 'localhost:50189']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50199
+[dc2_node1] Replicated to localhost:50212
+[dc2_node1] Internal PUT (replication): key='item:3483'
+[dc2_node1] CONFLICT detected for key='item:3483', siblings=14
+[dc2_node1] Replicated to localhost:50189
+[dc2_node1] Internal PUT (replication): key='item:3626'
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] CONFLICT detected for key='item:3626', siblings=14
+[dc2_node1] Client PUT: key='item:0400', value='stress_2_450'
+[dc2_node1] Preference list for 'item:0400': ['localhost:50214', 'localhost:50193', 'localhost:50061']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Replicated to localhost:50214
+[dc2_node1] Replicated to localhost:50061
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50193
+[dc2_node1] Retrieved key='item:4763', versions=8
+[dc2_node1] Client GET: key='item:0226'
+[dc2_node1] Reading from preference list: ['localhost:50222', 'localhost:50200']
+[dc2_node1] Key='item:0226' not found
+[dc2_node1] CONFLICT: 30 sibling versions for 'item:0226'
+[dc2_node1] Retrieved key='item:1244', versions=7
+[dc2_node1] Internal PUT (replication): key='item:1974'
+[dc2_node1] CONFLICT detected for key='item:1974', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0376'
+[dc2_node1] CONFLICT detected for key='item:0376', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3773', versions=16
+[dc2_node1] Internal PUT (replication): key='item:1582'
+[dc2_node1] CONFLICT detected for key='item:1582', siblings=5
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3429'
+[dc2_node1] CONFLICT detected for key='item:3429', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:2160'
+[dc2_node1] Reading from preference list: ['localhost:50115', 'localhost:50167']
+[dc2_node1] Key='item:2160' not found
+[dc2_node1] CONFLICT: 30 sibling versions for 'item:2160'
+[dc2_node1] Client PUT: key='item:1626', value='stress_3_536'
+[dc2_node1] Preference list for 'item:1626': ['localhost:50168', 'localhost:50058', 'localhost:50243']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50243
+[dc2_node1] Replicated to localhost:50058
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50168
+[dc2_node1] Client GET: key='item:3546'
+[dc2_node1] Reading from preference list: ['localhost:50227', 'localhost:50067']
+[dc2_node1] Key='item:3546' not found
+[dc2_node1] CONFLICT: 29 sibling versions for 'item:3546'
+[dc2_node1] Client GET: key='item:2628'
+[dc2_node1] Reading from preference list: ['localhost:50071', 'localhost:50105']
+[dc2_node1] Retrieved key='item:2628', versions=10
+[dc2_node1] CONFLICT: 20 sibling versions for 'item:2628'
+[dc2_node1] Client GET: key='item:3269'
+[dc2_node1] Reading from preference list: ['localhost:50062', 'localhost:50240']
+[dc2_node1] Key='item:3269' not found
+[dc2_node1] CONFLICT: 37 sibling versions for 'item:3269'
+[dc2_node1] Client GET: key='item:1425'
+[dc2_node1] Reading from preference list: ['localhost:50189', 'localhost:50120']
+[dc2_node1] Key='item:1425' not found
+[dc2_node1] CONFLICT: 26 sibling versions for 'item:1425'
+[dc2_node1] Internal PUT (replication): key='item:4519'
+[dc2_node1] CONFLICT detected for key='item:4519', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:4791'
+[dc2_node1] Reading from preference list: ['localhost:50186', 'localhost:50069']
+[dc2_node1] Key='item:4791' not found
+[dc2_node1] CONFLICT: 36 sibling versions for 'item:4791'
+[dc2_node1] Retrieved key='item:2116', versions=13
+[dc2_node1] Internal PUT (replication): key='item:1065'
+[dc2_node1] CONFLICT detected for key='item:1065', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3653', versions=12
+[dc2_node1] Internal PUT (replication): key='item:1829'
+[dc2_node1] CONFLICT detected for key='item:1829', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3653'
+[dc2_node1] CONFLICT detected for key='item:3653', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3401'
+[dc2_node1] Reading from preference list: ['localhost:50057', 'localhost:50121']
+[dc2_node1] Key='item:3401' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:3401'
+[dc2_node1] Retrieved key='item:2628', versions=10
+[dc2_node1] Internal PUT (replication): key='item:1620'
+[dc2_node1] CONFLICT detected for key='item:1620', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2810'
+[dc2_node1] CONFLICT detected for key='item:2810', siblings=9
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:0480', versions=13
+[dc2_node1] Client PUT: key='item:3646', value='stress_3_617'
+[dc2_node1] Preference list for 'item:3646': ['localhost:50173', 'localhost:50139', 'localhost:50058']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50139
+[dc2_node1] Replicated to localhost:50058
+[dc2_node1] Replicated to localhost:50173
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:2631'
+[dc2_node1] CONFLICT detected for key='item:2631', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3497'
+[dc2_node1] CONFLICT detected for key='item:3497', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2666'
+[dc2_node1] CONFLICT detected for key='item:2666', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3810', versions=17
+[dc2_node1] Retrieved key='item:3653', versions=13
+[dc2_node1] Internal PUT (replication): key='item:1102'
+[dc2_node1] CONFLICT detected for key='item:1102', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:2888'
+[dc2_node1] Reading from preference list: ['localhost:50069', 'localhost:50095']
+[dc2_node1] Key='item:2888' not found
+[dc2_node1] CONFLICT: 22 sibling versions for 'item:2888'
+[dc2_node1] Retrieved key='item:1657', versions=13
+[dc2_node1] Retrieved key='item:1269', versions=14
+[dc2_node1] Internal PUT (replication): key='item:4038'
+[dc2_node1] CONFLICT detected for key='item:4038', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4996'
+[dc2_node1] CONFLICT detected for key='item:4996', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3483'
+[dc2_node1] CONFLICT detected for key='item:3483', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3773'
+[dc2_node1] CONFLICT detected for key='item:3773', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4193'
+[dc2_node1] CONFLICT detected for key='item:4193', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2815', value='stress_7_728'
+[dc2_node1] Preference list for 'item:2815': ['localhost:50178', 'localhost:50141', 'localhost:50238']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50141
+[dc2_node1] Replicated to localhost:50238
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50178
+[dc2_node1] Retrieved key='item:3647', versions=16
+[dc2_node1] Internal PUT (replication): key='item:3919'
+[dc2_node1] CONFLICT detected for key='item:3919', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:0748', versions=14
+[dc2_node1] Client GET: key='item:3041'
+[dc2_node1] Reading from preference list: ['localhost:50108', 'localhost:50057']
+[dc2_node1] Key='item:3041' not found
+[dc2_node1] CONFLICT: 18 sibling versions for 'item:3041'
+[dc2_node1] Client GET: key='item:3989'
+[dc2_node1] Reading from preference list: ['localhost:50234', 'localhost:50079']
+[dc2_node1] Key='item:3989' not found
+[dc2_node1] CONFLICT: 36 sibling versions for 'item:3989'
+[dc2_node1] Retrieved key='item:1809', versions=18
+[dc2_node1] Internal PUT (replication): key='item:1619'
+[dc2_node1] CONFLICT detected for key='item:1619', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1960'
+[dc2_node1] CONFLICT detected for key='item:1960', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:0839', versions=9
+[dc2_node1] Internal PUT (replication): key='item:0144'
+[dc2_node1] CONFLICT detected for key='item:0144', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1363', value='stress_6_777'
+[dc2_node1] Preference list for 'item:1363': ['localhost:50250', 'localhost:50188', 'localhost:50220']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50250
+[dc2_node1] Replicated to localhost:50220
+[dc2_node1] Replicated to localhost:50188
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:1846'
+[dc2_node1] CONFLICT detected for key='item:1846', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3116', versions=12
+[dc2_node1] Client GET: key='item:1693'
+[dc2_node1] Reading from preference list: ['localhost:50056', 'localhost:50093']
+[dc2_node1] Key='item:1693' not found
+[dc2_node1] CONFLICT: 22 sibling versions for 'item:1693'
+[dc2_node1] Retrieved key='item:1620', versions=16
+[dc2_node1] Internal PUT (replication): key='item:2810'
+[dc2_node1] CONFLICT detected for key='item:2810', siblings=9
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4261', versions=11
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Client GET: key='item:3122'
+[dc2_node1] Reading from preference list: ['localhost:50234', 'localhost:50138']
+[dc2_node1] Key='item:3122' not found
+[dc2_node1] CONFLICT: 30 sibling versions for 'item:3122'
+[dc2_node1] Internal PUT (replication): key='item:1846'
+[dc2_node1] CONFLICT detected for key='item:1846', siblings=15
+[dc2_node1] Internal PUT (replication): key='item:0083'
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] CONFLICT detected for key='item:0083', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1809'
+[dc2_node1] CONFLICT detected for key='item:1809', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0692'
+[dc2_node1] CONFLICT detected for key='item:0692', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0839'
+[dc2_node1] CONFLICT detected for key='item:0839', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3764'
+[dc2_node1] CONFLICT detected for key='item:3764', siblings=8
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1102', versions=13
+[dc2_node1] Retrieved key='item:4261', versions=11
+[dc2_node1] Internal PUT (replication): key='item:1620'
+[dc2_node1] CONFLICT detected for key='item:1620', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1829'
+[dc2_node1] CONFLICT detected for key='item:1829', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:3171', value='stress_3_936'
+[dc2_node1] Preference list for 'item:3171': ['localhost:50168', 'localhost:50051', 'localhost:50098']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50051
+[dc2_node1] Replicated to localhost:50098
+[dc2_node1] Replicated to localhost:50168
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:2267', versions=10
+[dc2_node1] Internal PUT (replication): key='item:3653'
+[dc2_node1] CONFLICT detected for key='item:3653', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:2608'
+[dc2_node1] Reading from preference list: ['localhost:50051', 'localhost:50102']
+[dc2_node1] Key='item:2608' not found
+[dc2_node1] CONFLICT: 24 sibling versions for 'item:2608'
+[dc2_node1] Client GET: key='item:2077'
+[dc2_node1] Reading from preference list: ['localhost:50180', 'localhost:50059']
+[dc2_node1] Key='item:2077' not found
+[dc2_node1] CONFLICT: 24 sibling versions for 'item:2077'
+[dc2_node1] Internal PUT (replication): key='item:2666'
+[dc2_node1] CONFLICT detected for key='item:2666', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:0975'
+[dc2_node1] Reading from preference list: ['localhost:50228', 'localhost:50165']
+[dc2_node1] Key='item:0975' not found
+[dc2_node1] CONFLICT: 34 sibling versions for 'item:0975'
+[dc2_node1] Internal PUT (replication): key='item:4235'
+[dc2_node1] CONFLICT detected for key='item:4235', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1829', versions=20
+[dc2_node1] Retrieved key='item:1724', versions=14
+[dc2_node1] Internal PUT (replication): key='item:2144'
+[dc2_node1] CONFLICT detected for key='item:2144', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1829'
+[dc2_node1] CONFLICT detected for key='item:1829', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1846'
+[dc2_node1] CONFLICT detected for key='item:1846', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:0565'
+[dc2_node1] Reading from preference list: ['localhost:50177', 'localhost:50105']
+[dc2_node1] Key='item:0565' not found
+[dc2_node1] CONFLICT: 28 sibling versions for 'item:0565'
+[dc2_node1] Retrieved key='item:4838', versions=12
+[dc2_node1] Retrieved key='item:1662', versions=23
+[dc2_node1] Internal PUT (replication): key='item:4722'
+[dc2_node1] CONFLICT detected for key='item:4722', siblings=11
+[dc2_node1] Client PUT: key='item:2411', value='stress_4_1050'
+[dc2_node1] Preference list for 'item:2411': ['localhost:50087', 'localhost:50243', 'localhost:50216']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Replicated to localhost:50243
+[dc2_node1] Replicated to localhost:50216
+[dc2_node1] Replicated to localhost:50087
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:0084', value='stress_2_1047'
+[dc2_node1] Preference list for 'item:0084': ['localhost:50065', 'localhost:50212', 'localhost:50119']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50212
+[dc2_node1] Replicated to localhost:50119
+[dc2_node1] Replicated to localhost:50065
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:3773'
+[dc2_node1] CONFLICT detected for key='item:3773', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2524'
+[dc2_node1] CONFLICT detected for key='item:2524', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2524', versions=15
+[dc2_node1] Retrieved key='item:1829', versions=21
+[dc2_node1] Client PUT: key='item:1779', value='stress_7_1072'
+[dc2_node1] Preference list for 'item:1779': ['localhost:50229', 'localhost:50208', 'localhost:50149']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50229
+[dc2_node1] Replicated to localhost:50149
+[dc2_node1] Replicated to localhost:50208
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client GET: key='item:3837'
+[dc2_node1] Reading from preference list: ['localhost:50061', 'localhost:50197']
+[dc2_node1] Key='item:3837' not found
+[dc2_node1] CONFLICT: 22 sibling versions for 'item:3837'
+[dc2_node1] Client GET: key='item:1234'
+[dc2_node1] Reading from preference list: ['localhost:50079', 'localhost:50162']
+[dc2_node1] Key='item:1234' not found
+[dc2_node1] CONFLICT: 24 sibling versions for 'item:1234'
+[dc2_node1] Internal PUT (replication): key='item:1840'
+[dc2_node1] CONFLICT detected for key='item:1840', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3647'
+[dc2_node1] CONFLICT detected for key='item:3647', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4351'
+[dc2_node1] CONFLICT detected for key='item:4351', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4897'
+[dc2_node1] CONFLICT detected for key='item:4897', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1102', versions=13
+[dc2_node1] Internal PUT (replication): key='item:0219'
+[dc2_node1] CONFLICT detected for key='item:0219', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3647'
+[dc2_node1] CONFLICT detected for key='item:3647', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:0083', versions=18
+[dc2_node1] Retrieved key='item:1714', versions=16
+[dc2_node1] Retrieved key='item:1244', versions=7
+[dc2_node1] Retrieved key='item:3030', versions=14
+[dc2_node1] Retrieved key='item:4193', versions=10
+[dc2_node1] Client PUT: key='item:1969', value='stress_1_1222'
+[dc2_node1] Preference list for 'item:1969': ['localhost:50129', 'localhost:50197', 'localhost:50241']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Client PUT: key='item:2951', value='stress_6_1177'
+[dc2_node1] Preference list for 'item:2951': ['localhost:50119', 'localhost:50056', 'localhost:50237']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50197
+[dc2_node1] Replicated to localhost:50129
+[dc2_node1] Replicated to localhost:50241
+[dc2_node1] Replicated to localhost:50056
+[dc2_node1] Replicated to localhost:50119
+[dc2_node1] Replicated to localhost:50237
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:0839', versions=10
+[dc2_node1] Internal PUT (replication): key='item:1846'
+[dc2_node1] CONFLICT detected for key='item:1846', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:3388', value='stress_8_1184'
+[dc2_node1] Preference list for 'item:3388': ['localhost:50189', 'localhost:50069', 'localhost:50139']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50069
+[dc2_node1] Replicated to localhost:50139
+[dc2_node1] Replicated to localhost:50189
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client GET: key='item:3899'
+[dc2_node1] Reading from preference list: ['localhost:50207', 'localhost:50183']
+[dc2_node1] Key='item:3899' not found
+[dc2_node1] CONFLICT: 27 sibling versions for 'item:3899'
+[dc2_node1] Client PUT: key='item:4441', value='stress_6_1190'
+[dc2_node1] Preference list for 'item:4441': ['localhost:50243', 'localhost:50205', 'localhost:50169']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50243
+[dc2_node1] Replicated to localhost:50205
+[dc2_node1] Replicated to localhost:50169
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:3030', versions=14
+[dc2_node1] Client PUT: key='item:0191', value='stress_7_1181'
+[dc2_node1] Preference list for 'item:0191': ['localhost:50090', 'localhost:50166', 'localhost:50216']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50090
+[dc2_node1] Replicated to localhost:50216
+[dc2_node1] Replicated to localhost:50166
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:0376'
+[dc2_node1] CONFLICT detected for key='item:0376', siblings=22
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:4954'
+[dc2_node1] Reading from preference list: ['localhost:50074', 'localhost:50216']
+[dc2_node1] Key='item:4954' not found
+[dc2_node1] CONFLICT: 33 sibling versions for 'item:4954'
+[dc2_node1] Retrieved key='item:3429', versions=17
+[dc2_node1] Internal PUT (replication): key='item:3919'
+[dc2_node1] CONFLICT detected for key='item:3919', siblings=22
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2631', versions=10
+[dc2_node1] Internal PUT (replication): key='item:4519'
+[dc2_node1] CONFLICT detected for key='item:4519', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4887'
+[dc2_node1] CONFLICT detected for key='item:4887', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1022'
+[dc2_node1] CONFLICT detected for key='item:1022', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1267', versions=10
+[dc2_node1] Client PUT: key='item:1007', value='stress_3_1291'
+[dc2_node1] Preference list for 'item:1007': ['localhost:50214', 'localhost:50250', 'localhost:50126']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Client GET: key='item:1582'
+[dc2_node1] Reading from preference list: ['localhost:50243', 'localhost:50219']
+[dc2_node1] Retrieved key='item:1582', versions=5
+[dc2_node1] CONFLICT: 37 sibling versions for 'item:1582'
+[dc2_node1] Internal PUT (replication): key='item:4235'
+[dc2_node1] CONFLICT detected for key='item:4235', siblings=13
+[dc2_node1] Replicated to localhost:50250
+[dc2_node1] Replicated to localhost:50214
+[dc2_node1] Replicated to localhost:50126
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:3764'
+[dc2_node1] CONFLICT detected for key='item:3764', siblings=9
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4722'
+[dc2_node1] CONFLICT detected for key='item:4722', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3647', versions=17
+[dc2_node1] Internal PUT (replication): key='item:2810'
+[dc2_node1] CONFLICT detected for key='item:2810', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1247', value='stress_6_1307'
+[dc2_node1] Preference list for 'item:1247': ['localhost:50131', 'localhost:50103', 'localhost:50068']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50131
+[dc2_node1] Replicated to localhost:50103
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50068
+[dc2_node1] Internal PUT (replication): key='item:4038'
+[dc2_node1] CONFLICT detected for key='item:4038', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3810', versions=17
+[dc2_node1] Client PUT: key='item:4333', value='stress_5_1338'
+[dc2_node1] Preference list for 'item:4333': ['localhost:50234', 'localhost:50103', 'localhost:50156']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50156
+[dc2_node1] Replicated to localhost:50103
+[dc2_node1] Replicated to localhost:50234
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:4763'
+[dc2_node1] CONFLICT detected for key='item:4763', siblings=9
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4996', versions=19
+[dc2_node1] Internal PUT (replication): key='item:4763'
+[dc2_node1] CONFLICT detected for key='item:4763', siblings=10
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3483'
+[dc2_node1] CONFLICT detected for key='item:3483', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2813', value='stress_3_1367'
+[dc2_node1] Preference list for 'item:2813': ['localhost:50069', 'localhost:50073', 'localhost:50236']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50069
+[dc2_node1] Replicated to localhost:50236
+[dc2_node1] Replicated to localhost:50073
+[dc2_node1] Retrieved key='item:3764', versions=9
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:3941', value='stress_4_1390'
+[dc2_node1] Preference list for 'item:3941': ['localhost:50068', 'localhost:50250', 'localhost:50118']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50118
+[dc2_node1] Replicated to localhost:50068
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50250
+[dc2_node1] Internal PUT (replication): key='item:1220'
+[dc2_node1] CONFLICT detected for key='item:1220', siblings=22
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0748'
+[dc2_node1] CONFLICT detected for key='item:0748', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1065'
+[dc2_node1] CONFLICT detected for key='item:1065', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4887', versions=21
+[dc2_node1] Internal PUT (replication): key='item:0144'
+[dc2_node1] CONFLICT detected for key='item:0144', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4897'
+[dc2_node1] CONFLICT detected for key='item:4897', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1244', versions=7
+[dc2_node1] Internal PUT (replication): key='item:1714'
+[dc2_node1] CONFLICT detected for key='item:1714', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3920'
+[dc2_node1] Reading from preference list: ['localhost:50216', 'localhost:50189']
+[dc2_node1] Key='item:3920' not found
+[dc2_node1] CONFLICT: 26 sibling versions for 'item:3920'
+[dc2_node1] Internal PUT (replication): key='item:2631'
+[dc2_node1] CONFLICT detected for key='item:2631', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4631'
+[dc2_node1] CONFLICT detected for key='item:4631', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2628', versions=10
+[dc2_node1] Internal PUT (replication): key='item:4351'
+[dc2_node1] CONFLICT detected for key='item:4351', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4631', versions=11
+[dc2_node1] Client GET: key='item:4876'
+[dc2_node1] Reading from preference list: ['localhost:50107', 'localhost:50179']
+[dc2_node1] Key='item:4876' not found
+[dc2_node1] CONFLICT: 34 sibling versions for 'item:4876'
+[dc2_node1] Internal PUT (replication): key='item:0480'
+[dc2_node1] CONFLICT detected for key='item:0480', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3429', versions=17
+[dc2_node1] Retrieved key='item:3116', versions=12
+[dc2_node1] Internal PUT (replication): key='item:3626'
+[dc2_node1] CONFLICT detected for key='item:3626', siblings=15
+[dc2_node1] Internal PUT (replication): key='item:4351'
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] CONFLICT detected for key='item:4351', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4261', versions=11
+[dc2_node1] Internal PUT (replication): key='item:4631'
+[dc2_node1] CONFLICT detected for key='item:4631', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3657'
+[dc2_node1] Reading from preference list: ['localhost:50086', 'localhost:50148']
+[dc2_node1] Key='item:3657' not found
+[dc2_node1] CONFLICT: 30 sibling versions for 'item:3657'
+[dc2_node1] Internal PUT (replication): key='item:4038'
+[dc2_node1] CONFLICT detected for key='item:4038', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3764', versions=9
+[dc2_node1] Internal PUT (replication): key='item:2666'
+[dc2_node1] CONFLICT detected for key='item:2666', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1619'
+[dc2_node1] CONFLICT detected for key='item:1619', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1267'
+[dc2_node1] CONFLICT detected for key='item:1267', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0748'
+[dc2_node1] CONFLICT detected for key='item:0748', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:4608', value='stress_1_1528'
+[dc2_node1] Preference list for 'item:4608': ['localhost:50055', 'localhost:50239', 'localhost:50177']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50177
+[dc2_node1] Replicated to localhost:50055
+[dc2_node1] Replicated to localhost:50239
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client GET: key='item:2455'
+[dc2_node1] Reading from preference list: ['localhost:50138', 'localhost:50119']
+[dc2_node1] Key='item:2455' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:2455'
+[dc2_node1] Retrieved key='item:4763', versions=10
+[dc2_node1] Internal PUT (replication): key='item:2006'
+[dc2_node1] CONFLICT detected for key='item:2006', siblings=3
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2628'
+[dc2_node1] CONFLICT detected for key='item:2628', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:3810', versions=17
+[dc2_node1] Client GET: key='item:1539'
+[dc2_node1] Reading from preference list: ['localhost:50206', 'localhost:50078']
+[dc2_node1] Key='item:1539' not found
+[dc2_node1] CONFLICT: 27 sibling versions for 'item:1539'
+[dc2_node1] Client PUT: key='item:4442', value='stress_1_1553'
+[dc2_node1] Preference list for 'item:4442': ['localhost:50054', 'localhost:50215', 'localhost:50189']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50054
+[dc2_node1] Replicated to localhost:50189
+[dc2_node1] Replicated to localhost:50215
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:3429'
+[dc2_node1] CONFLICT detected for key='item:3429', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:1829', versions=21
+[dc2_node1] Internal PUT (replication): key='item:0880'
+[dc2_node1] CONFLICT detected for key='item:0880', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0817'
+[dc2_node1] CONFLICT detected for key='item:0817', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1146', value='stress_6_1543'
+[dc2_node1] Preference list for 'item:1146': ['localhost:50064', 'localhost:50199', 'localhost:50238']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50238
+[dc2_node1] Replicated to localhost:50064
+[dc2_node1] Internal PUT (replication): key='item:1657'
+[dc2_node1] CONFLICT detected for key='item:1657', siblings=14
+[dc2_node1] Replicated to localhost:50199
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3720'
+[dc2_node1] Reading from preference list: ['localhost:50236', 'localhost:50167']
+[dc2_node1] Key='item:3720' not found
+[dc2_node1] CONFLICT: 41 sibling versions for 'item:3720'
+[dc2_node1] Retrieved key='item:1065', versions=18
+[dc2_node1] Retrieved key='item:2554', versions=10
+[dc2_node1] Retrieved key='item:2144', versions=15
+[dc2_node1] Internal PUT (replication): key='item:3497'
+[dc2_node1] CONFLICT detected for key='item:3497', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0219'
+[dc2_node1] CONFLICT detected for key='item:0219', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2116'
+[dc2_node1] CONFLICT detected for key='item:2116', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:0069'
+[dc2_node1] Reading from preference list: ['localhost:50074', 'localhost:50126']
+[dc2_node1] Key='item:0069' not found
+[dc2_node1] CONFLICT: 38 sibling versions for 'item:0069'
+[dc2_node1] Client GET: key='item:3693'
+[dc2_node1] Reading from preference list: ['localhost:50096', 'localhost:50113']
+[dc2_node1] Key='item:3693' not found
+[dc2_node1] CONFLICT: 34 sibling versions for 'item:3693'
+[dc2_node1] Retrieved key='item:1829', versions=21
+[dc2_node1] Internal PUT (replication): key='item:1809'
+[dc2_node1] CONFLICT detected for key='item:1809', siblings=20
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1310', value='stress_0_1679'
+[dc2_node1] Preference list for 'item:1310': ['localhost:50202', 'localhost:50146', 'localhost:50117']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50202
+[dc2_node1] Replicated to localhost:50117
+[dc2_node1] Replicated to localhost:50146
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:1065'
+[dc2_node1] CONFLICT detected for key='item:1065', siblings=19
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:2166', value='stress_2_1676'
+[dc2_node1] Preference list for 'item:2166': ['localhost:50239', 'localhost:50179', 'localhost:50069']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50239
+[dc2_node1] Replicated to localhost:50069
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50179
+[dc2_node1] Retrieved key='item:4996', versions=19
+[dc2_node1] Client GET: key='item:4125'
+[dc2_node1] Reading from preference list: ['localhost:50190', 'localhost:50166']
+[dc2_node1] Key='item:4125' not found
+[dc2_node1] CONFLICT: 29 sibling versions for 'item:4125'
+[dc2_node1] Retrieved key='item:4897', versions=21
+[dc2_node1] Client PUT: key='item:1492', value='stress_2_1719'
+[dc2_node1] Preference list for 'item:1492': ['localhost:50141', 'localhost:50230', 'localhost:50174']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50141
+[dc2_node1] Replicated to localhost:50230
+[dc2_node1] Replicated to localhost:50174
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:2554', versions=10
+[dc2_node1] Internal PUT (replication): key='item:1840'
+[dc2_node1] CONFLICT detected for key='item:1840', siblings=21
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4261'
+[dc2_node1] CONFLICT detected for key='item:4261', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:3862', value='stress_3_1733'
+[dc2_node1] Preference list for 'item:3862': ['localhost:50185', 'localhost:50108', 'localhost:50090']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50090
+[dc2_node1] Replicated to localhost:50185
+[dc2_node1] Replicated to localhost:50108
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:3647', versions=17
+[dc2_node1] Internal PUT (replication): key='item:1724'
+[dc2_node1] CONFLICT detected for key='item:1724', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4631'
+[dc2_node1] CONFLICT detected for key='item:4631', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4631', versions=13
+[dc2_node1] Client PUT: key='item:3754', value='stress_7_1737'
+[dc2_node1] Preference list for 'item:3754': ['localhost:50235', 'localhost:50183', 'localhost:50095']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50183
+[dc2_node1] Replicated to localhost:50235
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50095
+[dc2_node1] Client GET: key='item:2922'
+[dc2_node1] Reading from preference list: ['localhost:50249', 'localhost:50120']
+[dc2_node1] Key='item:2922' not found
+[dc2_node1] CONFLICT: 22 sibling versions for 'item:2922'
+[dc2_node1] Internal PUT (replication): key='item:2666'
+[dc2_node1] CONFLICT detected for key='item:2666', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4261', versions=12
+[dc2_node1] Retrieved key='item:1960', versions=17
+[dc2_node1] Client PUT: key='item:1822', value='stress_0_1814'
+[dc2_node1] Preference list for 'item:1822': ['localhost:50206', 'localhost:50091', 'localhost:50087']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50206
+[dc2_node1] Replicated to localhost:50087
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50091
+[dc2_node1] Internal PUT (replication): key='item:2628'
+[dc2_node1] CONFLICT detected for key='item:2628', siblings=12
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:4897', versions=21
+[dc2_node1] Retrieved key='item:4083', versions=10
+[dc2_node1] Internal PUT (replication): key='item:1269'
+[dc2_node1] CONFLICT detected for key='item:1269', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3653'
+[dc2_node1] CONFLICT detected for key='item:3653', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0219'
+[dc2_node1] CONFLICT detected for key='item:0219', siblings=14
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1072', value='stress_6_1822'
+[dc2_node1] Preference list for 'item:1072': ['localhost:50175', 'localhost:50245', 'localhost:50104']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50245
+[dc2_node1] Replicated to localhost:50175
+[dc2_node1] Replicated to localhost:50104
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:1960', versions=17
+[dc2_node1] Client GET: key='item:0704'
+[dc2_node1] Reading from preference list: ['localhost:50106', 'localhost:50075']
+[dc2_node1] Key='item:0704' not found
+[dc2_node1] CONFLICT: 32 sibling versions for 'item:0704'
+[dc2_node1] Retrieved key='item:3030', versions=14
+[dc2_node1] Internal PUT (replication): key='item:2810'
+[dc2_node1] CONFLICT detected for key='item:2810', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:0376'
+[dc2_node1] CONFLICT detected for key='item:0376', siblings=23
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1824'
+[dc2_node1] CONFLICT detected for key='item:1824', siblings=14
+[dc2_node1] Internal PUT (replication): key='item:1829'
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] CONFLICT detected for key='item:1829', siblings=22
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:1960'
+[dc2_node1] CONFLICT detected for key='item:1960', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:3060'
+[dc2_node1] CONFLICT detected for key='item:3060', siblings=3
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Retrieved key='item:2267', versions=10
+[dc2_node1] Internal PUT (replication): key='item:0839'
+[dc2_node1] CONFLICT detected for key='item:0839', siblings=11
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='item:1714', value='stress_6_1888'
+[dc2_node1] Preference list for 'item:1714': ['localhost:50244', 'localhost:50167', 'localhost:50071']
+[dc2_node1] CONFLICT detected for key='item:1714', siblings=18
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Coordinator IS in preference list, stored locally
+[dc2_node1] Replicated to localhost:50167
+[dc2_node1] Replicated to localhost:50244
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='item:2669', value='stress_8_1929'
+[dc2_node1] Preference list for 'item:2669': ['localhost:50079', 'localhost:50204', 'localhost:50058']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50058
+[dc2_node1] Replicated to localhost:50079
+[dc2_node1] Replicated to localhost:50204
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Retrieved key='item:3497', versions=17
+[dc2_node1] Client PUT: key='item:2497', value='stress_8_1941'
+[dc2_node1] Preference list for 'item:2497': ['localhost:50234', 'localhost:50189', 'localhost:50207']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50234
+[dc2_node1] Replicated to localhost:50207
+[dc2_node1] Replicated to localhost:50189
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Internal PUT (replication): key='item:4838'
+[dc2_node1] CONFLICT detected for key='item:4838', siblings=13
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:4038'
+[dc2_node1] CONFLICT detected for key='item:4038', siblings=16
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Internal PUT (replication): key='item:2116'
+[dc2_node1] CONFLICT detected for key='item:2116', siblings=15
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client GET: key='item:3352'
+[dc2_node1] Reading from preference list: ['localhost:50078', 'localhost:50152']
+[dc2_node1] Key='item:3352' not found
+[dc2_node1] CONFLICT: 42 sibling versions for 'item:3352'
+[dc2_node1] Retrieved key='item:4763', versions=10
+[dc2_node1] Client PUT: key='item:4217', value='stress_0_1965'
+[dc2_node1] Preference list for 'item:4217': ['localhost:50066', 'localhost:50202', 'localhost:50132']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50066
+[dc2_node1] Replicated to localhost:50202
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50132
+[dc2_node1] Retrieved key='item:2628', versions=12
+[dc2_node1] Internal PUT (replication): key='item:3483'
+[dc2_node1] CONFLICT detected for key='item:3483', siblings=17
+[dc2_node1] Saved 86 keys to disk
+[dc2_node1] Client PUT: key='dc_test_DC2:0', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:0': ['localhost:50146', 'localhost:50182', 'localhost:50097']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50182
+[dc2_node1] Replicated to localhost:50146
+[dc2_node1] Replicated to localhost:50097
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='dc_test_DC2:1', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:1': ['localhost:50099', 'localhost:50151', 'localhost:50112']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50112
+[dc2_node1] Replicated to localhost:50099
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50151
+[dc2_node1] Client PUT: key='dc_test_DC2:2', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:2': ['localhost:50101', 'localhost:50052', 'localhost:50215']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50215
+[dc2_node1] Replicated to localhost:50101
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 2/3
+[dc2_node1] Replicated to localhost:50052
+[dc2_node1] Client PUT: key='dc_test_DC2:3', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:3': ['localhost:50103', 'localhost:50241', 'localhost:50057']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50241
+[dc2_node1] Replicated to localhost:50057
+[dc2_node1] Replicated to localhost:50103
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='dc_test_DC2:4', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:4': ['localhost:50081', 'localhost:50128', 'localhost:50054']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50081
+[dc2_node1] Replicated to localhost:50054
+[dc2_node1] Replicated to localhost:50128
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='dc_test_DC2:5', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:5': ['localhost:50234', 'localhost:50227', 'localhost:50113']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50227
+[dc2_node1] Replicated to localhost:50234
+[dc2_node1] Replicated to localhost:50113
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3
+[dc2_node1] Client PUT: key='dc_test_DC2:6', value='value_from_DC2'
+[dc2_node1] Preference list for 'dc_test_DC2:6': ['localhost:50142', 'localhost:50061', 'localhost:50160']
+[dc2_node1] Coordinator NOT in preference list, forwarding only
+[dc2_node1] Replicated to localhost:50061
+[dc2_node1] Replicated to localhost:50142
+[dc2_node1] Replicated to localhost:50160
+[dc2_node1] W-quorum achieved (2 writes), returning to client
+[dc2_node1] Background replication continues for remaining nodes
+[dc2_node1] Successful writes: 3/3

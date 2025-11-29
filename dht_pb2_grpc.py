@@ -45,6 +45,26 @@ class DHTServiceStub(object):
                 request_serializer=dht__pb2.ReadRepairRequest.SerializeToString,
                 response_deserializer=dht__pb2.ReadRepairResponse.FromString,
                 )
+        self.GetRing = channel.unary_unary(
+                '/dht.DHTService/GetRing',
+                request_serializer=dht__pb2.GetRingRequest.SerializeToString,
+                response_deserializer=dht__pb2.GetRingResponse.FromString,
+                )
+        self.JoinCluster = channel.unary_unary(
+                '/dht.DHTService/JoinCluster',
+                request_serializer=dht__pb2.JoinClusterRequest.SerializeToString,
+                response_deserializer=dht__pb2.JoinClusterResponse.FromString,
+                )
+        self.InternalPutWithHint = channel.unary_unary(
+                '/dht.DHTService/InternalPutWithHint',
+                request_serializer=dht__pb2.InternalPutWithHintRequest.SerializeToString,
+                response_deserializer=dht__pb2.InternalPutWithHintResponse.FromString,
+                )
+        self.DeliverHint = channel.unary_unary(
+                '/dht.DHTService/DeliverHint',
+                request_serializer=dht__pb2.DeliverHintRequest.SerializeToString,
+                response_deserializer=dht__pb2.DeliverHintResponse.FromString,
+                )
 
 
 class DHTServiceServicer(object):
@@ -95,6 +115,35 @@ class DHTServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetRing(self, request, context):
+        """Get ring information (for node discovery)
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def JoinCluster(self, request, context):
+        """Join cluster (notify other nodes of our presence)
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def InternalPutWithHint(self, request, context):
+        """Hinted Handoff operations
+        Internal put with hint (for sloppy quorum)
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeliverHint(self, request, context):
+        """Deliver hint to target node
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DHTServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -127,6 +176,26 @@ def add_DHTServiceServicer_to_server(servicer, server):
                     servicer.ReadRepair,
                     request_deserializer=dht__pb2.ReadRepairRequest.FromString,
                     response_serializer=dht__pb2.ReadRepairResponse.SerializeToString,
+            ),
+            'GetRing': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRing,
+                    request_deserializer=dht__pb2.GetRingRequest.FromString,
+                    response_serializer=dht__pb2.GetRingResponse.SerializeToString,
+            ),
+            'JoinCluster': grpc.unary_unary_rpc_method_handler(
+                    servicer.JoinCluster,
+                    request_deserializer=dht__pb2.JoinClusterRequest.FromString,
+                    response_serializer=dht__pb2.JoinClusterResponse.SerializeToString,
+            ),
+            'InternalPutWithHint': grpc.unary_unary_rpc_method_handler(
+                    servicer.InternalPutWithHint,
+                    request_deserializer=dht__pb2.InternalPutWithHintRequest.FromString,
+                    response_serializer=dht__pb2.InternalPutWithHintResponse.SerializeToString,
+            ),
+            'DeliverHint': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeliverHint,
+                    request_deserializer=dht__pb2.DeliverHintRequest.FromString,
+                    response_serializer=dht__pb2.DeliverHintResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -238,5 +307,73 @@ class DHTService(object):
         return grpc.experimental.unary_unary(request, target, '/dht.DHTService/ReadRepair',
             dht__pb2.ReadRepairRequest.SerializeToString,
             dht__pb2.ReadRepairResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRing(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/dht.DHTService/GetRing',
+            dht__pb2.GetRingRequest.SerializeToString,
+            dht__pb2.GetRingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def JoinCluster(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/dht.DHTService/JoinCluster',
+            dht__pb2.JoinClusterRequest.SerializeToString,
+            dht__pb2.JoinClusterResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def InternalPutWithHint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/dht.DHTService/InternalPutWithHint',
+            dht__pb2.InternalPutWithHintRequest.SerializeToString,
+            dht__pb2.InternalPutWithHintResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeliverHint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/dht.DHTService/DeliverHint',
+            dht__pb2.DeliverHintRequest.SerializeToString,
+            dht__pb2.DeliverHintResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

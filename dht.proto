@@ -23,6 +23,19 @@ service DHTService {
     
     // Read repair operation
     rpc ReadRepair(ReadRepairRequest) returns (ReadRepairResponse);
+    
+    // Get ring information (for node discovery)
+    rpc GetRing(GetRingRequest) returns (GetRingResponse);
+    
+    // Join cluster (notify other nodes of our presence)
+    rpc JoinCluster(JoinClusterRequest) returns (JoinClusterResponse);
+    
+    // Hinted Handoff operations
+    // Internal put with hint (for sloppy quorum)
+    rpc InternalPutWithHint(InternalPutWithHintRequest) returns (InternalPutWithHintResponse);
+    
+    // Deliver hint to target node
+    rpc DeliverHint(DeliverHintRequest) returns (DeliverHintResponse);
 }
 
 // Put Request
@@ -114,4 +127,54 @@ message HealthCheckResponse {
     bool healthy = 1;
     string node_id = 2;
     string datacenter = 3;  // Datacenter ID (Phase 3)
+}
+
+// Get Ring Request
+message GetRingRequest {
+    string requesting_node_id = 1;
+}
+
+// Get Ring Response
+message GetRingResponse {
+    repeated string nodes = 1;  // List of all nodes in the ring (host:port format)
+    map<string, string> datacenter_map = 2;  // Map of node address to datacenter
+}
+
+// Join Cluster Request
+message JoinClusterRequest {
+    string node_address = 1;  // Address of joining node
+    string datacenter = 2;     // Datacenter of joining node
+}
+
+// Join Cluster Response
+message JoinClusterResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Internal Put With Hint Request (for sloppy quorum)
+message InternalPutWithHintRequest {
+    string key = 1;
+    string value = 2;
+    map<string, int32> vector_clock = 3;
+    string hint_for_node = 4;  // Address of node this data belongs to (empty if no hint)
+}
+
+// Internal Put With Hint Response
+message InternalPutWithHintResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Deliver Hint Request (transfer hinted data to recovered node)
+message DeliverHintRequest {
+    string key = 1;
+    string value = 2;
+    map<string, int32> vector_clock = 3;
+}
+
+// Deliver Hint Response
+message DeliverHintResponse {
+    bool success = 1;
+    string message = 2;
 }
