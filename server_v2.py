@@ -384,13 +384,14 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
         successful_writes = 1 if coordinator_stored else 0
         required_additional_writes = NodeConfig.W - successful_writes  # Need this many more for quorum
         
-        # Filter out self from replica nodes
-        target_nodes = [node for node in replica_nodes if node != self.address]
+        # CRITICAL FIX: Only filter out self if coordinator already stored locally
+        # If coordinator is NOT in preference list, must forward to ALL N nodes
+        if coordinator_stored:
+            target_nodes = [node for node in replica_nodes if node != self.address]
+        else:
+            target_nodes = replica_nodes  # Forward to ALL nodes in preference list
         
-        # If coordinator didn't store and no target nodes, cannot proceed
-        if not coordinator_stored and not target_nodes:
-            return 0
-        
+        # If no target nodes, cannot proceed
         if not target_nodes:
             return successful_writes
         
@@ -466,16 +467,27 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
     def _replicate_get(self, key: str, replica_nodes: List[str]) -> List[VersionedValue]:
         """
         Read from multiple replicas and collect all versions.
+        Coordinator reads locally first (if in preference list),
+        then queries other nodes in the preference list.
         """
         all_versions = []
+        successful_reads = 0
         
-        local_versions = self.storage.get(key)
-        if local_versions:
-            all_versions.extend(local_versions)
+        # Check if coordinator is in the preference list
+        coordinator_in_list = self.address in replica_nodes
         
+        # If coordinator is in preference list, try local read first
+        if coordinator_in_list:
+            local_versions = self.storage.get(key)
+            if local_versions:
+                all_versions.extend(local_versions)
+                successful_reads += 1
+                print(f"[{self.node_id}] Read locally (coordinator in preference list)")
+        
+        # Query other nodes in preference list
         for node_address in replica_nodes:
             if node_address == self.address:
-                continue
+                continue  # Skip self, already read locally if applicable
             
             try:
                 stub = self._get_node_stub(node_address)
@@ -486,6 +498,7 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
                 response = stub.InternalGet(request, timeout=NodeConfig.REQUEST_TIMEOUT_MS/1000)
                 
                 if response.success:
+                    successful_reads += 1
                     for version_data in response.versions:
                         vc = VectorClock.from_dict(dict(version_data.vector_clock))
                         vv = VersionedValue(version_data.value, vc)
@@ -683,8 +696,12 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
                 datacenter_map=NodeConfig.DATACENTER_MAP
             )
             
-            print(f"[{self.node_id}] Reading from preference list: {preference_list[:NodeConfig.R]}")
+            print(f"[{self.node_id}] Preference list for '{key}': {preference_list}")
+            print(f"[{self.node_id}] Reading from first {NodeConfig.R} nodes in preference list")
             
+            # Pass first R nodes from preference list
+            # If coordinator is in the list, it will read locally + query R-1 others
+            # If coordinator is NOT in the list, it will query all R nodes
             all_versions = self._replicate_get(key, preference_list[:NodeConfig.R])
             
             if not all_versions:

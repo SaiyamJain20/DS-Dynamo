@@ -23,6 +23,7 @@ ENV/
 # Logs
 *.log
 logs/
+*.log
 
 # Persistent storage
 data/

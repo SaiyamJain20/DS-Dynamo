@@ -16,6 +16,8 @@ This test suite covers:
 10. Load distribution across nodes
 11. Quorum-based operations
 12. Version reconciliation
+13. Client-side vector clock tracking (prevents false conflicts)
+14. Read repair verification and convergence
 """
 
 import grpc
@@ -107,7 +109,6 @@ class TestStats:
             print(f"Conflicts Detected:        {self.conflicts_detected}")
             print(f"Nodes Crashed:             {self.nodes_crashed}")
             print(f"Nodes Recovered:           {self.nodes_recovered}")
-            print(f"Read Repairs Performed:    {self.read_repairs}")
             print("="*80)
 
 
@@ -868,6 +869,229 @@ def phase9_datacenter_awareness_test():
     print(f"\n✓ Datacenter awareness test complete")
 
 
+def phase10_vector_clock_tracking_test():
+    """Phase 10: Test client-side vector clock tracking (prevents false conflicts)"""
+    print("\n" + "="*80)
+    print("PHASE 10: CLIENT-SIDE VECTOR CLOCK TRACKING TEST")
+    print("="*80)
+    
+    from client_v2 import DHTClient
+    
+    # If node_info is empty (running standalone), use default cluster
+    if not node_info:
+        sample_nodes = [f'localhost:5005{i}' for i in range(1, 7)]
+    else:
+        sample_nodes = []
+        for i in range(min(6, len(node_info))):
+            node_id, host, port, dc = node_info[i]
+            sample_nodes.append(f"{host}:{port}")
+    
+    try:
+        client = DHTClient(sample_nodes)
+    except Exception as e:
+        print(f"✗ Failed to create client: {e}")
+        return
+    
+    # Test 1: Sequential writes to same key with same client
+    print(f"\n  Test 1: Sequential writes (no false conflicts)")
+    test_key = "vector_clock_test_1"
+    
+    result1 = client.put(test_key, 'value1', max_retries=1)
+    if not result1 or not result1.success:
+        print(f"    ✗ Write 1 failed")
+        return
+
+    time.sleep(0.1)
+
+    result2 = client.put(test_key, 'value2', max_retries=1)
+    if not result2 or not result2.success:
+        print(f"    ✗ Write 2 failed")
+        return
+
+    time.sleep(0.1)
+
+    result3 = client.get(test_key, max_retries=1)
+    if not result3 or not result3.success:
+        print(f"    ✗ GET failed")
+        return
+    
+    if result3.has_conflicts:
+        print(f"    ✗ FALSE CONFLICT DETECTED - {len(result3.sibling_values)} versions")
+        stats.record_get_failure()
+    else:
+        print(f"    ✓ No conflicts, value: '{result3.value}'")
+        stats.record_get_success()
+    
+    # Test 2: Multiple sequential writes
+    print(f"\n  Test 2: Multiple sequential writes")
+    test_key2 = "vector_clock_test_2"
+    
+    for i in range(1, 4):
+        result = client.put(test_key2, f'version{i}', max_retries=1)
+        if result and result.success:
+            stats.record_put_success()
+        else:
+            stats.record_put_failure()
+        time.sleep(0.1)
+    
+    time.sleep(0.1)
+    
+    result = client.get(test_key2, max_retries=1)
+    if result and result.success:
+        if result.has_conflicts:
+            print(f"    ✗ FALSE CONFLICT - {len(result.sibling_values)} versions")
+            stats.record_get_failure()
+        else:
+            print(f"    ✓ No conflicts, latest value: '{result.value}'")
+            stats.record_get_success()
+    
+    # Test 3: Read-then-write pattern
+    print(f"\n  Test 3: Read-then-write pattern")
+    test_key3 = "vector_clock_test_3"
+    
+    result = client.put(test_key3, 'initial', max_retries=1)
+    if result and result.success:
+        stats.record_put_success()
+    
+    time.sleep(0.1)
+    
+    result = client.get(test_key3, max_retries=1)
+    if result and result.success:
+        stats.record_get_success()
+    
+    time.sleep(0.1)
+    
+    result = client.put(test_key3, 'updated', max_retries=1)
+    if result and result.success:
+        print(f"    ✓ Update successful with cached clock")
+        stats.record_put_success()
+    
+    print(f"\n✓ Vector clock tracking test complete")
+
+
+
+def phase11_read_repair_test():
+    """Phase 11: Test read repair functionality"""
+    print("\n" + "="*80)
+    print("PHASE 11: READ REPAIR TEST")
+    print("="*80)
+    
+    # If node_info is empty (running standalone), use default cluster
+    if not node_info:
+        test_nodes = [
+            ("dc1_node1", "localhost", 50051, "DC1"),
+            ("dc1_node2", "localhost", 50052, "DC1"),
+            ("dc2_node1", "localhost", 50053, "DC2")
+        ]
+    else:
+        if len(node_info) < 3:
+            print("  ⚠ Not enough nodes for read repair test")
+            return
+        test_nodes = [node_info[i] for i in range(3)]
+    
+    node1_id, host1, port1, dc1 = test_nodes[0]
+    node2_id, host2, port2, dc2 = test_nodes[1]
+    node3_id, host3, port3, dc3 = test_nodes[2]
+    
+    print(f"  Using nodes: {node1_id}, {node2_id}, {node3_id}")
+    
+    # Step 1: Write a key
+    test_key = "read_repair_test"
+    print(f"\n  Step 1: Initial write via {node1_id}")
+    
+    try:
+        stub1 = get_stub(host1, port1)
+        request = dht_pb2.PutRequest(key=test_key, value='v1')
+        response = stub1.Put(request, timeout=5)
+        if response.success:
+            initial_clock = response.vector_clock
+            print(f"    ✓ Write successful")
+            stats.record_put_success()
+        else:
+            print(f"    ✗ Write failed")
+            stats.record_put_failure()
+            return
+    except Exception as e:
+        print(f"    ✗ Error: {e}")
+        stats.record_put_failure()
+        return
+
+    time.sleep(0.1)
+
+    # Step 2: Update value via different node
+    print(f"\n  Step 2: Update via {node2_id}")
+    
+    try:
+        stub2 = get_stub(host2, port2)
+        request = dht_pb2.PutRequest(key=test_key, value='v2', vector_clock=initial_clock)
+        response = stub2.Put(request, timeout=5)
+        if response.success:
+            print(f"    ✓ Update successful")
+            stats.record_put_success()
+        else:
+            print(f"    ✗ Update failed")
+            stats.record_put_failure()
+            return
+    except Exception as e:
+        print(f"    ✗ Error: {e}")
+        stats.record_put_failure()
+        return
+    
+    time.sleep(1)
+    
+    # Step 3: Read from third node (triggers read repair)
+    print(f"\n  Step 3: Read from {node3_id} (triggers repair)")
+    
+    try:
+        stub3 = get_stub(host3, port3)
+        request = dht_pb2.GetRequest(key=test_key)
+        response = stub3.Get(request, timeout=5)
+        if response.success:
+            if response.has_conflicts:
+                print(f"    ✓ Read triggered (conflicts detected)")
+            else:
+                print(f"    ✓ Read successful, value: '{response.value}'")
+            stats.record_get_success()
+        else:
+            print(f"    ✗ Read failed")
+            stats.record_get_failure()
+            return
+    except Exception as e:
+        print(f"    ✗ Error: {e}")
+        stats.record_get_failure()
+        return
+    
+    # Step 4: Wait for read repair
+    print(f"\n  Step 4: Waiting for repair propagation...")
+    time.sleep(3)
+    
+    # Step 5: Verify consistency across all nodes
+    print(f"\n  Step 5: Verify consistency")
+    
+    values = []
+    
+    for node_id, host, port, dc in test_nodes:
+        try:
+            stub = get_stub(host, port)
+            request = dht_pb2.GetRequest(key=test_key)
+            response = stub.Get(request, timeout=5)
+            if response.success and not response.has_conflicts:
+                values.append(response.value)
+            stats.record_get_success()
+        except:
+            stats.record_get_failure()
+    
+    # Check if all nodes have the same value
+    if len(values) >= 2:
+        unique_values = set(values)
+        if len(unique_values) == 1:
+            print(f"    ✓ All replicas consistent: value='{values[0]}'")
+        else:
+            print(f"    ⚠ Different values found: {unique_values}")
+    
+    print(f"\n✓ Read repair test complete")
+
+
 def cleanup_cluster():
     """Cleanup: Stop all nodes"""
     print("\n" + "="*80)
@@ -938,6 +1162,12 @@ def main():
         
         if phases_to_run is None or 9 in phases_to_run:
             phase9_datacenter_awareness_test()
+        
+        if phases_to_run is None or 10 in phases_to_run:
+            phase10_vector_clock_tracking_test()
+        
+        if phases_to_run is None or 11 in phases_to_run:
+            phase11_read_repair_test()
         
     except KeyboardInterrupt:
         print("\n\n⚠ Test interrupted by user")
