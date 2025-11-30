@@ -36,6 +36,8 @@ service DHTService {
     
     // Deliver hint to target node
     rpc DeliverHint(DeliverHintRequest) returns (DeliverHintResponse);
+
+    rpc InspectNode(InspectNodeRequest) returns (InspectNodeResponse);
 }
 
 // Put Request
@@ -177,4 +179,20 @@ message DeliverHintRequest {
 message DeliverHintResponse {
     bool success = 1;
     string message = 2;
+}
+
+// Add these messages at the bottom
+message InspectNodeRequest { }
+
+message InspectNodeResponse {
+    bool success = 1;
+    repeated StorageEntry entries = 2;
+    string datacenter = 3;
+    int32 key_count = 4;
+}
+
+message StorageEntry {
+    string key = 1;
+    string value = 2;
+    string version_summary = 3; // String representation of Vector Clock
 }

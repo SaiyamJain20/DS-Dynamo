@@ -71,7 +71,8 @@ def cleanup_environment():
 # ==============================================================================
 def start_cluster(n_val: int, r_val: int, w_val: int, num_nodes=NUM_NODES, 
                  num_dcs=NUM_DCS, dc_aware=True, straggler_dc=None, 
-                 read_repair=True, vnodes=150, straggler_delay=2.0): # <--- New Param
+                 read_repair=True, vnodes=150, straggler_delay=2.0,
+                 hint_interval=30): # <--- New Param (Default 30s)
     """
     Start cluster with configurable options.
     """
@@ -79,7 +80,6 @@ def start_cluster(n_val: int, r_val: int, w_val: int, num_nodes=NUM_NODES,
     node_processes = []
     nodes = []
     
-    # Define topology
     topology = []
     nodes_per_dc = num_nodes // num_dcs
     for dc_idx in range(1, num_dcs + 1):
@@ -88,20 +88,22 @@ def start_cluster(n_val: int, r_val: int, w_val: int, num_nodes=NUM_NODES,
     for i in range(len(topology), num_nodes):
         topology.append(f"DC{i % num_dcs + 1}")
             
-    # Start Seed Node
     seed_port = BASE_PORT
     seed_addr = f"localhost:{seed_port}"
     
-    # Base command
+    # Base command construction
     base_cmd = [sys.executable, "server_v2.py"]
     if dc_aware: base_cmd.append("--enable-dc-aware")
     if not read_repair: base_cmd.append("--disable-read-repair")
     base_cmd.extend(["--virtual-nodes", str(vnodes)])
     
-    # Env for seed
+    # === ADD THIS LINE ===
+    base_cmd.extend(["--hint-interval", str(hint_interval)])
+    
+    # Env for straggler
     env = os.environ.copy()
     if straggler_dc and topology[0] == straggler_dc:
-        env["DHT_STRAGGLER_DELAY"] = str(straggler_delay) # <--- Use param
+        env["DHT_STRAGGLER_DELAY"] = str(straggler_delay)
     
     cmd = base_cmd + [
         "--node-id", "node_0", "--host", "localhost", "--port", str(seed_port),
@@ -114,14 +116,13 @@ def start_cluster(n_val: int, r_val: int, w_val: int, num_nodes=NUM_NODES,
     nodes.append(seed_addr)
     time.sleep(1) 
     
-    # Start remaining nodes
     for i in range(1, num_nodes):
         port = BASE_PORT + i
         node_dc = topology[i]
         
         node_env = os.environ.copy()
         if straggler_dc and node_dc == straggler_dc:
-            node_env["DHT_STRAGGLER_DELAY"] = str(straggler_delay) # <--- Use param
+            node_env["DHT_STRAGGLER_DELAY"] = str(straggler_delay)
 
         cmd = base_cmd + [
             "--node-id", f"node_{i}", "--host", "localhost", "--port", str(port),
@@ -136,9 +137,8 @@ def start_cluster(n_val: int, r_val: int, w_val: int, num_nodes=NUM_NODES,
         
         if i % 10 == 0: time.sleep(0.5)
 
-    # Stabilization
     print(f"\n✓ All {len(nodes)} nodes started")
-    print(f"  Straggler: {straggler_dc} ({straggler_delay}s delay)" if straggler_dc else "  Straggler: None")
+    print(f"  Hint Interval: {hint_interval}s")
     print(f"  Waiting for cluster stabilization...")
     stabilization_time = max(15, len(nodes) // 5)
     for i in range(stabilization_time):
@@ -706,13 +706,13 @@ def test_f_availability_under_failure():
         # 1. Setup specific 3-DC cluster (30 nodes)
         # This forces N=3 to place exactly 1 replica per DC
         cleanup_environment()
-        num_test_nodes = 30
+        num_test_nodes = 100
         nodes = start_cluster(n_val=sc['n'], r_val=sc['r'], w_val=sc['w'], 
                             num_nodes=num_test_nodes, num_dcs=3)
         
         # 2. Prepare Benchmark
-        duration_total = 10
-        kill_at = 4 # Kill DC1 after 4 seconds
+        duration_total = 50
+        kill_at = 5 # Kill DC1 after 4 seconds
         
         start_time = time.time()
         end_time = start_time + duration_total
@@ -1165,10 +1165,10 @@ def test_j_straggler_latency():
     print("\n" + "="*60)
     print("TEST J: Straggler Node Latency")
     print("Objective: Prove Asynchronous W-Quorum ignores slow nodes")
-    print("Scenario: DC3 has 2000ms delay. Compare W=3 vs W=2.")
+    print("Scenario: DC3 has 50ms delay. Compare W=3 vs W=2.")
     print("="*60)
     
-    test_nodes = 30
+    test_nodes = 100
     test_dcs = 3
     num_writes = 20 # Fewer writes, high impact
     
@@ -1187,7 +1187,7 @@ def test_j_straggler_latency():
         # Force 2.0s delay
         nodes = start_cluster(n_val=3, r_val=2, w_val=w_val, 
                             num_nodes=test_nodes, num_dcs=test_dcs, 
-                            straggler_dc="DC3", straggler_delay=2.0)
+                            straggler_dc="DC3", straggler_delay=0.050)
         
         latencies = []
         print(f"\n[Bench] {label}: Performing writes...")
@@ -1221,7 +1221,7 @@ def test_j_straggler_latency():
         bars = plt.bar(labels, values, color=colors, width=0.6)
         
         plt.ylabel('Average Write Latency (ms)', fontsize=12)
-        plt.title('Impact of Straggler Node (2000ms Delay) on Write Latency', fontsize=14)
+        plt.title('Impact of Straggler Node (50ms Delay) on Write Latency', fontsize=14)
         plt.grid(axis='y', linestyle='--', alpha=0.7)
         
         # Log scale if difference is huge
@@ -2021,7 +2021,7 @@ def test_p_conflict_vs_concurrency():
     
     # Configuration
     thread_counts = [1, 5, 10, 20, 30]
-    num_keys = 50 # Small key space to force collisions
+    num_keys = 500 # Small key space to force collisions
     duration = 10 # Seconds per run
     
     results_clean = []
@@ -2169,7 +2169,7 @@ def test_q_cost_of_consistency():
         print(f"\n[Test] Testing Config: {label}...")
         
         # 1. Start Cluster
-        nodes = start_cluster(n_val=3, r_val=r_val, w_val=w_val, num_nodes=3)
+        nodes = start_cluster(n_val=3, r_val=r_val, w_val=w_val, num_nodes=25)
         
         # 2. Run Benchmark
         # We run Writes and Reads separately to get clear metrics for each
@@ -2237,7 +2237,7 @@ def test_q_cost_of_consistency():
         
         plt.xlabel('Consistency Configuration')
         plt.ylabel('Average Latency (ms)')
-        plt.title(f'The Cost of Consistency (N=3, Nodes={NUM_NODES})')
+        plt.title(f'The Cost of Consistency (N=3, Nodes=25)')
         plt.xticks(x, labels)
         plt.legend()
         plt.grid(axis='y', linestyle='--', alpha=0.3)
@@ -2270,10 +2270,10 @@ def test_r_background_replication_lag():
     print("="*60)
     
     # Increase delay to 200ms for visibility
-    lag_delay = "0.05-0.2"
+    lag_delay = "0.0-0.5"
     cleanup_environment()
     nodes = start_cluster(n_val=3, r_val=2, w_val=2, 
-                        num_nodes=30, num_dcs=3, 
+                        num_nodes=100, num_dcs=10, 
                         straggler_dc="DC3", straggler_delay=lag_delay)
     
     # ... (Topology/Key logic same as before) ...
@@ -2304,7 +2304,7 @@ def test_r_background_replication_lag():
     
     while True:
         elapsed = (time.time() - start) * 1000
-        if elapsed > 400: break
+        if elapsed > 1000: break
         
         count = 0
         for n in target_nodes:
@@ -2319,7 +2319,7 @@ def test_r_background_replication_lag():
         time.sleep(0.005)
         
     # Plot
-    x = sorted([k for k in buckets.keys() if k <= 400])
+    x = ([k for k in buckets.keys() if k <= 1000])
     y = [sum(buckets[k])/len(buckets[k]) if buckets[k] else 100 for k in x]
     
     try:
@@ -2333,7 +2333,7 @@ def test_r_background_replication_lag():
         plt.axvline(x=0, color='green', linestyle='--', label='Client Write Success')
         
         # Add a shaded region for the jitter window
-        plt.axvspan(50, 200, color='red', alpha=0.1, label='Background Write Window (50-200ms)')
+        plt.axvspan(0, 500, color='red', alpha=0.1, label='Background Write Window (0-500ms)')
         
         plt.xlabel('Time since Write (ms)')
         plt.ylabel('% Nodes with Updated Data')
@@ -2579,7 +2579,7 @@ def test_u_coordination_overhead():
     
     cleanup_environment()
     # Use larger cluster to increase chance of "Random" being wrong
-    nodes = start_cluster(n_val=3, r_val=1, w_val=1, num_nodes=20, num_dcs=2)
+    nodes = start_cluster(n_val=3, r_val=2, w_val=3, num_nodes=100, num_dcs=3)
     
     # Build local ring for "Smart" client logic
     seed = get_stub(nodes[0])
@@ -2654,118 +2654,134 @@ def test_u_coordination_overhead():
     stop_cluster()
 
 # ==============================================================================
-# TEST V: Hinted Handoff Recovery Verification
+# TEST V: Self-Healing Latency (Hinted Handoff) - FIXED
 # ==============================================================================
 def test_v_hinted_handoff_recovery():
     print("\n" + "="*60)
-    print("TEST V: Hinted Handoff Recovery Verification")
-    print("Objective: Prove 'Self-Healing' mechanism (Hints deliver data back to recovered nodes)")
+    print("TEST V: Self-Healing Latency (Hinted Handoff)")
+    print("Objective: Visualize the cumulative recovery of data via Hints")
     print("="*60)
     
-    # Setup
     cleanup_environment()
-    nodes = start_cluster(n_val=3, r_val=2, w_val=2, num_nodes=6, num_dcs=3)
     
-    # Topology
-    seed = get_stub(nodes[0])
-    resp = seed.GetRing(dht_pb2.GetRingRequest(requesting_node_id="gen"), timeout=5)
+    # === CRITICAL CHANGE: hint_interval=1 (Check every second) ===
+    nodes = start_cluster(n_val=3, r_val=2, w_val=2, num_nodes=100, num_dcs=3, hint_interval=1)
+    
+    stub_seed = get_stub(nodes[0])
+    resp = stub_seed.GetRing(dht_pb2.GetRingRequest(requesting_node_id="gen"), timeout=5)
     ring = ConsistentHash(num_virtual_nodes=150)
     for n in resp.nodes: ring.add_node(n)
-    dc_map = dict(resp.datacenter_map)
     
-    # 1. Find a key belonging to Node A (Target) and Node B (Handoff)
-    # We want a key where pref_list = [A, B, C]
-    key = "handoff_key"
-    pref = ring.get_preference_list(key, n=3, datacenter_aware=True, datacenter_map=dc_map)
-    node_a_addr = pref[0]
-    node_b_addr = pref[1]
+    victim_addr = nodes[5] 
+    victim_port = int(victim_addr.split(':')[1])
+    victim_idx = victim_port - BASE_PORT
+    victim_id = f"node_{victim_idx}"
     
-    target_port = int(node_a_addr.split(':')[1])
-    node_idx = target_port - BASE_PORT
-    node_id = f"node_{node_idx}"
-    
-    print(f"[Step] Target is {node_id} ({node_a_addr}). Handoff is {node_b_addr}")
-    
-    # 2. Kill Node A
-    print(f"[Step] Killing {node_id}...")
-    node_processes[node_idx].terminate()
-    node_processes[node_idx].wait()
+    print(f"[Step] Killing Victim {victim_id}...")
+    node_processes[victim_idx].terminate()
+    node_processes[victim_idx].wait()
     time.sleep(1)
     
-    # 3. Write to Node B (Should store Hint)
-    print(f"[Step] Writing key '{key}' to {node_b_addr} (Should create Hint)...")
-    try:
-        stub_b = get_stub(node_b_addr)
-        resp = stub_b.InternalPutWithHint(dht_pb2.InternalPutWithHintRequest(
-            key=key, value="recovered_data", 
-            vector_clock={"client": 1}, 
-            hint_for_node=node_a_addr
-        ), timeout=2)
-        if resp.success:
-            print("  ✓ Hint stored successfully")
-    except Exception as e:
-        print(f"  ✗ Failed to store hint: {e}")
+    print("[Step] Writing 500 keys destined for Victim...")
+    hinted_keys = []
+    
+    # Generate hints
+    attempts = 0
+    while len(hinted_keys) < 500 and attempts < 2000:
+        key = f"heal_{attempts}"
+        pref = ring.get_preference_list(key, n=3)
+        if victim_addr in pref:
+            # Write to neighbor
+            target = random.choice([n for n in nodes if n != victim_addr])
+            try:
+                # Use InternalPutWithHint to force hint creation? 
+                # No, standard Put to a neighbor (with Victim down) triggers it naturally
+                # if Sloppy Quorum is on.
+                # BUT to be 100% sure for the graph, let's inject explicit hints via InternalPutWithHint
+                # so we don't depend on SloppyQuorum routing logic for this specific isolation test.
+                
+                get_stub(target).InternalPutWithHint(
+                    dht_pb2.InternalPutWithHintRequest(
+                        key=key, value="data", vector_clock={"c":1}, hint_for_node=victim_addr
+                    ), timeout=1)
+                hinted_keys.append(key)
+            except: pass
+        attempts += 1
         
-    # 4. Restart Node A
-    print(f"[Step] Restarting {node_id}...")
-    node_dc = dc_map.get(node_a_addr, "DC1")
+    print(f"  Stored {len(hinted_keys)} hints on neighbors.")
+    
+    print(f"[Step] Reviving {victim_id}...")
     cmd = [
         sys.executable, "server_v2.py",
-        "--node-id", node_id, "--host", "localhost", "--port", str(target_port),
-        "--datacenter", node_dc, "--n", "3", "--r", "2", "--w", "2",
-        "--known-nodes", nodes[0], "--enable-dc-aware"
+        "--node-id", victim_id, "--host", "localhost", "--port", str(victim_port),
+        "--datacenter", "DC1", "--n", "3", "--r", "2", "--w", "2",
+        "--known-nodes", nodes[0], "--enable-dc-aware",
+        "--hint-interval", "1" # Ensure victim also has fast interval (though not strictly needed)
     ]
-    log = open(f"logs/{node_id}.log", "a")
-    node_processes[node_idx] = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)
+    log = open(f"logs/{victim_id}.log", "a")
+    node_processes[victim_idx] = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)
     
-    # Wait for A to be healthy
-    stub_a = get_stub(node_a_addr)
-    for _ in range(20):
-        try:
-            stub_a.HealthCheck(dht_pb2.HealthCheckRequest(), timeout=0.1)
+    stub_victim = get_stub(victim_addr)
+    for _ in range(50):
+        try: 
+            stub_victim.HealthCheck(dht_pb2.HealthCheckRequest(), timeout=0.1)
             break
         except: time.sleep(0.1)
         
-    # 5. Wait for Hint Delivery (Polling)
-    # The background thread runs every 30s (default config). We poll A's storage.
-    print("[Step] Waiting for background hint delivery (Max 40s)...")
-    start = time.time()
-    delivered = False
+    print("[Step] Polling for recovery (Max 30s)...")
+    start_time = time.time()
     
-    while time.time() - start < 45:
-        try:
-            r = stub_a.InternalGet(dht_pb2.InternalGetRequest(key=key), timeout=0.1)
-            if r.success and r.versions and r.versions[0].value == "recovered_data":
-                delivered = True
-                break
-        except: pass
-        time.sleep(1)
-        print(".", end="", flush=True)
-        
-    print("")
+    # Track points for graph
+    timestamps = [0]
+    counts = [0]
     
-    # Results
-    if delivered:
-        print(f"[Result] SUCCESS: Data '{key}' appeared on Node A after recovery!")
-        duration = time.time() - start
+    while time.time() - start_time < 1000:
+        now = time.time() - start_time
         
-        # Plot
+        # Check disk/memory count directly
         try:
-            if not os.path.exists(REPORT_DIR): os.makedirs(REPORT_DIR)
-            plt.figure(figsize=(6, 4))
-            plt.bar(['Hint Delivery'], [duration], color='green', width=0.4)
-            plt.ylabel('Time to Heal (seconds)')
-            plt.title('Self-Healing Latency (Hinted Handoff)')
-            plt.ylim(0, 45)
-            output_file = os.path.join(REPORT_DIR, 'graph_hinted_handoff.png')
-            plt.savefig(output_file)
-            print(f"[Graph] Saved plot to {output_file}")
+            # We can't count keys easily via RPC without getting them one by one
+            # But we can assume InternalGet works.
+            # Faster way: Just check the keys we know about.
+            recovered = 0
+            for k in hinted_keys:
+                try:
+                    r = stub_victim.InternalGet(dht_pb2.InternalGetRequest(key=k), timeout=0.02)
+                    if r.success and r.versions: recovered += 1
+                except: pass
+            
+            timestamps.append(now)
+            counts.append(recovered)
+            
+            # Optimization: Don't print every single tick
+            if len(counts) % 5 == 0:
+                print(f"  t={now:.1f}s: {recovered}/{len(hinted_keys)} recovered")
+            
+            if recovered == len(hinted_keys): break
         except: pass
-    else:
-        print("[Result] FAIL: Hint was not delivered in time (Check HINT_DELIVERY_INTERVAL_SEC)")
         
+        time.sleep(0.5)
+
+    # Plot
+    try:
+        plt.style.use('ggplot')
+        plt.figure(figsize=(10, 6))
+        
+        plt.plot(timestamps, counts, color='#27AE60', linewidth=3)
+        plt.fill_between(timestamps, counts, color='#2ECC71', alpha=0.3)
+        
+        plt.xlabel('Time since Node Recovery (seconds)')
+        plt.ylabel('Cumulative Keys Recovered')
+        plt.title(f'Self-Healing Latency (Hint Interval = 1s)')
+        plt.grid(True, linestyle='--', alpha=0.5)
+        
+        output_file = os.path.join(REPORT_DIR, 'graph_hinted_handoff.png')
+        plt.savefig(output_file)
+        print(f"\n[Graph] Saved improved plot to {output_file}")
+    except Exception as e: print(e)
+    
     stop_cluster()
-  
+
 # ==============================================================================
 # TEST W: Workload Mix Impact (Read/Write Ratio)
 # ==============================================================================
@@ -3015,12 +3031,12 @@ def test_z_dynamic_scaling():
     print("\n" + "="*60)
     print("TEST Z: Dynamic Scaling Impact (The Elasticity Test)")
     print("Objective: Measure throughput while adding nodes mid-flight")
-    print("Scenario: 5 Nodes -> Load -> Add 5 Nodes -> Observe Throughput")
+    print("Scenario: 5 Nodes -> Load -> Add 95 Nodes -> Observe Throughput")
     print("="*60)
     
     # 1. Start Initial Cluster (5 Nodes)
     cleanup_environment()
-    nodes = start_cluster(n_val=3, r_val=1, w_val=1, num_nodes=5, num_dcs=1)
+    nodes = start_cluster(n_val=3, r_val=2, w_val=2, num_nodes=5, num_dcs=3)
     
     # Data collection
     timestamps = []
@@ -3028,7 +3044,7 @@ def test_z_dynamic_scaling():
     
     # Workload Control
     start_time = time.time()
-    duration = 20
+    duration = 50
     add_node_at = 8
     nodes_added = False
     
@@ -3049,11 +3065,11 @@ def test_z_dynamic_scaling():
                 current_window_ops += 1
             except: pass
             # Small sleep to prevent total CPU lockup
-            time.sleep(0.001)
+            time.sleep(0.01)
             
-    # Start 10 threads
+    # Start 50 threads
     threads = []
-    for _ in range(10):
+    for _ in range(50):
         t = threading.Thread(target=load_gen)
         t.start()
         threads.append(t)
@@ -3073,9 +3089,9 @@ def test_z_dynamic_scaling():
             
         # SCALE EVENT
         if elapsed >= add_node_at and not nodes_added:
-            print("  [EVENT] 🚀 ADDING 5 NEW NODES 🚀")
+            print("  [EVENT] 🚀 ADDING 95 NEW NODES 🚀")
             
-            # Start 5 new processes
+            # Start 95 new processes
             # We must be careful to append to node_processes and nodes list
             # so the load generator picks them up automatically?
             # Actually, `nodes` list in load_gen is a reference. 
@@ -3084,7 +3100,7 @@ def test_z_dynamic_scaling():
             base_port = int(nodes[-1].split(':')[1]) + 1
             seed_addr = nodes[0]
             
-            for i in range(5):
+            for i in range(95):
                 port = base_port + i
                 node_id = f"scale_node_{i}"
                 cmd = [

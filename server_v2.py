@@ -1094,6 +1094,26 @@ class DHTServicer(dht_pb2_grpc.DHTServiceServicer):
         self.hash_ring.save_ring_state(self.node_id)
         print(f"[{self.node_id}] Discovery complete: ring contains {len(self.hash_ring.get_all_nodes())} nodes")
 
+    # Add this to server_v2.py inside class DHTServicer:
+    def InspectNode(self, request, context):
+        entries = []
+        with self.storage.lock:
+            for key, versions in self.storage.data.items():
+                if versions:
+                    # Show latest version
+                    latest = versions[-1]
+                    entries.append(dht_pb2.StorageEntry(
+                        key=key,
+                        value=latest.value,
+                        version_summary=str(latest.vector_clock)
+                    ))
+        
+        return dht_pb2.InspectNodeResponse(
+            success=True,
+            entries=entries,
+            datacenter=self.datacenter,
+            key_count=len(entries)
+        )
 
 
 def serve(node_id: str, host: str, port: int, known_nodes: list = None, 
@@ -1128,7 +1148,6 @@ def serve(node_id: str, host: str, port: int, known_nodes: list = None,
         print(f"\n[{node_id}] Shutting down gracefully...")
         server.stop(0)
 
-
 def main():
     """Main entry point with enhanced argument parsing."""
     parser = argparse.ArgumentParser(description='DHT Node Server (Phases 2+3)')
@@ -1154,6 +1173,8 @@ def main():
                         help='Disable read repair')
     parser.add_argument('--virtual-nodes', type=int, default=150, 
                         help='Number of virtual nodes per physical node')
+    parser.add_argument('--hint-interval', type=int, default=30, 
+                        help='Hint delivery check interval (seconds)')
     
     args = parser.parse_args()
     
@@ -1163,6 +1184,7 @@ def main():
     NodeConfig.DATACENTER_AWARE = args.enable_dc_aware
     NodeConfig.ENABLE_READ_REPAIR = not args.disable_read_repair
     NodeConfig.NUM_VIRTUAL_NODES = args.virtual_nodes
+    NodeConfig.HINT_DELIVERY_INTERVAL_SEC = args.hint_interval
     
     serve(
         node_id=args.node_id,
