@@ -1,0 +1,677 @@
+================================================================================
+COMPREHENSIVE DHT TEST SUITE
+================================================================================
+Configuration:
+  Nodes: 200 (20 per datacenter)
+  Datacenters: 10
+  Concurrent Clients: 50
+  Total Items: 5000
+  Base Port: 50051
+================================================================================
+
+================================================================================
+PHASE 0: ENVIRONMENT CLEANUP
+================================================================================
+  Removed: data/node_0_ring.json
+  Removed: data/node_95_ring.json
+  Removed: data/node_50_data.json
+  Removed: data/node_53_ring.json
+  Removed: data/node_28_ring.json
+  Removed: data/node_31_data.json
+  Removed: data/node_13_ring.json
+  Removed: data/node_60_data.json
+  Removed: data/node_16_ring.json
+  Removed: data/node_5_data.json
+  Removed: data/node_35_data.json
+  Removed: data/node_4_data.json
+  Removed: data/node_18_data.json
+  Removed: data/node_52_ring.json
+  Removed: data/node_14_data.json
+  Removed: data/node_22_data.json
+  Removed: data/node_59_ring.json
+  Removed: data/node_8_ring.json
+  Removed: data/node_6_data.json
+  Removed: data/node_1_data.json
+  Removed: data/node_68_ring.json
+  Removed: data/node_93_data.json
+  Removed: data/node_54_ring.json
+  Removed: data/node_88_data.json
+  Removed: data/node_7_data.json
+  Removed: data/node_87_ring.json
+  Removed: data/node_85_ring.json
+  Removed: data/node_29_data.json
+  Removed: data/node_9_ring.json
+  Removed: data/node_10_data.json
+  Removed: data/node_82_data.json
+  Removed: data/node_63_data.json
+  Removed: data/node_47_data.json
+  Removed: data/node_50_ring.json
+  Removed: data/node_70_data.json
+  Removed: data/node_48_data.json
+  Removed: data/node_78_ring.json
+  Removed: data/node_43_data.json
+  Removed: data/node_9_data.json
+  Removed: data/node_41_ring.json
+  Removed: data/node_65_data.json
+  Removed: data/node_16_data.json
+  Removed: data/node_27_data.json
+  Removed: data/node_22_ring.json
+  Removed: data/node_11_ring.json
+  Removed: data/node_85_data.json
+  Removed: data/node_63_ring.json
+  Removed: data/node_20_ring.json
+  Removed: data/node_4_ring.json
+  Removed: data/node_80_data.json
+  Removed: data/node_54_data.json
+  Removed: data/node_91_ring.json
+  Removed: data/node_10_ring.json
+  Removed: data/node_21_data.json
+  Removed: data/node_83_data.json
+  Removed: data/node_67_data.json
+  Removed: data/node_98_data.json
+  Removed: data/node_28_data.json
+  Removed: data/node_91_data.json
+  Removed: data/node_44_data.json
+  Removed: data/node_62_data.json
+  Removed: data/node_23_ring.json
+  Removed: data/node_98_ring.json
+  Removed: data/node_2_ring.json
+  Removed: data/node_86_data.json
+  Removed: data/node_66_ring.json
+  Removed: data/node_29_ring.json
+  Removed: data/node_32_ring.json
+  Removed: data/node_57_ring.json
+  Removed: data/node_72_data.json
+  Removed: data/node_73_ring.json
+  Removed: data/node_39_ring.json
+  Removed: data/node_46_ring.json
+  Removed: data/node_36_ring.json
+  Removed: data/node_62_ring.json
+  Removed: data/node_77_ring.json
+  Removed: data/node_24_data.json
+  Removed: data/node_81_ring.json
+  Removed: data/node_61_data.json
+  Removed: data/node_33_data.json
+  Removed: data/node_44_ring.json
+  Removed: data/node_8_data.json
+  Removed: data/node_75_data.json
+  Removed: data/node_49_data.json
+  Removed: data/node_11_data.json
+  Removed: data/node_93_ring.json
+  Removed: data/node_47_ring.json
+  Removed: data/node_60_ring.json
+  Removed: data/node_56_data.json
+  Removed: data/node_79_ring.json
+  Removed: data/node_66_data.json
+  Removed: data/node_70_ring.json
+  Removed: data/node_73_data.json
+  Removed: data/node_80_ring.json
+  Removed: data/node_51_data.json
+  Removed: data/node_3_data.json
+  Removed: data/node_77_data.json
+  Removed: data/node_25_data.json
+  Removed: data/node_24_ring.json
+  Removed: data/node_14_ring.json
+  Removed: data/node_2_data.json
+  Removed: data/node_12_ring.json
+  Removed: data/node_81_data.json
+  Removed: data/node_68_data.json
+  Removed: data/node_0_data.json
+  Removed: data/node_39_data.json
+  Removed: data/node_40_ring.json
+  Removed: data/node_58_ring.json
+  Removed: data/node_65_ring.json
+  Removed: data/node_64_data.json
+  Removed: data/node_72_ring.json
+  Removed: data/node_37_ring.json
+  Removed: data/node_27_ring.json
+  Removed: data/node_82_ring.json
+  Removed: data/node_3_ring.json
+  Removed: data/node_34_ring.json
+  Removed: data/node_94_ring.json
+  Removed: data/node_1_ring.json
+  Removed: data/node_48_ring.json
+  Removed: data/node_26_ring.json
+  Removed: data/node_18_ring.json
+  Removed: data/node_5_ring.json
+  Removed: data/node_89_ring.json
+  Removed: data/node_34_data.json
+  Removed: data/node_41_data.json
+  Removed: data/node_64_ring.json
+  Removed: data/node_74_ring.json
+  Removed: data/node_94_data.json
+  Removed: data/node_61_ring.json
+  Removed: data/node_76_ring.json
+  Removed: data/node_49_ring.json
+  Removed: data/node_88_ring.json
+  Removed: data/node_6_ring.json
+  Removed: data/node_96_ring.json
+  Removed: data/node_19_ring.json
+  Removed: data/node_95_data.json
+  Removed: data/node_86_ring.json
+  Removed: data/node_26_data.json
+  Removed: data/node_83_ring.json
+  Removed: data/node_30_data.json
+  Removed: data/node_76_data.json
+  Removed: data/node_55_ring.json
+  Removed: data/node_97_data.json
+  Removed: data/node_71_data.json
+  Removed: data/node_43_ring.json
+  Removed: data/node_13_data.json
+  Removed: data/node_53_data.json
+  Removed: data/node_42_data.json
+  Removed: data/node_71_ring.json
+  Removed: data/node_40_data.json
+  Removed: data/node_46_data.json
+  Removed: data/node_90_ring.json
+  Removed: data/node_92_ring.json
+  Removed: data/node_30_ring.json
+  Removed: data/node_15_data.json
+  Removed: data/node_57_data.json
+  Removed: data/node_99_data.json
+  Removed: data/node_74_data.json
+  Removed: data/node_67_ring.json
+  Removed: data/node_89_data.json
+  Removed: data/node_90_data.json
+  Removed: data/node_12_data.json
+  Removed: data/node_36_data.json
+  Removed: data/node_58_data.json
+  Removed: data/node_31_ring.json
+  Removed: data/node_17_data.json
+  Removed: data/node_78_data.json
+  Removed: data/node_42_ring.json
+  Removed: data/node_17_ring.json
+  Removed: data/node_7_ring.json
+  Removed: data/node_69_ring.json
+  Removed: data/node_92_data.json
+  Removed: data/node_84_data.json
+  Removed: data/node_35_ring.json
+  Removed: data/node_15_ring.json
+  Removed: data/node_38_ring.json
+  Removed: data/node_56_ring.json
+  Removed: data/node_32_data.json
+  Removed: data/node_99_ring.json
+  Removed: data/node_21_ring.json
+  Removed: data/node_84_ring.json
+  Removed: data/node_51_ring.json
+  Removed: data/node_59_data.json
+  Removed: data/node_45_ring.json
+  Removed: data/node_75_ring.json
+  Removed: data/node_45_data.json
+  Removed: data/node_25_ring.json
+  Removed: data/node_87_data.json
+  Removed: data/node_97_ring.json
+  Removed: data/node_55_data.json
+  Removed: data/node_33_ring.json
+✓ Environment cleaned
+
+================================================================================
+PHASE 1: CLUSTER DEPLOYMENT
+================================================================================
+Deploying 200 nodes across 10 datacenters...
+
+  Starting seed node: dc1_node1 at localhost:50051 (DC1)
+  Started 10/200 nodes...
+  Started 20/200 nodes...
+  Started 30/200 nodes...
+  Started 40/200 nodes...
+  Started 50/200 nodes...
+  Started 60/200 nodes...
+  Started 70/200 nodes...
+  Started 80/200 nodes...
+  Started 90/200 nodes...
+  Started 100/200 nodes...
+  Started 110/200 nodes...
+  Started 120/200 nodes...
+  Started 130/200 nodes...
+  Started 140/200 nodes...
+  Started 150/200 nodes...
+  Started 160/200 nodes...
+  Started 170/200 nodes...
+  Started 180/200 nodes...
+  Started 190/200 nodes...
+  Started 200/200 nodes...
+
+✓ All 200 nodes started
+  Waiting for cluster stabilization and node discovery...
+    5/40 seconds...
+    10/40 seconds...
+    15/40 seconds...
+    20/40 seconds...
+    25/40 seconds...
+    30/40 seconds...
+    35/40 seconds...
+    40/40 seconds...
+✓ Cluster deployed: 200/200 nodes running
+
+================================================================================
+PHASE 2: INITIAL DATA LOAD
+================================================================================
+Verifying ring convergence...
+  dc4_node11: sees 194 nodes in ring
+  dc8_node5: sees 200 nodes in ring
+  dc1_node10: sees 180 nodes in ring
+  dc6_node4: sees 199 nodes in ring
+  dc3_node3: sees 179 nodes in ring
+  Ring convergence: 5/5 nodes checked
+
+Loading 5000 items into the cluster...
+  Loaded 100/5000 items...
+  Loaded 200/5000 items...
+  Loaded 300/5000 items...
+  Loaded 400/5000 items...
+  Loaded 500/5000 items...
+  Loaded 600/5000 items...
+  Loaded 700/5000 items...
+  Loaded 800/5000 items...
+  Loaded 900/5000 items...
+  Loaded 1000/5000 items...
+  Loaded 1100/5000 items...
+  Loaded 1200/5000 items...
+  Loaded 1300/5000 items...
+  Loaded 1400/5000 items...
+  Loaded 1500/5000 items...
+  Loaded 1600/5000 items...
+  Loaded 1700/5000 items...
+  Loaded 1800/5000 items...
+  Loaded 1900/5000 items...
+  Loaded 2000/5000 items...
+  Loaded 2100/5000 items...
+  Loaded 2200/5000 items...
+  Loaded 2300/5000 items...
+  Loaded 2400/5000 items...
+  Loaded 2500/5000 items...
+  Loaded 2600/5000 items...
+  Loaded 2700/5000 items...
+  Loaded 2800/5000 items...
+  Loaded 2900/5000 items...
+  Loaded 3000/5000 items...
+  Loaded 3100/5000 items...
+  Loaded 3200/5000 items...
+  Loaded 3300/5000 items...
+  Loaded 3400/5000 items...
+  Loaded 3500/5000 items...
+  Loaded 3600/5000 items...
+  Loaded 3700/5000 items...
+  Loaded 3800/5000 items...
+  Loaded 3900/5000 items...
+  Loaded 4000/5000 items...
+  Loaded 4100/5000 items...
+  Loaded 4200/5000 items...
+  Loaded 4300/5000 items...
+  Loaded 4400/5000 items...
+  Loaded 4500/5000 items...
+  Loaded 4600/5000 items...
+  Loaded 4700/5000 items...
+  Loaded 4800/5000 items...
+  Loaded 4900/5000 items...
+  Loaded 5000/5000 items...
+
+✓ Data load complete: 5000 successful, 0 failed
+
+================================================================================
+PHASE 3: CONCURRENT CLIENT OPERATIONS
+================================================================================
+Running 50 concurrent clients...
+  Client 20 completed: PUT=673, GET=674, UPDATE=653, ERRORS=0
+  Client 37 completed: PUT=640, GET=688, UPDATE=672, ERRORS=0
+  Client 35 completed: PUT=655, GET=668, UPDATE=677, ERRORS=0
+  Client 4 completed: PUT=658, GET=663, UPDATE=679, ERRORS=0
+  Client 31 completed: PUT=666, GET=653, UPDATE=681, ERRORS=0
+  Client 23 completed: PUT=678, GET=666, UPDATE=656, ERRORS=0
+  Client 25 completed: PUT=655, GET=692, UPDATE=653, ERRORS=0
+  Client 33 completed: PUT=668, GET=661, UPDATE=670, ERRORS=1
+  Client 22 completed: PUT=623, GET=673, UPDATE=704, ERRORS=0
+  Client 8 completed: PUT=678, GET=660, UPDATE=662, ERRORS=0
+  Client 5 completed: PUT=693, GET=630, UPDATE=677, ERRORS=0
+  Client 46 completed: PUT=669, GET=663, UPDATE=668, ERRORS=0
+  Client 12 completed: PUT=665, GET=675, UPDATE=660, ERRORS=0
+  Client 9 completed: PUT=672, GET=663, UPDATE=665, ERRORS=0
+  Client 43 completed: PUT=664, GET=662, UPDATE=674, ERRORS=0
+  Client 44 completed: PUT=652, GET=699, UPDATE=649, ERRORS=0
+  Client 18 completed: PUT=676, GET=663, UPDATE=661, ERRORS=0
+  Client 17 completed: PUT=692, GET=642, UPDATE=666, ERRORS=0
+  Client 0 completed: PUT=686, GET=672, UPDATE=642, ERRORS=0
+  Client 48 completed: PUT=678, GET=663, UPDATE=659, ERRORS=0
+  Client 24 completed: PUT=678, GET=672, UPDATE=650, ERRORS=0
+  Client 38 completed: PUT=639, GET=689, UPDATE=672, ERRORS=0
+  Client 39 completed: PUT=632, GET=696, UPDATE=672, ERRORS=0
+  Client 47 completed: PUT=668, GET=667, UPDATE=665, ERRORS=0
+  Client 11 completed: PUT=678, GET=644, UPDATE=678, ERRORS=0
+  Client 14 completed: PUT=666, GET=661, UPDATE=672, ERRORS=1
+  Client 19 completed: PUT=652, GET=664, UPDATE=684, ERRORS=0
+  Client 1 completed: PUT=652, GET=675, UPDATE=673, ERRORS=0
+  Client 32 completed: PUT=638, GET=673, UPDATE=689, ERRORS=0
+  Client 26 completed: PUT=661, GET=681, UPDATE=658, ERRORS=0
+  Client 28 completed: PUT=700, GET=662, UPDATE=636, ERRORS=2
+  Client 30 completed: PUT=671, GET=648, UPDATE=681, ERRORS=0
+  Client 15 completed: PUT=646, GET=694, UPDATE=660, ERRORS=0
+  Client 40 completed: PUT=706, GET=637, UPDATE=657, ERRORS=0
+  Client 3 completed: PUT=659, GET=641, UPDATE=700, ERRORS=0
+  Client 6 completed: PUT=695, GET=660, UPDATE=644, ERRORS=1
+  Client 16 completed: PUT=667, GET=635, UPDATE=697, ERRORS=1
+  Client 13 completed: PUT=677, GET=666, UPDATE=657, ERRORS=0
+  Client 34 completed: PUT=685, GET=644, UPDATE=671, ERRORS=0
+  Client 27 completed: PUT=673, GET=677, UPDATE=650, ERRORS=0
+  Client 45 completed: PUT=689, GET=625, UPDATE=686, ERRORS=0
+  Client 41 completed: PUT=634, GET=687, UPDATE=679, ERRORS=0
+  Client 36 completed: PUT=687, GET=661, UPDATE=652, ERRORS=0
+  Client 42 completed: PUT=677, GET=638, UPDATE=684, ERRORS=1
+  Client 49 completed: PUT=701, GET=626, UPDATE=673, ERRORS=0
+  Client 21 completed: PUT=670, GET=644, UPDATE=686, ERRORS=0
+  Client 29 completed: PUT=713, GET=629, UPDATE=658, ERRORS=0
+  Client 10 completed: PUT=674, GET=670, UPDATE=656, ERRORS=0
+  Client 7 completed: PUT=684, GET=657, UPDATE=659, ERRORS=0
+  Client 2 completed: PUT=703, GET=642, UPDATE=655, ERRORS=0
+
+✓ Concurrent operations complete
+
+================================================================================
+PHASE 4: NODE FAILURES AND RECOVERY
+================================================================================
+Crashing 20 random nodes...
+  Crashing node: dc4_node1
+  Crashing node: dc1_node6
+  Crashing node: dc4_node11
+  Crashing node: dc8_node6
+  Crashing node: dc7_node15
+  Crashing node: dc7_node18
+  Crashing node: dc4_node2
+  Crashing node: dc7_node12
+  Crashing node: dc3_node19
+  Crashing node: dc6_node16
+  Crashing node: dc5_node2
+  Crashing node: dc2_node4
+  Crashing node: dc7_node19
+  Crashing node: dc4_node8
+  Crashing node: dc3_node13
+  Crashing node: dc10_node18
+  Crashing node: dc2_node17
+  Crashing node: dc6_node14
+  Crashing node: dc3_node4
+  Crashing node: dc5_node12
+✓ Crashed 20 nodes
+  Waiting 5 seconds...
+  Testing operations with nodes down...
+  Operations during failure: 100/100 successful
+
+  Recovering 20 crashed nodes...
+    Recovered: dc4_node1
+    Recovered: dc1_node6
+    Recovered: dc4_node11
+    Recovered: dc8_node6
+    Recovered: dc7_node15
+    Recovered: dc7_node18
+    Recovered: dc4_node2
+    Recovered: dc7_node12
+    Recovered: dc3_node19
+    Recovered: dc6_node16
+    Recovered: dc5_node2
+    Recovered: dc2_node4
+    Recovered: dc7_node19
+    Recovered: dc4_node8
+    Recovered: dc3_node13
+    Recovered: dc10_node18
+    Recovered: dc2_node17
+    Recovered: dc6_node14
+    Recovered: dc3_node4
+    Recovered: dc5_node12
+✓ All nodes recovered
+  Waiting 10 seconds for stabilization...
+
+================================================================================
+PHASE 5: CONSISTENCY VERIFICATION
+================================================================================
+Verifying data consistency across replicas...
+✓ Consistency check complete:
+  Consistent: 195/200
+  Inconsistent: 5/200
+  Not found: 0/200
+
+================================================================================
+PHASE 6: LOAD DISTRIBUTION ANALYSIS
+================================================================================
+Analyzing data distribution across nodes...
+
+Total keys stored (with replication): 19259
+Average keys per node: 96.30
+
+Datacenter Distribution:
+  DC1: 1882 keys
+  DC10: 1954 keys
+  DC2: 1898 keys
+  DC3: 1899 keys
+  DC4: 1859 keys
+  DC5: 1837 keys
+  DC6: 1884 keys
+  DC7: 1987 keys
+  DC8: 2078 keys
+  DC9: 1981 keys
+
+Top 10 Most Loaded Nodes:
+  1. dc4_node15: 134 keys
+  2. dc1_node20: 126 keys
+  3. dc2_node5: 124 keys
+  4. dc7_node4: 124 keys
+  5. dc8_node18: 122 keys
+  6. dc6_node12: 121 keys
+  7. dc8_node20: 121 keys
+  8. dc5_node2: 119 keys
+  9. dc1_node13: 116 keys
+  10. dc9_node5: 116 keys
+
+Load Distribution Statistics:
+  Min: 67
+  Max: 134
+  Average: 96.30
+  Std Dev: 11.15
+
+================================================================================
+PHASE 7: PERSISTENCE VERIFICATION
+================================================================================
+Testing persistence by restarting random nodes...
+
+  Testing node: dc3_node15 (96 keys)
+    Stopped node
+    Restarted node
+    ✓ All 96 keys persisted correctly
+
+  Testing node: dc5_node14 (67 keys)
+    Stopped node
+    Restarted node
+    ✓ All 67 keys persisted correctly
+
+  Testing node: dc2_node20 (86 keys)
+    Stopped node
+    Restarted node
+    ✓ All 86 keys persisted correctly
+
+  Testing node: dc9_node19 (91 keys)
+    Stopped node
+    Restarted node
+    ✓ All 91 keys persisted correctly
+
+  Testing node: dc7_node2 (98 keys)
+    Stopped node
+    Restarted node
+    ✓ All 98 keys persisted correctly
+
+✓ Persistence test complete: 5/5 nodes verified
+
+================================================================================
+PHASE 8: STRESS TEST
+================================================================================
+Running high-frequency stress test...
+  Running 10 workers for 30 seconds...
+  Stress worker 0: 1295 operations
+  Stress worker 8: 1257 operations
+  Stress worker 6: 1318 operations
+  Stress worker 9: 1287 operations
+  Stress worker 3: 1270 operations
+  Stress worker 4: 1315 operations
+  Stress worker 1: 1316 operations
+  Stress worker 2: 1291 operations
+  Stress worker 5: 1272 operations
+  Stress worker 7: 1319 operations
+✓ Stress test complete
+
+================================================================================
+PHASE 9: DATACENTER AWARENESS TEST
+================================================================================
+Testing datacenter-aware replication...
+  Datacenter node distribution:
+    DC1: 20 nodes
+    DC10: 20 nodes
+    DC2: 20 nodes
+    DC3: 20 nodes
+    DC4: 20 nodes
+    DC5: 20 nodes
+    DC6: 20 nodes
+    DC7: 20 nodes
+    DC8: 20 nodes
+    DC9: 20 nodes
+
+  Testing from DC1 (dc1_node1)...
+    Operations: 20/20 successful
+
+  Testing from DC10 (dc10_node1)...
+    Operations: 20/20 successful
+
+  Testing from DC2 (dc2_node1)...
+    Operations: 20/20 successful
+
+  Waiting for replication to complete...
+
+  Verifying replica distribution across datacenters...
+    ✓ Key 'dc_test_DC1:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node3(DC3), dc4_node3(DC4), dc7_node2(DC7)
+    ✓ Key 'dc_test_DC1:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc6_node13(DC6), dc7_node20(DC7), dc8_node18(DC8)
+    ✓ Key 'dc_test_DC10:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node3(DC3), dc5_node9(DC5), dc9_node4(DC9)
+    ✓ Key 'dc_test_DC10:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc1_node10(DC1), dc4_node19(DC4), dc8_node5(DC8)
+    ✓ Key 'dc_test_DC2:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node7(DC3), dc5_node16(DC5), dc7_node12(DC7)
+    ✓ Key 'dc_test_DC2:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc1_node6(DC1), dc2_node8(DC2), dc8_node13(DC8)
+
+  Replica Distribution Summary:
+    Keys with cross-DC replicas:  6/6 (100.0%)
+    Keys with same-DC replicas:   0/6
+    Keys with exactly N replicas: 6/6 (100.0%)
+    ✓ System is distributing replicas across datacenters
+    ✓ All keys have exactly N=3 replicas (no over-replication)
+
+✓ Datacenter awareness test complete
+
+================================================================================
+PHASE 10: CLIENT-SIDE VECTOR CLOCK TRACKING TEST
+================================================================================
+
+  Test 1: Sequential writes (no false conflicts)
+
+PUT 'vector_clock_test_1' = 'value1' via localhost:50055
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node5': 1}
+  📝 Using tracked vector clock: {'dc1_node5': 1}
+
+PUT 'vector_clock_test_1' = 'value2' via localhost:50052
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node5': 1, 'dc1_node2': 1}
+
+GET 'vector_clock_test_1' via localhost:50055
+✓ Value: 'value2'
+  Vector Clock: {'dc1_node5': 1, 'dc1_node2': 1}
+  Retrieved from quorum R=2
+    ✓ No conflicts, value: 'value2'
+
+  Test 2: Multiple sequential writes
+
+PUT 'vector_clock_test_2' = 'version1' via localhost:50051
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node1': 1}
+  📝 Using tracked vector clock: {'dc1_node1': 1}
+
+PUT 'vector_clock_test_2' = 'version2' via localhost:50051
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node1': 2}
+  📝 Using tracked vector clock: {'dc1_node1': 2}
+
+PUT 'vector_clock_test_2' = 'version3' via localhost:50052
+✓ Success: Stored with quorum W=2 (2 replicas)
+  Vector Clock: {'dc1_node2': 1, 'dc1_node1': 2}
+
+GET 'vector_clock_test_2' via localhost:50053
+✓ Value: 'version3'
+  Vector Clock: {'dc1_node2': 1, 'dc1_node1': 2}
+  Retrieved from quorum R=2
+    ✓ No conflicts, latest value: 'version3'
+
+  Test 3: Read-then-write pattern
+
+PUT 'vector_clock_test_3' = 'initial' via localhost:50051
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node1': 1}
+
+GET 'vector_clock_test_3' via localhost:50051
+✓ Value: 'initial'
+  Vector Clock: {'dc1_node1': 1}
+  Retrieved from quorum R=2
+  📝 Using tracked vector clock: {'dc1_node1': 1}
+
+PUT 'vector_clock_test_3' = 'updated' via localhost:50051
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node1': 2}
+    ✓ Update successful with cached clock
+
+✓ Vector clock tracking test complete
+
+================================================================================
+PHASE 11: READ REPAIR TEST
+================================================================================
+  Using nodes: dc1_node1, dc1_node2, dc1_node3
+
+  Step 1: Initial write via dc1_node1
+    ✓ Write successful
+
+  Step 2: Update via dc1_node2
+    ✓ Update successful
+
+  Step 3: Read from dc1_node3 (triggers repair)
+    ✓ Read successful, value: 'v2'
+
+  Step 4: Waiting for repair propagation...
+
+  Step 5: Verify consistency
+    ✓ All replicas consistent: value='v2'
+
+✓ Read repair test complete
+
+================================================================================
+CLEANUP: STOPPING ALL NODES
+================================================================================
+✓ Stopped 200 nodes
+
+================================================================================
+TOTAL TEST DURATION: 440.61 seconds (7.34 minutes)
+================================================================================
+
+================================================================================
+TEST STATISTICS SUMMARY
+================================================================================
+Total PUT Operations:      78578
+  ✓ Successful:            78578
+  ✗ Failed:                0
+Total GET Operations:      40536
+  ✓ Successful:            40529
+  ✗ Failed:                7
+Conflicts Detected:        30600
+Nodes Crashed:             20
+Nodes Recovered:           20
+================================================================================
+
+================================================================================
+TEST COMPLETE
+================================================================================
+

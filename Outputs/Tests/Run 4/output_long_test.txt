@@ -1,0 +1,885 @@
+
+================================================================================
+COMPREHENSIVE DHT TEST SUITE
+================================================================================
+Configuration:
+  Nodes: 200 (20 per datacenter)
+  Datacenters: 10
+  Concurrent Clients: 50
+  Total Items: 5000
+  Base Port: 50051
+================================================================================
+
+================================================================================
+PHASE 0: ENVIRONMENT CLEANUP
+================================================================================
+  Removed: data/dc6_node8_data.json
+  Removed: data/dc3_node11_data.json
+  Removed: data/dc8_node1_data.json
+  Removed: data/dc10_node18_data.json
+  Removed: data/dc6_node20_ring.json
+  Removed: data/dc10_node3_data.json
+  Removed: data/dc8_node16_data.json
+  Removed: data/dc2_node1_ring.json
+  Removed: data/dc5_node19_ring.json
+  Removed: data/dc2_node9_ring.json
+  Removed: data/dc3_node16_data.json
+  Removed: data/dc5_node17_data.json
+  Removed: data/dc7_node14_data.json
+  Removed: data/dc4_node17_ring.json
+  Removed: data/dc2_node18_ring.json
+  Removed: data/dc9_node18_ring.json
+  Removed: data/dc3_node20_data.json
+  Removed: data/dc5_node18_data.json
+  Removed: data/dc7_node17_data.json
+  Removed: data/dc3_node4_ring.json
+  Removed: data/dc10_node7_data.json
+  Removed: data/dc3_node19_data.json
+  Removed: data/dc2_node14_ring.json
+  Removed: data/dc9_node14_ring.json
+  Removed: data/dc3_node3_data.json
+  Removed: data/dc6_node3_data.json
+  Removed: data/dc10_node13_ring.json
+  Removed: data/dc10_node1_ring.json
+  Removed: data/dc6_node7_ring.json
+  Removed: data/dc3_node5_data.json
+  Removed: data/dc7_node11_ring.json
+  Removed: data/dc5_node20_ring.json
+  Removed: data/dc8_node5_data.json
+  Removed: data/dc3_node5_ring.json
+  Removed: data/dc6_node10_data.json
+  Removed: data/dc6_node2_data.json
+  Removed: data/dc4_node5_data.json
+  Removed: data/dc2_node6_data.json
+  Removed: data/dc1_node17_ring.json
+  Removed: data/dc10_node6_data.json
+  Removed: data/dc9_node10_ring.json
+  Removed: data/dc1_node18_ring.json
+  Removed: data/dc5_node3_ring.json
+  Removed: data/dc4_node1_ring.json
+  Removed: data/dc9_node3_ring.json
+  Removed: data/dc4_node10_data.json
+  Removed: data/dc6_node13_ring.json
+  Removed: data/dc6_node1_ring.json
+  Removed: data/dc10_node16_ring.json
+  Removed: data/dc5_node5_ring.json
+  Removed: data/dc8_node9_ring.json
+  Removed: data/dc4_node16_ring.json
+  Removed: data/dc8_node18_data.json
+  Removed: data/dc9_node12_ring.json
+  Removed: data/dc4_node11_ring.json
+  Removed: data/dc9_node2_ring.json
+  Removed: data/dc1_node6_data.json
+  Removed: data/dc1_node9_ring.json
+  Removed: data/dc7_node4_data.json
+  Removed: data/dc8_node13_ring.json
+  Removed: data/dc1_node7_ring.json
+  Removed: data/dc4_node4_data.json
+  Removed: data/dc1_node4_data.json
+  Removed: data/dc4_node11_data.json
+  Removed: data/dc5_node18_ring.json
+  Removed: data/dc9_node17_data.json
+  Removed: data/dc1_node20_ring.json
+  Removed: data/dc9_node9_ring.json
+  Removed: data/dc1_node5_ring.json
+  Removed: data/dc8_node5_ring.json
+  Removed: data/dc5_node16_ring.json
+  Removed: data/dc6_node9_data.json
+  Removed: data/dc4_node20_data.json
+  Removed: data/dc7_node16_ring.json
+  Removed: data/dc9_node6_data.json
+  Removed: data/dc5_node7_ring.json
+  Removed: data/dc3_node13_ring.json
+  Removed: data/dc5_node19_data.json
+  Removed: data/dc6_node9_ring.json
+  Removed: data/dc8_node9_data.json
+  Removed: data/dc6_node13_data.json
+  Removed: data/dc1_node1_data.json
+  Removed: data/dc10_node20_ring.json
+  Removed: data/dc5_node13_ring.json
+  Removed: data/dc8_node6_data.json
+  Removed: data/dc7_node6_ring.json
+  Removed: data/dc9_node15_data.json
+  Removed: data/dc6_node10_ring.json
+  Removed: data/dc2_node10_data.json
+  Removed: data/dc6_node2_ring.json
+  Removed: data/dc4_node19_ring.json
+  Removed: data/dc8_node18_ring.json
+  Removed: data/dc1_node2_ring.json
+  Removed: data/dc1_node16_data.json
+  Removed: data/dc8_node10_ring.json
+  Removed: data/dc6_node7_data.json
+  Removed: data/dc6_node16_data.json
+  Removed: data/dc7_node19_ring.json
+  Removed: data/dc9_node6_ring.json
+  Removed: data/dc8_node8_data.json
+  Removed: data/dc7_node7_data.json
+  Removed: data/dc9_node19_ring.json
+  Removed: data/dc10_node5_data.json
+  Removed: data/dc2_node19_ring.json
+  Removed: data/dc7_node17_ring.json
+  Removed: data/dc3_node15_ring.json
+  Removed: data/dc1_node10_data.json
+  Removed: data/dc3_node11_ring.json
+  Removed: data/dc2_node15_ring.json
+  Removed: data/dc10_node1_data.json
+  Removed: data/dc9_node15_hints.json
+  Removed: data/dc3_node9_data.json
+  Removed: data/dc2_node14_data.json
+  Removed: data/dc10_node19_data.json
+  Removed: data/dc4_node2_data.json
+  Removed: data/dc8_node2_ring.json
+  Removed: data/dc10_node19_ring.json
+  Removed: data/dc9_node13_ring.json
+  Removed: data/dc6_node19_ring.json
+  Removed: data/dc3_node8_ring.json
+  Removed: data/dc1_node3_data.json
+  Removed: data/dc9_node4_ring.json
+  Removed: data/dc2_node17_ring.json
+  Removed: data/dc7_node9_ring.json
+  Removed: data/dc6_node15_ring.json
+  Removed: data/dc2_node1_data.json
+  Removed: data/dc3_node20_ring.json
+  Removed: data/dc9_node7_ring.json
+  Removed: data/dc10_node17_data.json
+  Removed: data/dc6_node4_ring.json
+  Removed: data/dc5_node8_ring.json
+  Removed: data/dc7_node5_data.json
+  Removed: data/dc5_node2_data.json
+  Removed: data/dc8_node6_ring.json
+  Removed: data/dc7_node4_ring.json
+  Removed: data/dc4_node19_data.json
+  Removed: data/dc8_node20_ring.json
+  Removed: data/dc7_node5_ring.json
+  Removed: data/dc10_node9_data.json
+  Removed: data/dc10_node2_data.json
+  Removed: data/dc7_node15_data.json
+  Removed: data/dc2_node12_data.json
+  Removed: data/dc9_node17_ring.json
+  Removed: data/dc3_node7_data.json
+  Removed: data/dc9_node5_ring.json
+  Removed: data/dc6_node17_data.json
+  Removed: data/dc9_node4_data.json
+  Removed: data/dc7_node1_data.json
+  Removed: data/dc1_node8_ring.json
+  Removed: data/dc4_node9_data.json
+  Removed: data/dc4_node14_data.json
+  Removed: data/dc3_node12_data.json
+  Removed: data/dc9_node2_data.json
+  Removed: data/dc2_node19_data.json
+  Removed: data/dc8_node20_data.json
+  Removed: data/dc8_node14_data.json
+  Removed: data/dc2_node2_data.json
+  Removed: data/dc7_node8_ring.json
+  Removed: data/dc1_node15_data.json
+  Removed: data/dc10_node12_ring.json
+  Removed: data/dc7_node13_data.json
+  Removed: data/dc7_node19_data.json
+  Removed: data/dc1_node11_data.json
+  Removed: data/dc10_node14_ring.json
+  Removed: data/dc10_node14_data.json
+  Removed: data/dc8_node15_data.json
+  Removed: data/dc6_node5_data.json
+  Removed: data/dc8_node8_ring.json
+  Removed: data/dc1_node12_data.json
+  Removed: data/dc9_node9_data.json
+  Removed: data/dc10_node4_data.json
+  Removed: data/dc5_node15_data.json
+  Removed: data/dc9_node10_data.json
+  Removed: data/dc6_node18_ring.json
+  Removed: data/dc6_node4_data.json
+  Removed: data/dc9_node5_data.json
+  Removed: data/dc1_node15_ring.json
+  Removed: data/dc6_node3_ring.json
+  Removed: data/dc3_node15_data.json
+  Removed: data/dc8_node17_data.json
+  Removed: data/dc10_node11_ring.json
+  Removed: data/dc4_node1_data.json
+  Removed: data/dc9_node18_data.json
+  Removed: data/dc7_node12_data.json
+  Removed: data/dc2_node12_ring.json
+  Removed: data/dc4_node3_data.json
+  Removed: data/dc7_node20_ring.json
+  Removed: data/dc4_node15_data.json
+  Removed: data/dc6_node6_ring.json
+  Removed: data/dc4_node8_ring.json
+  Removed: data/dc9_node8_ring.json
+  Removed: data/dc8_node7_data.json
+  Removed: data/dc4_node5_ring.json
+  Removed: data/dc2_node10_ring.json
+  Removed: data/dc4_node10_ring.json
+  Removed: data/dc2_node8_data.json
+  Removed: data/dc7_node10_ring.json
+  Removed: data/dc2_node13_ring.json
+  Removed: data/dc10_node6_ring.json
+  Removed: data/dc2_node4_data.json
+  Removed: data/dc8_node11_ring.json
+  Removed: data/dc10_node10_data.json
+  Removed: data/dc2_node15_hints.json
+  Removed: data/dc4_node13_data.json
+  Removed: data/dc8_node1_ring.json
+  Removed: data/dc3_node18_ring.json
+  Removed: data/dc3_node4_data.json
+  Removed: data/dc5_node1_ring.json
+  Removed: data/dc5_node11_data.json
+  Removed: data/dc7_node2_ring.json
+  Removed: data/dc9_node15_ring.json
+  Removed: data/dc2_node7_ring.json
+  Removed: data/dc2_node17_data.json
+  Removed: data/dc7_node12_ring.json
+  Removed: data/dc5_node6_data.json
+  Removed: data/dc10_node15_ring.json
+  Removed: data/dc10_node10_ring.json
+  Removed: data/dc4_node12_ring.json
+  Removed: data/dc9_node3_data.json
+  Removed: data/dc7_node8_data.json
+  Removed: data/dc6_node6_data.json
+  Removed: data/dc5_node13_data.json
+  Removed: data/dc9_node14_data.json
+  Removed: data/dc2_node9_data.json
+  Removed: data/dc6_node18_data.json
+  Removed: data/dc5_node8_data.json
+  Removed: data/dc5_node3_data.json
+  Removed: data/dc5_node10_data.json
+  Removed: data/dc4_node9_ring.json
+  Removed: data/dc7_node10_data.json
+  Removed: data/dc10_node3_ring.json
+  Removed: data/dc5_node9_ring.json
+  Removed: data/dc2_node3_data.json
+  Removed: data/dc4_node15_ring.json
+  Removed: data/dc10_node12_data.json
+  Removed: data/dc3_node17_ring.json
+  Removed: data/dc5_node20_data.json
+  Removed: data/dc2_node11_data.json
+  Removed: data/dc8_node16_ring.json
+  Removed: data/dc7_node18_ring.json
+  Removed: data/dc4_node7_data.json
+  Removed: data/dc9_node16_data.json
+  Removed: data/dc7_node14_ring.json
+  Removed: data/dc6_node16_ring.json
+  Removed: data/dc4_node6_ring.json
+  Removed: data/dc10_node9_ring.json
+  Removed: data/dc6_node11_data.json
+  Removed: data/dc3_node17_data.json
+  Removed: data/dc1_node3_ring.json
+  Removed: data/dc3_node10_data.json
+  Removed: data/dc5_node9_data.json
+  Removed: data/dc1_node14_data.json
+  Removed: data/dc2_node20_ring.json
+  Removed: data/dc1_node16_ring.json
+  Removed: data/dc3_node16_ring.json
+  Removed: data/dc4_node16_data.json
+  Removed: data/dc3_node12_ring.json
+  Removed: data/dc4_node7_ring.json
+  Removed: data/dc3_node13_data.json
+  Removed: data/dc5_node17_ring.json
+  Removed: data/dc4_node4_ring.json
+  Removed: data/dc2_node13_data.json
+  Removed: data/dc1_node9_data.json
+  Removed: data/dc10_node15_data.json
+  Removed: data/dc9_node20_ring.json
+  Removed: data/dc1_node11_ring.json
+  Removed: data/dc5_node11_ring.json
+  Removed: data/dc9_node8_data.json
+  Removed: data/dc8_node14_ring.json
+  Removed: data/dc3_node1_ring.json
+  Removed: data/dc2_node5_data.json
+  Removed: data/dc8_node7_ring.json
+  Removed: data/dc1_node4_ring.json
+  Removed: data/dc5_node16_data.json
+  Removed: data/dc2_node16_ring.json
+  Removed: data/dc3_node18_data.json
+  Removed: data/dc5_node12_data.json
+  Removed: data/dc9_node1_data.json
+  Removed: data/dc4_node13_ring.json
+  Removed: data/dc10_node20_data.json
+  Removed: data/dc3_node7_ring.json
+  Removed: data/dc9_node16_ring.json
+  Removed: data/dc8_node19_ring.json
+  Removed: data/dc4_node6_data.json
+  Removed: data/dc6_node15_data.json
+  Removed: data/dc1_node5_data.json
+  Removed: data/dc8_node3_ring.json
+  Removed: data/dc8_node17_ring.json
+  Removed: data/dc3_node3_ring.json
+  Removed: data/dc1_node7_data.json
+  Removed: data/dc1_node1_ring.json
+  Removed: data/dc3_node2_ring.json
+  Removed: data/dc9_node20_data.json
+  Removed: data/dc6_node1_data.json
+  Removed: data/dc1_node8_data.json
+  Removed: data/dc1_node14_ring.json
+  Removed: data/dc7_node7_ring.json
+  Removed: data/dc10_node8_data.json
+  Removed: data/dc8_node2_data.json
+  Removed: data/dc6_node5_ring.json
+  Removed: data/dc1_node6_ring.json
+  Removed: data/dc4_node20_ring.json
+  Removed: data/dc7_node9_data.json
+  Removed: data/dc5_node7_data.json
+  Removed: data/dc5_node5_data.json
+  Removed: data/dc10_node13_data.json
+  Removed: data/dc10_node5_ring.json
+  Removed: data/dc2_node8_ring.json
+  Removed: data/dc4_node8_data.json
+  Removed: data/dc5_node2_ring.json
+  Removed: data/dc3_node14_data.json
+  Removed: data/dc2_node6_ring.json
+  Removed: data/dc10_node18_ring.json
+  Removed: data/dc8_node15_ring.json
+  Removed: data/dc4_node12_data.json
+  Removed: data/dc10_node7_ring.json
+  Removed: data/dc7_node1_ring.json
+  Removed: data/dc1_node17_data.json
+  Removed: data/dc7_node18_data.json
+  Removed: data/dc7_node20_data.json
+  Removed: data/dc2_node11_ring.json
+  Removed: data/dc2_node18_data.json
+  Removed: data/dc3_node9_ring.json
+  Removed: data/dc6_node14_ring.json
+  Removed: data/dc2_node5_ring.json
+  Removed: data/dc7_node11_data.json
+  Removed: data/dc8_node12_data.json
+  Removed: data/dc10_node8_ring.json
+  Removed: data/dc3_node1_hints.json
+  Removed: data/dc6_node14_data.json
+  Removed: data/dc5_node14_ring.json
+  Removed: data/dc1_node18_data.json
+  Removed: data/dc1_node19_data.json
+  Removed: data/dc7_node3_ring.json
+  Removed: data/dc6_node12_ring.json
+  Removed: data/dc7_node13_ring.json
+  Removed: data/dc1_node2_data.json
+  Removed: data/dc3_node19_ring.json
+  Removed: data/dc2_node15_data.json
+  Removed: data/dc7_node16_data.json
+  Removed: data/dc10_node2_ring.json
+  Removed: data/dc5_node6_ring.json
+  Removed: data/dc3_node6_ring.json
+  Removed: data/dc6_node8_ring.json
+  Removed: data/dc9_node12_data.json
+  Removed: data/dc2_node2_ring.json
+  Removed: data/dc4_node2_ring.json
+  Removed: data/dc3_node6_data.json
+  Removed: data/dc8_node3_data.json
+  Removed: data/dc1_node20_data.json
+  Removed: data/dc5_node12_ring.json
+  Removed: data/dc3_node14_ring.json
+  Removed: data/dc7_node6_data.json
+  Removed: data/dc8_node12_ring.json
+  Removed: data/dc1_node12_ring.json
+  Removed: data/dc5_node4_ring.json
+  Removed: data/dc4_node3_ring.json
+  Removed: data/dc1_node10_ring.json
+  Removed: data/dc5_node10_ring.json
+  Removed: data/dc1_node19_ring.json
+  Removed: data/dc8_node4_data.json
+  Removed: data/dc2_node7_data.json
+  Removed: data/dc9_node1_ring.json
+  Removed: data/dc6_node20_data.json
+  Removed: data/dc5_node15_ring.json
+  Removed: data/dc6_node12_data.json
+  Removed: data/dc6_node11_ring.json
+  Removed: data/dc4_node18_data.json
+  Removed: data/dc4_node18_ring.json
+  Removed: data/dc8_node11_data.json
+  Removed: data/dc8_node19_data.json
+  Removed: data/dc8_node4_ring.json
+  Removed: data/dc9_node13_data.json
+  Removed: data/dc7_node2_data.json
+  Removed: data/dc5_node4_data.json
+  Removed: data/dc5_node14_data.json
+  Removed: data/dc10_node17_ring.json
+  Removed: data/dc10_node4_ring.json
+  Removed: data/dc7_node3_data.json
+  Removed: data/dc3_node1_data.json
+  Removed: data/dc5_node1_data.json
+  Removed: data/dc4_node14_ring.json
+  Removed: data/dc9_node19_data.json
+  Removed: data/dc3_node8_data.json
+  Removed: data/dc2_node4_ring.json
+  Removed: data/dc6_node17_ring.json
+  Removed: data/dc9_node11_ring.json
+  Removed: data/dc8_node13_data.json
+  Removed: data/dc1_node13_data.json
+  Removed: data/dc2_node20_data.json
+  Removed: data/dc4_node17_data.json
+  Removed: data/dc7_node15_ring.json
+  Removed: data/dc2_node16_data.json
+  Removed: data/dc2_node3_ring.json
+  Removed: data/dc9_node7_data.json
+  Removed: data/dc3_node10_ring.json
+  Removed: data/dc6_node19_data.json
+  Removed: data/dc9_node11_data.json
+  Removed: data/dc1_node13_ring.json
+  Removed: data/dc10_node16_data.json
+  Removed: data/dc8_node10_data.json
+  Removed: data/dc10_node11_data.json
+  Removed: data/dc3_node2_data.json
+✓ Environment cleaned
+
+================================================================================
+PHASE 1: CLUSTER DEPLOYMENT
+================================================================================
+Deploying 200 nodes across 10 datacenters...
+
+  Starting seed node: dc1_node1 at localhost:50051 (DC1)
+  Started 10/200 nodes...
+  Started 20/200 nodes...
+  Started 30/200 nodes...
+  Started 40/200 nodes...
+  Started 50/200 nodes...
+  Started 60/200 nodes...
+  Started 70/200 nodes...
+  Started 80/200 nodes...
+  Started 90/200 nodes...
+  Started 100/200 nodes...
+  Started 110/200 nodes...
+  Started 120/200 nodes...
+  Started 130/200 nodes...
+  Started 140/200 nodes...
+  Started 150/200 nodes...
+  Started 160/200 nodes...
+  Started 170/200 nodes...
+  Started 180/200 nodes...
+  Started 190/200 nodes...
+  Started 200/200 nodes...
+
+✓ All 200 nodes started
+  Waiting for cluster stabilization and node discovery...
+    5/40 seconds...
+    10/40 seconds...
+    15/40 seconds...
+    20/40 seconds...
+    25/40 seconds...
+    30/40 seconds...
+    35/40 seconds...
+    40/40 seconds...
+✓ Cluster deployed: 200/200 nodes running
+
+================================================================================
+PHASE 2: INITIAL DATA LOAD
+================================================================================
+Verifying ring convergence...
+  dc1_node2: sees 181 nodes in ring
+  dc8_node5: sees 200 nodes in ring
+  dc7_node19: sees 200 nodes in ring
+  dc6_node13: sees 200 nodes in ring
+  dc9_node14: sees 200 nodes in ring
+  Ring convergence: 5/5 nodes checked
+
+Loading 5000 items into the cluster...
+  Loaded 100/5000 items...
+  Loaded 200/5000 items...
+  Loaded 300/5000 items...
+  Loaded 400/5000 items...
+  Loaded 500/5000 items...
+  Loaded 600/5000 items...
+  Loaded 700/5000 items...
+  Loaded 800/5000 items...
+  Loaded 900/5000 items...
+  Loaded 1000/5000 items...
+  Loaded 1100/5000 items...
+  Loaded 1200/5000 items...
+  Loaded 1300/5000 items...
+  Loaded 1400/5000 items...
+  Loaded 1500/5000 items...
+  Loaded 1600/5000 items...
+  Loaded 1700/5000 items...
+  Loaded 1800/5000 items...
+  Loaded 1900/5000 items...
+  Loaded 2000/5000 items...
+  Loaded 2100/5000 items...
+  Loaded 2200/5000 items...
+  Loaded 2300/5000 items...
+  Loaded 2400/5000 items...
+  Loaded 2500/5000 items...
+  Loaded 2600/5000 items...
+  Loaded 2700/5000 items...
+  Loaded 2800/5000 items...
+  Loaded 2900/5000 items...
+  Loaded 3000/5000 items...
+  Loaded 3100/5000 items...
+  Loaded 3200/5000 items...
+  Loaded 3300/5000 items...
+  Loaded 3400/5000 items...
+  Loaded 3500/5000 items...
+  Loaded 3600/5000 items...
+  Loaded 3700/5000 items...
+  Loaded 3800/5000 items...
+  Loaded 3900/5000 items...
+  Loaded 4000/5000 items...
+  Loaded 4100/5000 items...
+  Loaded 4200/5000 items...
+  Loaded 4300/5000 items...
+  Loaded 4400/5000 items...
+  Loaded 4500/5000 items...
+  Loaded 4600/5000 items...
+  Loaded 4700/5000 items...
+  Loaded 4800/5000 items...
+  Loaded 4900/5000 items...
+  Loaded 5000/5000 items...
+
+✓ Data load complete: 5000 successful, 0 failed
+
+================================================================================
+PHASE 3: CONCURRENT CLIENT OPERATIONS
+================================================================================
+Running 50 concurrent clients...
+  Client 44 completed: PUT=665, GET=720, UPDATE=615, ERRORS=0
+  Client 19 completed: PUT=680, GET=695, UPDATE=625, ERRORS=0
+  Client 20 completed: PUT=651, GET=654, UPDATE=695, ERRORS=0
+  Client 42 completed: PUT=626, GET=688, UPDATE=686, ERRORS=0
+  Client 27 completed: PUT=639, GET=670, UPDATE=691, ERRORS=0
+  Client 10 completed: PUT=679, GET=654, UPDATE=667, ERRORS=0
+  Client 24 completed: PUT=655, GET=645, UPDATE=700, ERRORS=0
+  Client 46 completed: PUT=658, GET=675, UPDATE=667, ERRORS=0
+  Client 49 completed: PUT=630, GET=693, UPDATE=677, ERRORS=0
+  Client 22 completed: PUT=656, GET=701, UPDATE=643, ERRORS=0
+  Client 29 completed: PUT=646, GET=714, UPDATE=639, ERRORS=1
+  Client 37 completed: PUT=645, GET=672, UPDATE=683, ERRORS=0
+  Client 13 completed: PUT=623, GET=696, UPDATE=681, ERRORS=0
+  Client 14 completed: PUT=692, GET=645, UPDATE=663, ERRORS=0
+  Client 31 completed: PUT=682, GET=630, UPDATE=688, ERRORS=0
+  Client 41 completed: PUT=682, GET=681, UPDATE=635, ERRORS=2
+  Client 11 completed: PUT=693, GET=675, UPDATE=632, ERRORS=0
+  Client 5 completed: PUT=623, GET=709, UPDATE=668, ERRORS=0
+  Client 28 completed: PUT=680, GET=684, UPDATE=636, ERRORS=0
+  Client 35 completed: PUT=629, GET=663, UPDATE=708, ERRORS=0
+  Client 43 completed: PUT=664, GET=681, UPDATE=654, ERRORS=1
+  Client 45 completed: PUT=640, GET=692, UPDATE=668, ERRORS=0
+  Client 48 completed: PUT=655, GET=679, UPDATE=665, ERRORS=1
+  Client 17 completed: PUT=662, GET=669, UPDATE=669, ERRORS=0
+  Client 21 completed: PUT=666, GET=689, UPDATE=645, ERRORS=0
+  Client 38 completed: PUT=683, GET=676, UPDATE=640, ERRORS=1
+  Client 9 completed: PUT=683, GET=686, UPDATE=631, ERRORS=0
+  Client 30 completed: PUT=667, GET=671, UPDATE=662, ERRORS=0
+  Client 26 completed: PUT=667, GET=665, UPDATE=668, ERRORS=0
+  Client 4 completed: PUT=678, GET=664, UPDATE=657, ERRORS=1
+  Client 12 completed: PUT=675, GET=623, UPDATE=702, ERRORS=0
+  Client 16 completed: PUT=643, GET=698, UPDATE=659, ERRORS=0
+  Client 34 completed: PUT=664, GET=645, UPDATE=691, ERRORS=0
+  Client 23 completed: PUT=692, GET=667, UPDATE=641, ERRORS=0
+  Client 1 completed: PUT=637, GET=694, UPDATE=669, ERRORS=0
+  Client 0 completed: PUT=674, GET=667, UPDATE=659, ERRORS=0
+  Client 36 completed: PUT=642, GET=644, UPDATE=714, ERRORS=0
+  Client 39 completed: PUT=656, GET=666, UPDATE=677, ERRORS=1
+  Client 3 completed: PUT=712, GET=630, UPDATE=657, ERRORS=1
+  Client 33 completed: PUT=655, GET=670, UPDATE=675, ERRORS=0
+  Client 32 completed: PUT=682, GET=671, UPDATE=647, ERRORS=0
+  Client 25 completed: PUT=656, GET=658, UPDATE=686, ERRORS=0
+  Client 8 completed: PUT=694, GET=619, UPDATE=687, ERRORS=0
+  Client 15 completed: PUT=674, GET=679, UPDATE=647, ERRORS=0
+  Client 2 completed: PUT=636, GET=651, UPDATE=713, ERRORS=0
+  Client 40 completed: PUT=644, GET=683, UPDATE=673, ERRORS=0
+  Client 6 completed: PUT=688, GET=635, UPDATE=677, ERRORS=0
+  Client 18 completed: PUT=643, GET=660, UPDATE=697, ERRORS=0
+  Client 7 completed: PUT=664, GET=628, UPDATE=707, ERRORS=1
+  Client 47 completed: PUT=650, GET=653, UPDATE=697, ERRORS=0
+
+✓ Concurrent operations complete
+
+================================================================================
+PHASE 4: NODE FAILURES AND RECOVERY
+================================================================================
+Crashing 20 random nodes...
+  Crashing node: dc5_node18
+  Crashing node: dc6_node8
+  Crashing node: dc6_node20
+  Crashing node: dc1_node2
+  Crashing node: dc8_node3
+  Crashing node: dc8_node13
+  Crashing node: dc3_node7
+  Crashing node: dc5_node19
+  Crashing node: dc4_node4
+  Crashing node: dc2_node14
+  Crashing node: dc9_node14
+  Crashing node: dc9_node20
+  Crashing node: dc5_node11
+  Crashing node: dc4_node17
+  Crashing node: dc9_node17
+  Crashing node: dc1_node10
+  Crashing node: dc8_node6
+  Crashing node: dc3_node10
+✓ Crashed 18 nodes
+  Waiting 5 seconds...
+  Testing operations with nodes down...
+  Operations during failure: 100/100 successful
+
+  Recovering 18 crashed nodes...
+    Recovered: dc5_node18
+    Recovered: dc6_node8
+    Recovered: dc6_node20
+    Recovered: dc1_node2
+    Recovered: dc8_node3
+    Recovered: dc8_node13
+    Recovered: dc3_node7
+    Recovered: dc5_node19
+    Recovered: dc4_node4
+    Recovered: dc2_node14
+    Recovered: dc9_node14
+    Recovered: dc9_node20
+    Recovered: dc5_node11
+    Recovered: dc4_node17
+    Recovered: dc9_node17
+    Recovered: dc1_node10
+    Recovered: dc8_node6
+    Recovered: dc3_node10
+✓ All nodes recovered
+  Waiting 10 seconds for stabilization...
+
+================================================================================
+PHASE 5: CONSISTENCY VERIFICATION
+================================================================================
+Verifying data consistency across replicas...
+✓ Consistency check complete:
+  Consistent: 194/200
+  Inconsistent: 6/200
+  Not found: 0/200
+
+================================================================================
+PHASE 6: LOAD DISTRIBUTION ANALYSIS
+================================================================================
+Analyzing data distribution across nodes...
+
+Total keys stored (with replication): 19064
+Average keys per node: 95.32
+
+Datacenter Distribution:
+  DC1: 1913 keys
+  DC10: 1941 keys
+  DC2: 1873 keys
+  DC3: 1877 keys
+  DC4: 1844 keys
+  DC5: 1821 keys
+  DC6: 1863 keys
+  DC7: 1946 keys
+  DC8: 2069 keys
+  DC9: 1917 keys
+
+Top 10 Most Loaded Nodes:
+  1. dc4_node15: 128 keys
+  2. dc1_node20: 123 keys
+  3. dc8_node12: 123 keys
+  4. dc1_node13: 121 keys
+  5. dc2_node5: 121 keys
+  6. dc8_node20: 119 keys
+  7. dc8_node18: 118 keys
+  8. dc6_node12: 117 keys
+  9. dc2_node6: 115 keys
+  10. dc7_node4: 115 keys
+
+Load Distribution Statistics:
+  Min: 67
+  Max: 128
+  Average: 95.32
+  Std Dev: 10.92
+
+================================================================================
+PHASE 7: PERSISTENCE VERIFICATION
+================================================================================
+Testing persistence by restarting random nodes...
+
+  Testing node: dc5_node1 (93 keys)
+    Stopped node
+    Restarted node
+    ✓ All 93 keys persisted correctly
+
+  Testing node: dc3_node13 (99 keys)
+    Stopped node
+    Restarted node
+    ✓ All 99 keys persisted correctly
+
+  Testing node: dc4_node2 (77 keys)
+    Stopped node
+    Restarted node
+    ✓ All 77 keys persisted correctly
+
+  Testing node: dc3_node16 (79 keys)
+    Stopped node
+    Restarted node
+    ✓ All 79 keys persisted correctly
+
+  Testing node: dc3_node19 (93 keys)
+    Stopped node
+    Restarted node
+    ✓ All 93 keys persisted correctly
+
+✓ Persistence test complete: 5/5 nodes verified
+
+================================================================================
+PHASE 8: STRESS TEST
+================================================================================
+Running high-frequency stress test...
+  Running 10 workers for 30 seconds...
+  Stress worker 2: 1253 operations
+  Stress worker 3: 1269 operations
+  Stress worker 5: 1261 operations
+  Stress worker 4: 1237 operations
+  Stress worker 9: 1273 operations
+  Stress worker 1: 1248 operations
+  Stress worker 0: 1274 operations
+  Stress worker 7: 1271 operations
+  Stress worker 8: 1243 operations
+  Stress worker 6: 1251 operations
+✓ Stress test complete
+
+================================================================================
+PHASE 9: DATACENTER AWARENESS TEST
+================================================================================
+Testing datacenter-aware replication...
+  Datacenter node distribution:
+    DC1: 20 nodes
+    DC10: 20 nodes
+    DC2: 20 nodes
+    DC3: 20 nodes
+    DC4: 20 nodes
+    DC5: 20 nodes
+    DC6: 20 nodes
+    DC7: 20 nodes
+    DC8: 20 nodes
+    DC9: 20 nodes
+
+  Testing from DC1 (dc1_node1)...
+    Operations: 20/20 successful
+
+  Testing from DC10 (dc10_node1)...
+    Operations: 20/20 successful
+
+  Testing from DC2 (dc2_node1)...
+    Operations: 20/20 successful
+
+  Waiting for replication to complete...
+
+  Verifying replica distribution across datacenters...
+    ✓ Key 'dc_test_DC1:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node3(DC3), dc4_node3(DC4), dc7_node2(DC7)
+    ✓ Key 'dc_test_DC1:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc6_node13(DC6), dc7_node20(DC7), dc8_node18(DC8)
+    ✓ Key 'dc_test_DC10:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node3(DC3), dc5_node9(DC5), dc9_node4(DC9)
+    ✓ Key 'dc_test_DC10:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc1_node10(DC1), dc4_node19(DC4), dc8_node5(DC8)
+    ✓ Key 'dc_test_DC2:0': 3 replicas (N=3) across 3 DCs
+      Nodes: dc3_node7(DC3), dc5_node16(DC5), dc8_node2(DC8)
+    ✓ Key 'dc_test_DC2:10': 3 replicas (N=3) across 3 DCs
+      Nodes: dc1_node6(DC1), dc2_node8(DC2), dc8_node6(DC8)
+
+  Replica Distribution Summary:
+    Keys with cross-DC replicas:  6/6 (100.0%)
+    Keys with same-DC replicas:   0/6
+    Keys with exactly N replicas: 6/6 (100.0%)
+    ✓ System is distributing replicas across datacenters
+    ✓ All keys have exactly N=3 replicas (no over-replication)
+
+✓ Datacenter awareness test complete
+
+================================================================================
+PHASE 10: CLIENT-SIDE VECTOR CLOCK TRACKING TEST
+================================================================================
+
+  Test 1: Sequential writes (no false conflicts)
+
+PUT 'vector_clock_test_1' = 'value1' via localhost:50052
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node2': 1}
+  📝 Using tracked vector clock: {'dc1_node2': 1}
+
+PUT 'vector_clock_test_1' = 'value2' via localhost:50056
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node6': 1, 'dc1_node2': 1}
+
+GET 'vector_clock_test_1' via localhost:50052
+✓ Value: 'value2'
+  Vector Clock: {'dc1_node6': 1, 'dc1_node2': 1}
+  Retrieved from quorum R=2
+    ✓ No conflicts, value: 'value2'
+
+  Test 2: Multiple sequential writes
+
+PUT 'vector_clock_test_2' = 'version1' via localhost:50054
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node4': 1}
+  📝 Using tracked vector clock: {'dc1_node4': 1}
+
+PUT 'vector_clock_test_2' = 'version2' via localhost:50055
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node4': 1, 'dc1_node5': 1}
+  📝 Using tracked vector clock: {'dc1_node4': 1, 'dc1_node5': 1}
+
+PUT 'vector_clock_test_2' = 'version3' via localhost:50051
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node1': 1, 'dc1_node4': 1, 'dc1_node5': 1}
+
+GET 'vector_clock_test_2' via localhost:50056
+✓ Value: 'version3'
+  Vector Clock: {'dc1_node1': 1, 'dc1_node4': 1, 'dc1_node5': 1}
+  Retrieved from quorum R=2
+    ✓ No conflicts, latest value: 'version3'
+
+  Test 3: Read-then-write pattern
+
+PUT 'vector_clock_test_3' = 'initial' via localhost:50054
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node4': 1}
+
+GET 'vector_clock_test_3' via localhost:50055
+✓ Value: 'initial'
+  Vector Clock: {'dc1_node4': 1}
+  Retrieved from quorum R=2
+  📝 Using tracked vector clock: {'dc1_node4': 1}
+
+PUT 'vector_clock_test_3' = 'updated' via localhost:50052
+✓ Success: Stored with quorum W=2 (3 replicas)
+  Vector Clock: {'dc1_node4': 1, 'dc1_node2': 1}
+    ✓ Update successful with cached clock
+
+✓ Vector clock tracking test complete
+
+================================================================================
+PHASE 11: READ REPAIR TEST
+================================================================================
+  Using nodes: dc1_node1, dc1_node2, dc1_node3
+
+  Step 1: Initial write via dc1_node1
+    ✓ Write successful
+
+  Step 2: Update via dc1_node2
+    ✓ Update successful
+
+  Step 3: Read from dc1_node3 (triggers repair)
+    ✓ Read successful, value: 'v2'
+
+  Step 4: Waiting for repair propagation...
+
+  Step 5: Verify consistency
+    ✓ All replicas consistent: value='v2'
+
+✓ Read repair test complete
+
+================================================================================
+CLEANUP: STOPPING ALL NODES
+================================================================================
+✓ Stopped 200 nodes
+
+================================================================================
+TOTAL TEST DURATION: 432.91 seconds (7.22 minutes)
+================================================================================
+
+================================================================================
+TEST STATISTICS SUMMARY
+================================================================================
+Total PUT Operations:      77991
+  ✓ Successful:            77991
+  ✗ Failed:                0
+Total GET Operations:      40762
+  ✓ Successful:            40752
+  ✗ Failed:                10
+Conflicts Detected:        30869
+Nodes Crashed:             18
+Nodes Recovered:           18
+================================================================================
+
+================================================================================
+TEST COMPLETE
+================================================================================

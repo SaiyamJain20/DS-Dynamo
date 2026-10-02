@@ -1,0 +1,1859 @@
+Starting Graph Generator Suite...
+Ensure matplotlib is installed (pip install matplotlib)
+
+============================================================
+TEST A: Write Latency vs. Write Quorum (W)
+Objective: Demonstrate Asynchronous W-Quorum benefits
+Configuration: 100 Nodes, 10 Datacenters
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 100 PUTs with W=1...
+[Result] W=1: Avg Latency = 12.02 ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 100 PUTs with W=2...
+[Result] W=2: Avg Latency = 12.72 ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 100 PUTs with W=3...
+[Result] W=3: Avg Latency = 16.08 ms
+[Teardown] Stopping cluster...
+
+[Summary] Write Latency vs W:
+W | Latency (ms)
+--|-------------
+1 | 12.02
+2 | 12.72
+3 | 16.08
+
+[Graph] Saved plot to graph_report/graph_latency_vs_w.png
+
+============================================================
+TEST B: Read Latency vs. Read Quorum (R)
+Objective: Quantify the cost of strong consistency (R)
+Configuration: 100 Nodes, N=3
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Setup] Populating 100 items...
+[Bench] Running 100 GETs with R=1...
+[Result] R=1: Avg Latency = 7.24 ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Setup] Populating 100 items...
+[Bench] Running 100 GETs with R=2...
+[Result] R=2: Avg Latency = 8.34 ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Setup] Populating 100 items...
+[Bench] Running 100 GETs with R=3...
+[Result] R=3: Avg Latency = 9.30 ms
+[Teardown] Stopping cluster...
+
+[Summary] Read Latency vs R:
+R | Latency (ms)
+--|-------------
+1 | 7.24
+2 | 8.34
+3 | 9.30
+
+[Graph] Saved plot to graph_report/graph_latency_vs_r.png
+
+============================================================
+TEST C: System Throughput vs. Concurrency
+Objective: Measure scalability and identify bottlenecks
+Configuration: 100 Nodes, N=3, R=2, W=2
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 15s throughput test with 1 threads...
+[Result] 1 Threads: 74.25 OPS (Total: 1114, Errors: 582)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 15s throughput test with 5 threads...
+[Result] 5 Threads: 544.24 OPS (Total: 8170, Errors: 996)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 15s throughput test with 10 threads...
+[Result] 10 Threads: 1007.93 OPS (Total: 15134, Errors: 1015)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 15s throughput test with 20 threads...
+[Result] 20 Threads: 1248.54 OPS (Total: 18755, Errors: 960)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Running 15s throughput test with 40 threads...
+[Result] 40 Threads: 1282.78 OPS (Total: 19287, Errors: 979)
+[Teardown] Stopping cluster...
+
+[Summary] Throughput vs Concurrency:
+Threads | OPS
+--------|--------
+1       | 74.25
+5       | 544.24
+10      | 1007.93
+20      | 1248.54
+40      | 1282.78
+
+[Graph] Saved plot to graph_report/graph_throughput_vs_concurrency.png
+
+============================================================
+TEST D: Datacenter Distribution Efficiency
+Objective: Compare Replica Placement with vs without DC-Awareness
+Configuration: 100 Nodes, 10 Datacenters
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Analysis] Fetching topology from cluster...
+Added node localhost:50079 with 150 virtual nodes
+Added node localhost:50131 with 150 virtual nodes
+Added node localhost:50071 with 150 virtual nodes
+Added node localhost:50139 with 150 virtual nodes
+Added node localhost:50085 with 150 virtual nodes
+Added node localhost:50094 with 150 virtual nodes
+Added node localhost:50101 with 150 virtual nodes
+Added node localhost:50143 with 150 virtual nodes
+Added node localhost:50098 with 150 virtual nodes
+Added node localhost:50100 with 150 virtual nodes
+Added node localhost:50118 with 150 virtual nodes
+Added node localhost:50082 with 150 virtual nodes
+Added node localhost:50157 with 150 virtual nodes
+Added node localhost:50148 with 150 virtual nodes
+Added node localhost:50159 with 150 virtual nodes
+Added node localhost:50097 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50092 with 150 virtual nodes
+Added node localhost:50120 with 150 virtual nodes
+Added node localhost:50122 with 150 virtual nodes
+Added node localhost:50133 with 150 virtual nodes
+Added node localhost:50081 with 150 virtual nodes
+Added node localhost:50151 with 150 virtual nodes
+Added node localhost:50142 with 150 virtual nodes
+Added node localhost:50099 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50128 with 150 virtual nodes
+Added node localhost:50144 with 150 virtual nodes
+Added node localhost:50086 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50088 with 150 virtual nodes
+Added node localhost:50130 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50080 with 150 virtual nodes
+Added node localhost:50103 with 150 virtual nodes
+Added node localhost:50113 with 150 virtual nodes
+Added node localhost:50114 with 150 virtual nodes
+Added node localhost:50134 with 150 virtual nodes
+Added node localhost:50124 with 150 virtual nodes
+Added node localhost:50112 with 150 virtual nodes
+Added node localhost:50119 with 150 virtual nodes
+Added node localhost:50089 with 150 virtual nodes
+Added node localhost:50073 with 150 virtual nodes
+Added node localhost:50108 with 150 virtual nodes
+Added node localhost:50154 with 150 virtual nodes
+Added node localhost:50121 with 150 virtual nodes
+Added node localhost:50072 with 150 virtual nodes
+Added node localhost:50117 with 150 virtual nodes
+Added node localhost:50095 with 150 virtual nodes
+Added node localhost:50135 with 150 virtual nodes
+Added node localhost:50076 with 150 virtual nodes
+Added node localhost:50115 with 150 virtual nodes
+Added node localhost:50126 with 150 virtual nodes
+Added node localhost:50145 with 150 virtual nodes
+Added node localhost:50136 with 150 virtual nodes
+Added node localhost:50096 with 150 virtual nodes
+Added node localhost:50106 with 150 virtual nodes
+Added node localhost:50156 with 150 virtual nodes
+Added node localhost:50158 with 150 virtual nodes
+Added node localhost:50111 with 150 virtual nodes
+Added node localhost:50104 with 150 virtual nodes
+Added node localhost:50125 with 150 virtual nodes
+Added node localhost:50123 with 150 virtual nodes
+Added node localhost:50138 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50070 with 150 virtual nodes
+Added node localhost:50078 with 150 virtual nodes
+Added node localhost:50155 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50152 with 150 virtual nodes
+Added node localhost:50077 with 150 virtual nodes
+Added node localhost:50153 with 150 virtual nodes
+Added node localhost:50091 with 150 virtual nodes
+Added node localhost:50137 with 150 virtual nodes
+Added node localhost:50109 with 150 virtual nodes
+Added node localhost:50107 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50075 with 150 virtual nodes
+Added node localhost:50102 with 150 virtual nodes
+Added node localhost:50150 with 150 virtual nodes
+Added node localhost:50132 with 150 virtual nodes
+Added node localhost:50127 with 150 virtual nodes
+Added node localhost:50129 with 150 virtual nodes
+Added node localhost:50084 with 150 virtual nodes
+Added node localhost:50087 with 150 virtual nodes
+Added node localhost:50090 with 150 virtual nodes
+Added node localhost:50074 with 150 virtual nodes
+Added node localhost:50149 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50105 with 150 virtual nodes
+Added node localhost:50110 with 150 virtual nodes
+Added node localhost:50140 with 150 virtual nodes
+Added node localhost:50083 with 150 virtual nodes
+Added node localhost:50147 with 150 virtual nodes
+Added node localhost:50116 with 150 virtual nodes
+Added node localhost:50141 with 150 virtual nodes
+Added node localhost:50146 with 150 virtual nodes
+Added node localhost:50093 with 150 virtual nodes
+[Analysis] Reconstructed ring with 100 nodes
+
+[Analysis] Checking 100 keys with DC-Awareness=ON...
+
+[Analysis] Checking 100 keys with DC-Awareness=OFF...
+
+[Result] Comparative Distribution (N=3):
+Unique DCs | Aware (Enhanced) | Unaware (Standard)
+-----------|------------------|-------------------
+     1     |       0          |       0  
+     2     |       0          |       23 
+     3     |       100        |       77 
+
+[Graph] Saved plot to graph_report/graph_dc_distribution.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST E: Key Load Balancing (Uniformity)
+Objective: Check if Consistent Hashing distributes load evenly
+Configuration: 100 Nodes, N=3, 1000 Items
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Inserting 1000 keys...
+  Inserted 0 keys...
+  Inserted 100 keys...
+  Inserted 200 keys...
+  Inserted 300 keys...
+  Inserted 400 keys...
+  Inserted 500 keys...
+  Inserted 600 keys...
+  Inserted 700 keys...
+  Inserted 800 keys...
+  Inserted 900 keys...
+[Bench] Inserted 1000/1000 keys. Waiting for replication...
+[Analysis] Reading node storage files...
+
+[Result] Total Replicas Stored: 3000 (Expected ~3000)
+[Result] Average Keys per Node: 30.00
+[Result] Standard Deviation: 5.25
+[Result] Min: 17, Max: 46
+
+[Graph] Saved plot to graph_report/graph_load_balancing.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST F: Availability under Datacenter Failure
+Objective: Prove survival of a complete DC outage (The Money Shot)
+Method: Kill DC1 (10 nodes) mid-operation and measure success rate
+============================================================
+
+[Scenario] Testing W=2 (High Availability)...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Bench] Starting continuous operations for 50s...
+[Bench] Scheduled to KILL DC1 at t=5s
+[EVENT] ⚡ KILLING DATACENTER 1 (Nodes 0-9) ⚡
+[Teardown] Stopping cluster...
+
+[Scenario] Testing W=3 (Strong Consistency)...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Bench] Starting continuous operations for 50s...
+[Bench] Scheduled to KILL DC1 at t=5s
+[EVENT] ⚡ KILLING DATACENTER 1 (Nodes 0-9) ⚡
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_availability_dc_failure.png
+
+============================================================
+TEST G: Divergent Versions (Conflict) Rate
+Objective: Show Vector Clock behavior under realistic race conditions
+Method: Concurrent writes with random network jitter
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Simulating 50 concurrent write pairs...
+
+[Graph] Saved improved plot to graph_report/graph_conflict_rate.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST H: Read Repair Latency (Convergence Time)
+Objective: Measure time for 'Eventual Consistency' to become 'Consistent'
+Method: Partition Node -> Write(W=2) -> Reconnect -> Read(R=3) -> Measure Repair
+Configuration: 100 Nodes, N=3, R=3, W=2
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+Added node localhost:50114 with 150 virtual nodes
+Added node localhost:50134 with 150 virtual nodes
+Added node localhost:50097 with 150 virtual nodes
+Added node localhost:50151 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50107 with 150 virtual nodes
+Added node localhost:50123 with 150 virtual nodes
+Added node localhost:50071 with 150 virtual nodes
+Added node localhost:50089 with 150 virtual nodes
+Added node localhost:50156 with 150 virtual nodes
+Added node localhost:50078 with 150 virtual nodes
+Added node localhost:50112 with 150 virtual nodes
+Added node localhost:50145 with 150 virtual nodes
+Added node localhost:50105 with 150 virtual nodes
+Added node localhost:50086 with 150 virtual nodes
+Added node localhost:50115 with 150 virtual nodes
+Added node localhost:50096 with 150 virtual nodes
+Added node localhost:50139 with 150 virtual nodes
+Added node localhost:50142 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50070 with 150 virtual nodes
+Added node localhost:50073 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50150 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50099 with 150 virtual nodes
+Added node localhost:50100 with 150 virtual nodes
+Added node localhost:50132 with 150 virtual nodes
+Added node localhost:50124 with 150 virtual nodes
+Added node localhost:50119 with 150 virtual nodes
+Added node localhost:50125 with 150 virtual nodes
+Added node localhost:50104 with 150 virtual nodes
+Added node localhost:50110 with 150 virtual nodes
+Added node localhost:50118 with 150 virtual nodes
+Added node localhost:50121 with 150 virtual nodes
+Added node localhost:50075 with 150 virtual nodes
+Added node localhost:50094 with 150 virtual nodes
+Added node localhost:50133 with 150 virtual nodes
+Added node localhost:50072 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50154 with 150 virtual nodes
+Added node localhost:50155 with 150 virtual nodes
+Added node localhost:50136 with 150 virtual nodes
+Added node localhost:50098 with 150 virtual nodes
+Added node localhost:50111 with 150 virtual nodes
+Added node localhost:50131 with 150 virtual nodes
+Added node localhost:50087 with 150 virtual nodes
+Added node localhost:50122 with 150 virtual nodes
+Added node localhost:50146 with 150 virtual nodes
+Added node localhost:50080 with 150 virtual nodes
+Added node localhost:50093 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50129 with 150 virtual nodes
+Added node localhost:50091 with 150 virtual nodes
+Added node localhost:50074 with 150 virtual nodes
+Added node localhost:50079 with 150 virtual nodes
+Added node localhost:50116 with 150 virtual nodes
+Added node localhost:50103 with 150 virtual nodes
+Added node localhost:50083 with 150 virtual nodes
+Added node localhost:50117 with 150 virtual nodes
+Added node localhost:50148 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50144 with 150 virtual nodes
+Added node localhost:50092 with 150 virtual nodes
+Added node localhost:50153 with 150 virtual nodes
+Added node localhost:50138 with 150 virtual nodes
+Added node localhost:50082 with 150 virtual nodes
+Added node localhost:50084 with 150 virtual nodes
+Added node localhost:50088 with 150 virtual nodes
+Added node localhost:50095 with 150 virtual nodes
+Added node localhost:50149 with 150 virtual nodes
+Added node localhost:50152 with 150 virtual nodes
+Added node localhost:50135 with 150 virtual nodes
+Added node localhost:50108 with 150 virtual nodes
+Added node localhost:50127 with 150 virtual nodes
+Added node localhost:50140 with 150 virtual nodes
+Added node localhost:50076 with 150 virtual nodes
+Added node localhost:50147 with 150 virtual nodes
+Added node localhost:50090 with 150 virtual nodes
+Added node localhost:50126 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50102 with 150 virtual nodes
+Added node localhost:50113 with 150 virtual nodes
+Added node localhost:50158 with 150 virtual nodes
+Added node localhost:50157 with 150 virtual nodes
+Added node localhost:50106 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50077 with 150 virtual nodes
+Added node localhost:50130 with 150 virtual nodes
+Added node localhost:50085 with 150 virtual nodes
+Added node localhost:50109 with 150 virtual nodes
+Added node localhost:50159 with 150 virtual nodes
+Added node localhost:50128 with 150 virtual nodes
+Added node localhost:50143 with 150 virtual nodes
+Added node localhost:50081 with 150 virtual nodes
+Added node localhost:50137 with 150 virtual nodes
+Added node localhost:50141 with 150 virtual nodes
+Added node localhost:50101 with 150 virtual nodes
+Added node localhost:50120 with 150 virtual nodes
+
+[Bench] Running 20 repair trials...
+
+[Result] Convergence Avg: 6.46 ms
+
+[Graph] Saved plot to graph_report/graph_read_repair.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST I: Total Datacenter Failure Survival
+Objective: Compare Data Availability after complete DC failure
+Scenario: Write 100 keys -> Kill DC1 -> Read 100 keys
+Configuration: 100 Nodes, 10 Datacenters
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Running scenario: Baseline (Naive)
+
+✓ All 30 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Step] Writing 100 keys...
+  Written 100 keys. Waiting for replication...
+[EVENT] ⚡ DESTROYING DATACENTER 1 ⚡
+  Killed 10 nodes (All of DC1). System is degraded.
+[Step] Attempting to read keys from remaining DCs...
+[Result] Baseline (Naive): 93/100 keys retrieved (93.0%)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Running scenario: Enhanced (DC-Aware)
+
+✓ All 30 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Step] Writing 100 keys...
+  Written 100 keys. Waiting for replication...
+[EVENT] ⚡ DESTROYING DATACENTER 1 ⚡
+  Killed 10 nodes (All of DC1). System is degraded.
+[Step] Attempting to read keys from remaining DCs...
+[Result] Enhanced (DC-Aware): 100/100 keys retrieved (100.0%)
+[Teardown] Stopping cluster...
+
+[Summary] Survival Rate (DC1 Failure):
+Baseline (Naive): 93.0%
+Enhanced (DC-Aware): 100.0%
+
+[Graph] Saved plot to graph_report/graph_survival_test.png
+
+============================================================
+TEST J: Straggler Node Latency
+Objective: Prove Asynchronous W-Quorum ignores slow nodes
+Scenario: DC3 has 50ms delay. Compare W=3 vs W=2.
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Synchronous (W=3): Performing writes...
+  Write 0: 65.8 ms
+  Write 1: 63.9 ms
+  Write 2: 64.4 ms
+  Write 3: 64.3 ms
+  Write 4: 65.3 ms
+  Write 5: 65.1 ms
+  Write 6: 65.5 ms
+  Write 7: 65.3 ms
+  Write 8: 63.8 ms
+  Write 9: 63.6 ms
+  Write 10: 65.0 ms
+  Write 11: 65.3 ms
+  Write 12: 65.2 ms
+  Write 13: 65.3 ms
+  Write 14: 64.2 ms
+  Write 15: 64.2 ms
+  Write 16: 64.0 ms
+  Write 17: 62.7 ms
+  Write 18: 62.9 ms
+  Write 19: 63.7 ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+
+[Bench] Asynchronous (W=2): Performing writes...
+  Write 0: 14.5 ms
+  Write 1: 12.5 ms
+  Write 2: 12.6 ms
+  Write 3: 12.8 ms
+  Write 4: 13.0 ms
+  Write 5: 12.6 ms
+  Write 6: 12.0 ms
+  Write 7: 12.4 ms
+  Write 8: 12.5 ms
+  Write 9: 12.2 ms
+  Write 10: 12.3 ms
+  Write 11: 12.7 ms
+  Write 12: 12.6 ms
+  Write 13: 12.2 ms
+  Write 14: 12.8 ms
+  Write 15: 12.1 ms
+  Write 16: 12.9 ms
+  Write 17: 12.4 ms
+  Write 18: 12.3 ms
+  Write 19: 12.4 ms
+[Teardown] Stopping cluster...
+
+[Graph] Saved improved plot to graph_report/graph_straggler_latency.png
+
+============================================================
+TEST K: Consistency Convergence Speed
+Objective: Measure Read Repair efficiency
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+  Waiting for node_1 to rejoin ring...
+[Result] Baseline (No Repair): 50 Stale Reads
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+  Waiting for node_1 to rejoin ring...
+[Result] Enhanced (With Repair): 50 Stale Reads
+[Teardown] Stopping cluster...
+
+[Graph] Saved improved plot to graph_report/graph_consistency_convergence.png
+
+============================================================
+TEST K: Consistency Convergence Speed
+Objective: Measure Read Repair efficiency vs Baseline
+Scenario: Partition -> Divergent Write -> Reconnect -> Measure Stale Reads
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Running Baseline (No Repair)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+[Step] Writing Version_1 to all nodes...
+[Step] Killing Node A (node_1)...
+[Step] Writing Version_2 to remaining replicas...
+[Step] Restarting Node A...
+  Waiting for Node A to rejoin ring...
+[Step] Measuring Consistency Convergence...
+[Result] Baseline (No Repair): 50 Stale / 0 Fresh
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Running Enhanced (With Repair)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+[Step] Writing Version_1 to all nodes...
+[Step] Killing Node A (node_1)...
+[Step] Writing Version_2 to remaining replicas...
+[Step] Restarting Node A...
+  Waiting for Node A to rejoin ring...
+[Step] Measuring Consistency Convergence...
+[Result] Enhanced (With Repair): 50 Stale / 0 Fresh
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_consistency_convergence.png
+
+============================================================
+TEST L: Throughput Scalability: 'Linear Growth'
+Objective: Prove Horizontal Scalability (Linear OPS growth with Node count)
+Method: Saturation test (40 threads) against cluster sizes 3, 6, 9, 12
+============================================================
+
+[Bench] Testing Cluster Size: 3 Nodes (3 trials)...
+
+[Setup] Cleaning environment...
+
+✓ All 3 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 1: 272.80 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 3 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 2: 141.80 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 3 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 3: 235.70 OPS
+[Teardown] Stopping cluster...
+[Result] Size 3: 216.77 ± 67.52 OPS
+
+[Bench] Testing Cluster Size: 6 Nodes (3 trials)...
+
+[Setup] Cleaning environment...
+
+✓ All 6 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 1: 473.10 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 6 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 2: 470.40 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 6 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 3: 460.50 OPS
+[Teardown] Stopping cluster...
+[Result] Size 6: 468.00 ± 6.63 OPS
+
+[Bench] Testing Cluster Size: 9 Nodes (3 trials)...
+
+[Setup] Cleaning environment...
+
+✓ All 9 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 1: 590.10 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 9 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 2: 607.20 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 9 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 3: 609.60 OPS
+[Teardown] Stopping cluster...
+[Result] Size 9: 602.30 ± 10.63 OPS
+
+[Bench] Testing Cluster Size: 12 Nodes (3 trials)...
+
+[Setup] Cleaning environment...
+
+✓ All 12 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 1: 690.00 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 12 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 2: 717.70 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+✓ All 12 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+  Trial 3: 693.80 OPS
+[Teardown] Stopping cluster...
+[Result] Size 12: 700.50 ± 15.02 OPS
+
+[Summary] Scalability Results:
+Nodes | Throughput (OPS)
+------|-----------------
+3     | 216.77
+6     | 468.00
+9     | 602.30
+12    | 700.50
+
+[Graph] Saved plot to graph_report/graph_scalability.png
+
+============================================================
+TEST M: The 'Availability Cliff' (Time Series)
+Objective: Visual proof of Datacenter-Awareness logic
+Scenario: Normal Op -> Kill DC1 -> Compare Naive vs Enhanced stability
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Running Naive Placement...
+
+✓ All 30 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Step] Pre-loading 200 keys...
+[Bench] Reading continuously for 15s (Kill at 5s)...
+  [EVENT] ⚡ KILLING DC1 ⚡
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Running DC-Aware Placement...
+
+✓ All 30 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Step] Pre-loading 200 keys...
+[Bench] Reading continuously for 15s (Kill at 5s)...
+  [EVENT] ⚡ KILLING DC1 ⚡
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_availability_cliff.png
+
+============================================================
+TEST N: Read Repair Convergence Rate
+Objective: Visualize 'Eventual Consistency' timeline
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+
+[Graph] Saved improved plot to graph_report/graph_convergence_rate.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST O: Load Balance: Virtual Nodes Histogram
+Objective: Prove that Virtual Nodes reduce data skew (hot spots)
+Configuration: 100 Nodes, N=3, 1000 Items
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Running Without VNodes (1/node)...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Inserting 1000 keys...
+  Inserted 0...
+  Inserted 200...
+  Inserted 400...
+  Inserted 600...
+  Inserted 800...
+[Result] Without VNodes (1/node): Mean=30.0, StdDev=21.59
+  Min=1, Max=117
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Running With VNodes (100/node)...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Inserting 1000 keys...
+  Inserted 0...
+  Inserted 200...
+  Inserted 400...
+  Inserted 600...
+  Inserted 800...
+[Result] With VNodes (100/node): Mean=30.0, StdDev=5.97
+  Min=18, Max=47
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_vnodes_impact.png
+
+============================================================
+TEST P: Conflict Rate vs. Concurrency
+Objective: Validate Vector Clocks under increasing pressure
+Method: High contention (small key space) with increasing threads
+============================================================
+
+[Setup] Cleaning environment...
+
+[Bench] Testing with 1 threads...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Pre-populating 500 keys...
+[Bench] Running mixed workload for 10s...
+[Result] 1 Threads: 193 Conflicts / 335 Clean (36.6%)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing with 5 threads...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Pre-populating 500 keys...
+[Bench] Running mixed workload for 10s...
+[Result] 5 Threads: 2742 Conflicts / 480 Clean (85.1%)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing with 10 threads...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Pre-populating 500 keys...
+[Bench] Running mixed workload for 10s...
+[Result] 10 Threads: 5267 Conflicts / 489 Clean (91.5%)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing with 20 threads...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Pre-populating 500 keys...
+[Bench] Running mixed workload for 10s...
+[Result] 20 Threads: 6585 Conflicts / 477 Clean (93.2%)
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing with 30 threads...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+[Step] Pre-populating 500 keys...
+[Bench] Running mixed workload for 10s...
+[Result] 30 Threads: 6608 Conflicts / 479 Clean (93.2%)
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_conflict_vs_concurrency.png
+
+============================================================
+TEST Q: The Cost of Consistency (R+W Trade-off)
+Objective: Visualize the latency 'tax' paid for stronger consistency
+Method: Benchmark Read/Write latency across Weak, Balanced, and Strong quorums
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Testing Config: Weak (R=1, W=1)...
+
+✓ All 25 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Bench] Performing 100 Writes and 100 Reads...
+[Result] Weak (R=1, W=1): Write=10.89ms, Read=4.36ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Testing Config: Balanced (R=2, W=2)...
+
+✓ All 25 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Bench] Performing 100 Writes and 100 Reads...
+[Result] Balanced (R=2, W=2): Write=12.58ms, Read=4.71ms
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Testing Config: Strong (R=3, W=3)...
+
+✓ All 25 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Bench] Performing 100 Writes and 100 Reads...
+[Result] Strong (R=3, W=3): Write=12.46ms, Read=4.96ms
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_cost_for_consistency.png
+
+============================================================
+TEST R: Background Replication Lag
+Objective: Visualize the 'Window of Vulnerability'
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+Added node localhost:50117 with 150 virtual nodes
+Added node localhost:50153 with 150 virtual nodes
+Added node localhost:50112 with 150 virtual nodes
+Added node localhost:50150 with 150 virtual nodes
+Added node localhost:50094 with 150 virtual nodes
+Added node localhost:50146 with 150 virtual nodes
+Added node localhost:50100 with 150 virtual nodes
+Added node localhost:50129 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50155 with 150 virtual nodes
+Added node localhost:50091 with 150 virtual nodes
+Added node localhost:50152 with 150 virtual nodes
+Added node localhost:50093 with 150 virtual nodes
+Added node localhost:50151 with 150 virtual nodes
+Added node localhost:50136 with 150 virtual nodes
+Added node localhost:50104 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50092 with 150 virtual nodes
+Added node localhost:50154 with 150 virtual nodes
+Added node localhost:50148 with 150 virtual nodes
+Added node localhost:50142 with 150 virtual nodes
+Added node localhost:50156 with 150 virtual nodes
+Added node localhost:50102 with 150 virtual nodes
+Added node localhost:50122 with 150 virtual nodes
+Added node localhost:50139 with 150 virtual nodes
+Added node localhost:50097 with 150 virtual nodes
+Added node localhost:50106 with 150 virtual nodes
+Added node localhost:50119 with 150 virtual nodes
+Added node localhost:50084 with 150 virtual nodes
+Added node localhost:50127 with 150 virtual nodes
+Added node localhost:50086 with 150 virtual nodes
+Added node localhost:50077 with 150 virtual nodes
+Added node localhost:50157 with 150 virtual nodes
+Added node localhost:50115 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50073 with 150 virtual nodes
+Added node localhost:50076 with 150 virtual nodes
+Added node localhost:50072 with 150 virtual nodes
+Added node localhost:50098 with 150 virtual nodes
+Added node localhost:50159 with 150 virtual nodes
+Added node localhost:50120 with 150 virtual nodes
+Added node localhost:50125 with 150 virtual nodes
+Added node localhost:50130 with 150 virtual nodes
+Added node localhost:50099 with 150 virtual nodes
+Added node localhost:50126 with 150 virtual nodes
+Added node localhost:50111 with 150 virtual nodes
+Added node localhost:50081 with 150 virtual nodes
+Added node localhost:50083 with 150 virtual nodes
+Added node localhost:50158 with 150 virtual nodes
+Added node localhost:50108 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50128 with 150 virtual nodes
+Added node localhost:50095 with 150 virtual nodes
+Added node localhost:50147 with 150 virtual nodes
+Added node localhost:50078 with 150 virtual nodes
+Added node localhost:50087 with 150 virtual nodes
+Added node localhost:50071 with 150 virtual nodes
+Added node localhost:50085 with 150 virtual nodes
+Added node localhost:50144 with 150 virtual nodes
+Added node localhost:50138 with 150 virtual nodes
+Added node localhost:50140 with 150 virtual nodes
+Added node localhost:50114 with 150 virtual nodes
+Added node localhost:50096 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50141 with 150 virtual nodes
+Added node localhost:50089 with 150 virtual nodes
+Added node localhost:50107 with 150 virtual nodes
+Added node localhost:50132 with 150 virtual nodes
+Added node localhost:50145 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50110 with 150 virtual nodes
+Added node localhost:50124 with 150 virtual nodes
+Added node localhost:50090 with 150 virtual nodes
+Added node localhost:50118 with 150 virtual nodes
+Added node localhost:50109 with 150 virtual nodes
+Added node localhost:50133 with 150 virtual nodes
+Added node localhost:50101 with 150 virtual nodes
+Added node localhost:50075 with 150 virtual nodes
+Added node localhost:50123 with 150 virtual nodes
+Added node localhost:50135 with 150 virtual nodes
+Added node localhost:50134 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50116 with 150 virtual nodes
+Added node localhost:50079 with 150 virtual nodes
+Added node localhost:50088 with 150 virtual nodes
+Added node localhost:50143 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50080 with 150 virtual nodes
+Added node localhost:50113 with 150 virtual nodes
+Added node localhost:50131 with 150 virtual nodes
+Added node localhost:50074 with 150 virtual nodes
+Added node localhost:50070 with 150 virtual nodes
+Added node localhost:50082 with 150 virtual nodes
+Added node localhost:50103 with 150 virtual nodes
+Added node localhost:50105 with 150 virtual nodes
+Added node localhost:50149 with 150 virtual nodes
+Added node localhost:50137 with 150 virtual nodes
+Added node localhost:50121 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+
+[Graph] Saved improved plot to graph_report/graph_replication_lag.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST S: Throughput vs. Consistency Level (Varying N)
+Objective: Analyze how N factor impacts throughput under different consistency models
+============================================================
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=3 Weak (N=3, R=1, W=1)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=3 Weak: 624.0 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=3 Quorum (N=3, R=2, W=2)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=3 Quorum: 616.3 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=3 Strong (N=3, R=3, W=3)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=3 Strong: 586.2 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=5 Weak (N=5, R=1, W=1)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=5 Weak: 391.1 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=5 Quorum (N=5, R=3, W=3)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=5 Quorum: 392.7 OPS
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Bench] Testing N=5 Strong (N=5, R=5, W=5)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] N=5 Strong: 378.0 OPS
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_throughput_vs_consistency.png
+
+============================================================
+TEST T: Cold Data Staleness (The Cost of No Merkle Trees)
+Objective: Prove that without Anti-Entropy, unread data stays stale
+Scenario: Partition -> Write -> Heal -> Wait 10s -> Check Internal State
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+[Step] Network healed. Waiting 5 seconds (simulating background window)...
+[Result] Node A Value: 'v1'
+✓ SUCCESS: Data is still stale (v1). Proves need for Read Repair or Merkle Trees.
+
+[Graph] Saved plot to graph_report/graph_cold_data_tradeoff.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST U: Coordination Overhead (Network Hops)
+Objective: Compare Server-Side Routing vs Client-Side Awareness
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+Added node localhost:50091 with 150 virtual nodes
+Added node localhost:50119 with 150 virtual nodes
+Added node localhost:50153 with 150 virtual nodes
+Added node localhost:50115 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50144 with 150 virtual nodes
+Added node localhost:50141 with 150 virtual nodes
+Added node localhost:50132 with 150 virtual nodes
+Added node localhost:50145 with 150 virtual nodes
+Added node localhost:50077 with 150 virtual nodes
+Added node localhost:50146 with 150 virtual nodes
+Added node localhost:50081 with 150 virtual nodes
+Added node localhost:50093 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50097 with 150 virtual nodes
+Added node localhost:50135 with 150 virtual nodes
+Added node localhost:50143 with 150 virtual nodes
+Added node localhost:50140 with 150 virtual nodes
+Added node localhost:50124 with 150 virtual nodes
+Added node localhost:50123 with 150 virtual nodes
+Added node localhost:50131 with 150 virtual nodes
+Added node localhost:50098 with 150 virtual nodes
+Added node localhost:50117 with 150 virtual nodes
+Added node localhost:50142 with 150 virtual nodes
+Added node localhost:50152 with 150 virtual nodes
+Added node localhost:50126 with 150 virtual nodes
+Added node localhost:50078 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50151 with 150 virtual nodes
+Added node localhost:50156 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50106 with 150 virtual nodes
+Added node localhost:50133 with 150 virtual nodes
+Added node localhost:50074 with 150 virtual nodes
+Added node localhost:50071 with 150 virtual nodes
+Added node localhost:50072 with 150 virtual nodes
+Added node localhost:50096 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50083 with 150 virtual nodes
+Added node localhost:50118 with 150 virtual nodes
+Added node localhost:50076 with 150 virtual nodes
+Added node localhost:50109 with 150 virtual nodes
+Added node localhost:50148 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50114 with 150 virtual nodes
+Added node localhost:50113 with 150 virtual nodes
+Added node localhost:50101 with 150 virtual nodes
+Added node localhost:50080 with 150 virtual nodes
+Added node localhost:50150 with 150 virtual nodes
+Added node localhost:50139 with 150 virtual nodes
+Added node localhost:50095 with 150 virtual nodes
+Added node localhost:50103 with 150 virtual nodes
+Added node localhost:50070 with 150 virtual nodes
+Added node localhost:50155 with 150 virtual nodes
+Added node localhost:50085 with 150 virtual nodes
+Added node localhost:50104 with 150 virtual nodes
+Added node localhost:50129 with 150 virtual nodes
+Added node localhost:50092 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50084 with 150 virtual nodes
+Added node localhost:50075 with 150 virtual nodes
+Added node localhost:50136 with 150 virtual nodes
+Added node localhost:50073 with 150 virtual nodes
+Added node localhost:50120 with 150 virtual nodes
+Added node localhost:50130 with 150 virtual nodes
+Added node localhost:50094 with 150 virtual nodes
+Added node localhost:50100 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50159 with 150 virtual nodes
+Added node localhost:50108 with 150 virtual nodes
+Added node localhost:50102 with 150 virtual nodes
+Added node localhost:50089 with 150 virtual nodes
+Added node localhost:50099 with 150 virtual nodes
+Added node localhost:50087 with 150 virtual nodes
+Added node localhost:50137 with 150 virtual nodes
+Added node localhost:50138 with 150 virtual nodes
+Added node localhost:50110 with 150 virtual nodes
+Added node localhost:50088 with 150 virtual nodes
+Added node localhost:50128 with 150 virtual nodes
+Added node localhost:50125 with 150 virtual nodes
+Added node localhost:50147 with 150 virtual nodes
+Added node localhost:50111 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50090 with 150 virtual nodes
+Added node localhost:50149 with 150 virtual nodes
+Added node localhost:50127 with 150 virtual nodes
+Added node localhost:50112 with 150 virtual nodes
+Added node localhost:50079 with 150 virtual nodes
+Added node localhost:50082 with 150 virtual nodes
+Added node localhost:50134 with 150 virtual nodes
+Added node localhost:50107 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50157 with 150 virtual nodes
+Added node localhost:50122 with 150 virtual nodes
+Added node localhost:50158 with 150 virtual nodes
+Added node localhost:50105 with 150 virtual nodes
+Added node localhost:50116 with 150 virtual nodes
+Added node localhost:50154 with 150 virtual nodes
+Added node localhost:50121 with 150 virtual nodes
+Added node localhost:50086 with 150 virtual nodes
+
+[Bench] Running 100 requests per strategy...
+[Result] Smart Client (0 Hop): 15.10 ms
+[Result] Random Client (1 Hop): 17.16 ms
+[Result] Overhead: 13.7%
+
+[Graph] Saved plot to graph_report/graph_coordination_overhead.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST W: Workload Mix Impact (Read/Write Ratio)
+Objective: Quantify the performance penalty of Writes vs Reads
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Step] Pre-populating data for Read tests...
+
+[Bench] Testing Workload: 0% Writes...
+[Result] 0% Writes: 520.1 OPS
+
+[Bench] Testing Workload: 25% Writes...
+[Result] 25% Writes: 536.8 OPS
+
+[Bench] Testing Workload: 50% Writes...
+[Result] 50% Writes: 394.4 OPS
+
+[Bench] Testing Workload: 75% Writes...
+[Result] 75% Writes: 234.2 OPS
+
+[Bench] Testing Workload: 100% Writes...
+[Result] 100% Writes: 154.3 OPS
+
+[Graph] Saved plot to graph_report/graph_workload_mix.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST V: Self-Healing Latency (Hinted Handoff)
+Objective: Visualize the cumulative recovery of data via Hints
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 100 nodes started
+  Hint Interval: 1s
+  Waiting for cluster stabilization...
+    5/20 seconds...
+    10/20 seconds...
+    15/20 seconds...
+    20/20 seconds...
+Added node localhost:50076 with 150 virtual nodes
+Added node localhost:50060 with 150 virtual nodes
+Added node localhost:50099 with 150 virtual nodes
+Added node localhost:50143 with 150 virtual nodes
+Added node localhost:50118 with 150 virtual nodes
+Added node localhost:50103 with 150 virtual nodes
+Added node localhost:50138 with 150 virtual nodes
+Added node localhost:50158 with 150 virtual nodes
+Added node localhost:50136 with 150 virtual nodes
+Added node localhost:50080 with 150 virtual nodes
+Added node localhost:50114 with 150 virtual nodes
+Added node localhost:50117 with 150 virtual nodes
+Added node localhost:50066 with 150 virtual nodes
+Added node localhost:50124 with 150 virtual nodes
+Added node localhost:50139 with 150 virtual nodes
+Added node localhost:50095 with 150 virtual nodes
+Added node localhost:50064 with 150 virtual nodes
+Added node localhost:50073 with 150 virtual nodes
+Added node localhost:50157 with 150 virtual nodes
+Added node localhost:50146 with 150 virtual nodes
+Added node localhost:50079 with 150 virtual nodes
+Added node localhost:50144 with 150 virtual nodes
+Added node localhost:50109 with 150 virtual nodes
+Added node localhost:50081 with 150 virtual nodes
+Added node localhost:50085 with 150 virtual nodes
+Added node localhost:50128 with 150 virtual nodes
+Added node localhost:50098 with 150 virtual nodes
+Added node localhost:50071 with 150 virtual nodes
+Added node localhost:50120 with 150 virtual nodes
+Added node localhost:50070 with 150 virtual nodes
+Added node localhost:50111 with 150 virtual nodes
+Added node localhost:50126 with 150 virtual nodes
+Added node localhost:50150 with 150 virtual nodes
+Added node localhost:50093 with 150 virtual nodes
+Added node localhost:50147 with 150 virtual nodes
+Added node localhost:50094 with 150 virtual nodes
+Added node localhost:50127 with 150 virtual nodes
+Added node localhost:50091 with 150 virtual nodes
+Added node localhost:50140 with 150 virtual nodes
+Added node localhost:50082 with 150 virtual nodes
+Added node localhost:50087 with 150 virtual nodes
+Added node localhost:50132 with 150 virtual nodes
+Added node localhost:50121 with 150 virtual nodes
+Added node localhost:50148 with 150 virtual nodes
+Added node localhost:50153 with 150 virtual nodes
+Added node localhost:50107 with 150 virtual nodes
+Added node localhost:50097 with 150 virtual nodes
+Added node localhost:50101 with 150 virtual nodes
+Added node localhost:50116 with 150 virtual nodes
+Added node localhost:50106 with 150 virtual nodes
+Added node localhost:50141 with 150 virtual nodes
+Added node localhost:50084 with 150 virtual nodes
+Added node localhost:50104 with 150 virtual nodes
+Added node localhost:50119 with 150 virtual nodes
+Added node localhost:50110 with 150 virtual nodes
+Added node localhost:50145 with 150 virtual nodes
+Added node localhost:50062 with 150 virtual nodes
+Added node localhost:50133 with 150 virtual nodes
+Added node localhost:50072 with 150 virtual nodes
+Added node localhost:50090 with 150 virtual nodes
+Added node localhost:50083 with 150 virtual nodes
+Added node localhost:50108 with 150 virtual nodes
+Added node localhost:50089 with 150 virtual nodes
+Added node localhost:50130 with 150 virtual nodes
+Added node localhost:50088 with 150 virtual nodes
+Added node localhost:50068 with 150 virtual nodes
+Added node localhost:50125 with 150 virtual nodes
+Added node localhost:50159 with 150 virtual nodes
+Added node localhost:50123 with 150 virtual nodes
+Added node localhost:50100 with 150 virtual nodes
+Added node localhost:50129 with 150 virtual nodes
+Added node localhost:50134 with 150 virtual nodes
+Added node localhost:50152 with 150 virtual nodes
+Added node localhost:50065 with 150 virtual nodes
+Added node localhost:50102 with 150 virtual nodes
+Added node localhost:50137 with 150 virtual nodes
+Added node localhost:50096 with 150 virtual nodes
+Added node localhost:50154 with 150 virtual nodes
+Added node localhost:50077 with 150 virtual nodes
+Added node localhost:50067 with 150 virtual nodes
+Added node localhost:50151 with 150 virtual nodes
+Added node localhost:50063 with 150 virtual nodes
+Added node localhost:50155 with 150 virtual nodes
+Added node localhost:50086 with 150 virtual nodes
+Added node localhost:50075 with 150 virtual nodes
+Added node localhost:50069 with 150 virtual nodes
+Added node localhost:50105 with 150 virtual nodes
+Added node localhost:50135 with 150 virtual nodes
+Added node localhost:50113 with 150 virtual nodes
+Added node localhost:50061 with 150 virtual nodes
+Added node localhost:50112 with 150 virtual nodes
+Added node localhost:50122 with 150 virtual nodes
+Added node localhost:50115 with 150 virtual nodes
+Added node localhost:50156 with 150 virtual nodes
+Added node localhost:50131 with 150 virtual nodes
+Added node localhost:50078 with 150 virtual nodes
+Added node localhost:50149 with 150 virtual nodes
+Added node localhost:50092 with 150 virtual nodes
+Added node localhost:50074 with 150 virtual nodes
+Added node localhost:50142 with 150 virtual nodes
+[Step] Killing Victim node_5...
+[Step] Writing 500 keys destined for Victim...
+  Stored 64 hints on neighbors.
+[Step] Reviving node_5...
+[Step] Polling for recovery (Max 30s)...
+  t=1.5s: 0/64 recovered
+  t=4.1s: 64/64 recovered
+
+[Graph] Saved improved plot to graph_report/graph_hinted_handoff.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST X: Read-Your-Writes Probability
+Objective: Quantify inconsistency risk for users moving between nodes
+============================================================
+
+[Setup] Cleaning environment...
+
+[Test] Running Weak (R=1, W=1)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] Weak (R=1, W=1): 100.0% Consistency
+[Teardown] Stopping cluster...
+
+[Setup] Cleaning environment...
+
+[Test] Running Quorum (R=2, W=2)...
+
+✓ All 10 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+[Result] Quorum (R=2, W=2): 100.0% Consistency
+[Teardown] Stopping cluster...
+
+[Graph] Saved plot to graph_report/graph_read_your_writes.png
+
+============================================================
+TEST Y: Tail Latency Analysis (P99 vs Average)
+Objective: Visualize the 'Tail' Latency (Critical for SLAs)
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 20 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+
+[Bench] Generating 1000 requests with random jitter...
+[Result] Avg: 24.8ms
+[Result] P50: 21.7ms
+[Result] P95: 44.9ms
+[Result] P99: 64.4ms
+
+[Graph] Saved plot to graph_report/graph_tail_latency.png
+[Teardown] Stopping cluster...
+
+============================================================
+TEST Z: Dynamic Scaling Impact (The Elasticity Test)
+Objective: Measure throughput while adding nodes mid-flight
+Scenario: 5 Nodes -> Load -> Add 95 Nodes -> Observe Throughput
+============================================================
+
+[Setup] Cleaning environment...
+
+✓ All 5 nodes started
+  Hint Interval: 30s
+  Waiting for cluster stabilization...
+    5/15 seconds...
+    10/15 seconds...
+    15/15 seconds...
+
+[Bench] Running load for 50s...
+  t=1s: 2626 OPS
+  t=2s: 2979 OPS
+  t=3s: 3015 OPS
+  t=4s: 2566 OPS
+  t=5s: 3000 OPS
+  t=6s: 3077 OPS
+  t=7s: 2658 OPS
+  t=8s: 3013 OPS
+  [EVENT] 🚀 ADDING 95 NEW NODES 🚀
+  Cluster size is now 100
+  t=9s: 1528 OPS
+  t=10s: 925 OPS
+  t=11s: 950 OPS
+  t=12s: 553 OPS
+  t=13s: 491 OPS
+  t=14s: 353 OPS
+  t=15s: 1772 OPS
+  t=16s: 2885 OPS
+  t=17s: 2560 OPS
+  t=18s: 2461 OPS
+  t=19s: 2899 OPS
+  t=20s: 2688 OPS
+  t=21s: 3082 OPS
+  t=22s: 2941 OPS
+  t=23s: 2576 OPS
+  t=24s: 3050 OPS
+  t=25s: 2964 OPS
+  t=26s: 2712 OPS
+  t=27s: 2664 OPS
+  t=28s: 2903 OPS
+  t=29s: 2968 OPS
+  t=30s: 2975 OPS
+  t=31s: 2610 OPS
+  t=32s: 2923 OPS
+  t=33s: 2910 OPS
+  t=34s: 2602 OPS
+  t=35s: 2970 OPS
+  t=36s: 2819 OPS
+  t=37s: 2652 OPS
+  t=38s: 3037 OPS
+  t=39s: 2923 OPS
+  t=40s: 2925 OPS
+  t=41s: 2551 OPS
+  t=42s: 2974 OPS
+  t=43s: 2881 OPS
+  t=44s: 2690 OPS
+  t=45s: 2895 OPS
+  t=46s: 2933 OPS
+  t=47s: 2712 OPS
+  t=48s: 2662 OPS
+  t=49s: 2928 OPS
+  t=50s: 2965 OPS
+
+[Graph] Saved plot to graph_report/graph_dynamic_scaling.png
+[Teardown] Stopping cluster...
+Done.
